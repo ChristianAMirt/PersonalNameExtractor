@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"edu.odu.cs.cs350","c":"SampleFile","l":"SampleFile()","u":"%3Cinit%3E()"},{"p":"edu.odu.cs.cs350","c":"SampleFile","l":"stringComparison(String, String)","u":"stringComparison(java.lang.String,java.lang.String)"}];updateSearchResults();
