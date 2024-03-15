@@ -1,0 +1,35 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+java {
+    sourceCompatibility = JavaVersion.toVersion(11)
+    targetCompatibility = JavaVersion.toVersion(11)
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.7.0'
+    testImplementation 'org.hamcrest:hamcrest-library:2.2'
+}
+
+application {
+    mainClass = 'edu.odu.cs.cs350.SampleFile'
+}
+
+test {
+    ignoreFailures = true
+    useJUnitPlatform()
+} 
+
+task copyDocs(type: Copy){
+    copyDocs.dependsOn(javadoc)
+    from 'build/docs/javadoc'
+    into 'build/reports/javadoc'
+}
+
+check.dependsOn(copyDocs)
