@@ -6,14 +6,6 @@ import java.util.Iterator;
  * Tokens represent each word and punction mark from a given block of text.
  * The purpose of seperating the text is to allow for easy traversal
  * over the text.
- * 
- * Either white space or a new line character ("\n") exists
- * between each token for words. A punctuation mark such as a period or
- * comma will be considered its own token. A hyphenated word or a word with
- * an apostrophe (e.g., there's) is an example of punctation marks that will
- * not be a seperate token.
- * 
- * 
  */
 public class Token /* implements Iterable<Feature> */ {
 

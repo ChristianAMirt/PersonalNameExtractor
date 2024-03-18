@@ -12,6 +12,8 @@ public class TestDocument {
 
     @Test
     public void testConstructors() {
-        
+        Document emptyDoc = new Document("");
+
+        assertThat(emptyDoc.size(), is(0));
     }
 }

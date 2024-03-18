@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="edu.odu.cs.cs350.TestTestClass" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-03-16T20:46:10" hostname="callisto" time="0.004">
-  <properties/>
-  <testcase name="testPrintSomething()" classname="edu.odu.cs.cs350.TestTestClass" time="0.004"/>
-  <system-out><![CDATA[Joe Mama
-]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
