@@ -19,15 +19,20 @@ import java.util.Scanner;
 public class Document implements Iterable<Token> {
 
     /**
-     * 
+     * Constant for Scanner delimiter is one or more white spaces
      */
-    private static final String TOKEN_DELIMITERS = "[ \\n]";
+    private static final String TOKEN_DELIMITERS = "[\\s]";
+
+    /**
+     * Constant list for punctation marks that can be seperate tokens
+     */
+    private static final char PUNCTUATION_MARKS[] = { '.', ',', '!', '?' };
 
     /**
      * Collection of tokens that hold words and certain punctuation marks from
      * the given input string.
      */
-    private LinkedList<Token> allTokens;
+    private List<Token> allTokens;
 
     /**
      * String given provided by the user. This is parsed into tokens.
@@ -59,13 +64,40 @@ public class Document implements Iterable<Token> {
      */
     public void parseDocument() {
         Scanner scanner = new Scanner(inputText);
-        
+
         scanner.useDelimiter(TOKEN_DELIMITERS);
 
         while (scanner.hasNext()) {
-            Token nextToken = new Token(scanner.next());
+
+            String nextWord = scanner.next();
+            Token nextToken;
+
+            // If it contains punctuation add just the word first
+            char lastChar = nextWord.charAt(nextWord.length() - 1);
+            if (containsPunctuation(lastChar)) {
+                nextToken = new Token(nextWord.substring(0, nextWord.length() - 1));
+                allTokens.add(nextToken);
+                nextToken = new Token(Character.toString(lastChar));
+            } else
+                nextToken = new Token(nextWord);
+
             allTokens.add(nextToken);
         }
+        scanner.close();
+    }
+
+    /**
+     * 
+     * @param character is checked to see if it is a punctuation mark that
+     *                  can be a seperate token
+     * @return true if it is a punction mark
+     */
+    public boolean containsPunctuation(char character) {
+        for (char knownPunctuation : PUNCTUATION_MARKS) {
+            if (character == knownPunctuation)
+                return true;
+        }
+        return false;
     }
 
     /**
