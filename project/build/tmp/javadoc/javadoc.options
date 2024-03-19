@@ -1,7 +1,0 @@
--classpath '/home/cs_cmirt001/semesterProject/project/build/classes/java/main:/home/cs_cmirt001/semesterProject/project/build/resources/main'
--d '/home/cs_cmirt001/semesterProject/project/build/docs/javadoc'
--doctitle 'project API'
--notimestamp 
--quiet 
--windowtitle 'project API'
-'/home/cs_cmirt001/semesterProject/project/src/main/java/edu/odu/cs/cs350/SampleFile.java'
