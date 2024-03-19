@@ -39,5 +39,28 @@ public class TestDocument {
             index++;
         }
 
+        Document multiLine = new Document("Testing with:\nLine\nBreaks.\n");
+        String tokenized2[] = { "Testing", "with", ":", "Line", "Breaks", "." };
+        it = multiLine.iterator();
+
+        index = 0;
+        while (it.hasNext()) {
+            Token currentToken = it.next();
+            assertThat(currentToken.getValue(), containsString(tokenized2[index]));
+            index++;
+        }
+
+        Document weirdPunctuation = new Document("My drink? My \"Diet Dr. Kelp!\" Don't tell me you forgot my drink&!");
+        String tokenized3[] = { "My", "drink", "?", "My", "\"", "Diet", "Dr", ".", "Kelp", "!", "\"",
+                "Don't", "tell", "me", "you", "forgot", "my", "drink", "&", "!" };
+        it = weirdPunctuation.iterator();
+
+        index = 0;
+        while (it.hasNext()) {
+            Token currentToken = it.next();
+            assertThat(currentToken.getValue(), containsString(tokenized3[index]));
+            index++;
+        }
+
     }
 }
