@@ -15,10 +15,11 @@ repositories {
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.7.0'
     testImplementation 'org.hamcrest:hamcrest-library:2.2'
+    implementation 'edu.odu.cs.extract'
 }
 
 application {
-    mainClass = 'edu.odu.cs.cs350.SampleFile'
+    mainClass = 'edu.odu.cs.cs350.PNE'
 }
 
 test {
@@ -30,6 +31,9 @@ task copyDocs(type: Copy){
     copyDocs.dependsOn(javadoc)
     from 'build/docs/javadoc'
     into 'build/reports/javadoc'
+}
+run {
+    args = ['these', 'are', 'test', 'args']
 }
 
 check.dependsOn(copyDocs)
