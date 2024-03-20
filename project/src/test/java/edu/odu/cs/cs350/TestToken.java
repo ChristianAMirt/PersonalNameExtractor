@@ -16,7 +16,6 @@ public class TestToken {
 
         assertThat(emptyToken.getValue(), is(""));
         assertThat(emptyToken.getClassification(), is(-1));
-        // add assertion for geting a feature
 
         Token firstWordOfSentence = new Token("Although");
 

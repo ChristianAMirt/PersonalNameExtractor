@@ -19,14 +19,14 @@ import java.util.Scanner;
 public class Document implements Iterable<Token> {
 
     /**
-     * Constant for Scanner delimiter is one or more white spaces
+     * Constant for Scanner delimiter is one or more white spaces.
      */
     private static final String TOKEN_DELIMITERS = "[\\s]";
 
     /**
-     * Regular expression for punctation marks that can be seperate tokens
+     * Regular expression for punctation marks that can be seperate tokens.
      */
-    private static final String TEST_PUNC = "(?<=\")|(?=[.,!?;:()\"&])";// add more marks next to "&"
+    private static final String PUNCTUATION_MARKS = "(?<=\")|(?=[.,!?;:()\"&])";// add more marks next to "&"
 
     /**
      * Collection of tokens that hold words and certain punctuation marks from
@@ -35,7 +35,7 @@ public class Document implements Iterable<Token> {
     private List<Token> allTokens;
 
     /**
-     * String given provided by the user. This is parsed into tokens.
+     * String provided by the user to be parsed into tokens.
      */
     private String inputText;
 
@@ -59,8 +59,8 @@ public class Document implements Iterable<Token> {
     }
 
     /**
-     * Places each word (seperated by whitespace newlines) in
-     * a token and adds it to the collection of tokens
+     * Places each word and certain punctuation marks in a token and adds it to
+     * the collection of tokens.
      */
     public void parseDocument() {
         Scanner scanner = new Scanner(inputText);
@@ -73,7 +73,7 @@ public class Document implements Iterable<Token> {
             Token nextToken;
 
             // split if string contains punctuation
-            String speratedNextWord[] = nextWord.split(TEST_PUNC);
+            String speratedNextWord[] = nextWord.split(PUNCTUATION_MARKS);
             for (String phrase : speratedNextWord) {
                 nextToken = new Token(phrase);
                 allTokens.add(nextToken);
@@ -83,14 +83,14 @@ public class Document implements Iterable<Token> {
     }
 
     /**
-     * @return size of token collection
+     * @return size of token collection.
      */
     public int size() {
         return allTokens.size();
     }
 
     /**
-     * @return iterator of token collection
+     * @return iterator of token collection.
      */
     @Override
     public Iterator<Token> iterator() {
