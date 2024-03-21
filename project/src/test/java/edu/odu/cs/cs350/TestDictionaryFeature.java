@@ -14,7 +14,7 @@ public class TestDictionaryFeature {
     public void testDetermineDictionaryFeature() throws FileNotFoundException, IOException
     {
         DictionaryFeature testForDictionaryFeature = new DictionaryFeature();
-        Token firstToken = new Token("Syntax");
+        Token firstToken = new Token("syntax");
         
         assertEquals(testForDictionaryFeature.determineDictionaryFeature(firstToken) , true);
     }

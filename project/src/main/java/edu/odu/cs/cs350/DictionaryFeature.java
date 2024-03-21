@@ -1,11 +1,9 @@
 package edu.odu.cs.cs350;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
 
 /**
  * @author Jaylen Wheeler
@@ -16,15 +14,18 @@ public class DictionaryFeature {
     /**
      * instantiation of this class as an object.
      */
-    public DictionaryFeature() {
-
-    }
+    public DictionaryFeature() {}
 
     /**
-     * Runs a token threw a list of (up to) 120,000 words in the English Language
+     * Runs a token through a list of (up to) 120,000 words in the English Language
      * for comparison between the token's value and the word.
      * 
      * Source: aspell English dictionary, with affixes expanded
+     * 
+     * @param Token myWord
+     * 
+     * @throws FileNotFoundException 
+     * @throws IOException
      * 
      * @return boolean value
      */
@@ -32,26 +33,22 @@ public class DictionaryFeature {
 
         BufferedReader myReader = null;
 
-        File myFIle = new File("Dictionary.english.txt");
-        String path = myFIle.getAbsolutePath();
-        // System.out.println(f.exists());
-        // System.out.println(f.isDirectory());
-        // System.out.println(f.canRead());
-        // System.out.println(f.getAbsolutePath());
-        // System.out.println(new File(".").getAbsolutePath());
-        
-
-        myReader = new BufferedReader(new FileReader(path));
+        myReader = new BufferedReader(new FileReader("src/main/data/Dictionary.english.txt"));
 
         String dictionaryLine = myReader.readLine();
+        System.out.println(dictionaryLine);
 
         // Compares every line of the dictionary file with the token's value
-        // and returns true if they are equal
-        while ((dictionaryLine = myReader.readLine()) != null) {
-            if (dictionaryLine == myWord.getValue()) {
+        // and returns true if they are equal.
+        // Otherwise, it returns false.
+        while (dictionaryLine != null) {
+
+            if (dictionaryLine.contains(myWord.getValue())) {
                 myReader.close();
                 return true;
             }
+
+            dictionaryLine = myReader.readLine();
         }
         myReader.close();
         return false;
