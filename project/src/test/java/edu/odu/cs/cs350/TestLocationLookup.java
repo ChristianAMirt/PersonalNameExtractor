@@ -13,10 +13,23 @@ import org.junit.jupiter.api.Test;
 
 public class TestLocationLookup {
 
+    private LocationLookup location;
+
+    @BeforeEach
+    void setUp() throws FileNotFoundException, IOException{
+        String filename = "/home/cs_aakin007/cs350/cs350-project-s24-ChristianAMirt/project/src/test/data/DI73B5~1.TXT";
+        location = new LocationLookup(filename);
+    }
+    
+
     @Test
-    void TestReadInFile() throws FileNotFoundException, IOException {
-        String filename = "/home/cs_aakin007/cs350/cs350-project-s24-ChristianAMirt/project/src/test/data/Locations.txt";
-        LocationLookup location = new LocationLookup(filename);
+    void TestReadInFile() {
         assertTrue(location.size() > 0);
+    }
+
+    @Test
+    void TestCheckLocation() {
+        String toFind = "New York";
+        assertTrue(location.checkLocation(toFind));
     }
 }
