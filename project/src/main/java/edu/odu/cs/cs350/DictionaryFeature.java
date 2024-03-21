@@ -36,7 +36,6 @@ public class DictionaryFeature {
         myReader = new BufferedReader(new FileReader("src/main/data/Dictionary.english.txt"));
 
         String dictionaryLine = myReader.readLine();
-        System.out.println(dictionaryLine);
 
         // Compares every line of the dictionary file with the token's value
         // and returns true if they are equal.
