@@ -22,7 +22,7 @@ public class DictionaryFeature {
      * 
      * Source: aspell English dictionary, with affixes expanded
      * 
-     * @param Token myWord
+     * @param myWord
      * 
      * @throws FileNotFoundException 
      * @throws IOException
