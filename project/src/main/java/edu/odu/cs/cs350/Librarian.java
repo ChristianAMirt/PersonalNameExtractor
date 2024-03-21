@@ -7,21 +7,21 @@ import java.util.Vector;
  * The Librarian is responsible for determining what parts of the given input
  * need to evaluated and the actions that will be taken on these sections of
  * data in order to extract meta data. The Librarian will then reconstruct the
- * input back together and include the <PER></PER> tags around personal names
+ * input back together and include the PER tags around personal names
  * that are found.
  * 
  * The input may be at most a page of text (4000 characters), or 50 lines of
  * 80 characters per line. Any input exceeding this amout will not be accepted,
  * and will throw an exception.
  * 
- * The Librarian takes looks for the <NER></NER> tags ... (FILL THIS IN WHOEVER
+ * The Librarian takes looks for the NER tags ... (FILL THIS IN WHOEVER
  * HAS THIS STORY)
  */
 public class Librarian {
 
     /**
      * Collection of each part of input string that is surrounded by
-     * <NER></NER> tags.
+     * NER tags.
      */
     private Vector<Document> inputDocument;
 
@@ -42,7 +42,7 @@ public class Librarian {
                 inputDocument.add(document);
             }
         }
-        // THIS MAY BE MODIFIED TO ONLY CREATE A DOCUMENT FROM TEXT WITH <NER></NER> TAG
+        // THIS MAY BE MODIFIED TO ONLY CREATE A DOCUMENT FROM TEXT WITH NER TAG
     }
 
     public boolean hasDocuments() {
