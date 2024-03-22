@@ -52,17 +52,32 @@ public class Librarian {
     }
 
     /**
-     * Returns the text between a start and end token.
-     * 
-     * - <NER>  : Start token
-     * - </NER> : End token
-     * 
-     * Example 
-     *  Input:  "ABCD EFGH <NER> IJKL MNOP </NER> QRST UVWX YZ"
-     *  Output: " IJKL MNOP "
+     * Returns the substring text between <NER> and </NER>.
      */
-    public String getTextBetweenNERTags(String inputString) {
+    public String getTextBetweenNERTags(String inputText) {
 
-        return "";
+        String NER_TAG_START = "<NER>";
+        String NER_TAG_END = "</NER>";
+
+        int indexNERStart = 0;
+        int indexNEREnd = 0;
+
+        if (inputText.contains(NER_TAG_START) == true) {
+            indexNERStart = getTagIndex(inputText, NER_TAG_START);
+            indexNERStart = indexNERStart + NER_TAG_START.length();
+        }
+
+        if (inputText.contains(NER_TAG_END) == true) {
+            indexNEREnd = getTagIndex(inputText, NER_TAG_END);
+        }
+        
+        return inputText.substring(indexNERStart, indexNEREnd);
+    }
+
+    /*
+     * Returns index of "tag" within "inputString".
+     */
+    public int getTagIndex(String inputString, String tag) {
+        return inputString.indexOf(tag);
     }
 }

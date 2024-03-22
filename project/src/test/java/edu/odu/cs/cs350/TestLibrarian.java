@@ -50,4 +50,15 @@ public class TestLibrarian {
         assertEquals(expectedOutputText, librarian.getTextBetweenNERTags(sampleInputText));
 
     }
+
+    @Test
+    public void testGetTagIndex() throws IOException {
+
+        //Variable for sample input text test.
+        String sampleInputText = "ABCD EFGH <NER> IJKL MNOP </NER> QRST UVWX YZ";
+
+        Librarian librarian = new Librarian(sampleInputText);
+        assertEquals(11, librarian.getTagIndex(sampleInputText, "NER"));
+
+    }
 }
