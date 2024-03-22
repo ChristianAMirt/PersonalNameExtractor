@@ -23,7 +23,7 @@ public class Librarian {
      * Collection of each part of input string that is surrounded by
      * NER tags.
      */
-    private Vector<Document> inputDocument;
+    private Vector<Document> inputDocuments;
 
     /**
      * 
@@ -32,21 +32,25 @@ public class Librarian {
      * @throws IOException if input is larger than 4000 characters
      */
     public Librarian(String inputPage) throws IOException {
-        inputDocument = new Vector<Document>();
+        inputDocuments = new Vector<Document>();
 
         if (inputPage.length() > 4000)
             throw new IOException();
         else {
             if (inputPage != "") {
                 Document document = new Document(inputPage);
-                inputDocument.add(document);
+                inputDocuments.add(document);
             }
         }
         // THIS MAY BE MODIFIED TO ONLY CREATE A DOCUMENT FROM TEXT WITH NER TAG
     }
 
+    /**
+     * 
+     * @return true if one or more Documents have been added to collection
+     */
     public boolean hasDocuments() {
-        if (inputDocument.size() > 0)
+        if (inputDocuments.size() > 0)
             return true;
         return false;
     }
