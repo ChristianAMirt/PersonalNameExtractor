@@ -1,5 +1,6 @@
 package edu.odu.cs.cs350;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -23,9 +24,15 @@ public class Token {
 
     /**
      * An identifier for whether or not the token is part
-     * of the English dictionary or not
+     * of the English dictionary
      */
     private boolean dictionaryFeature;
+
+    /**
+     * An identifier for whether or not the token is
+     *  a kill word
+     */
+    private boolean killWordFeature;
 
     /**
      * Collection of features that is contains characteristics about the token.
@@ -73,5 +80,24 @@ public class Token {
      */
     public boolean getDictionaryFeature(){
         return dictionaryFeature;
+    }
+
+    /**
+     * sets the killWordFeature value of Token
+     * 
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
+    public void setKillWordFeature() throws FileNotFoundException, IOException{
+        killWordFeature = new KillWordFeature().determineKillWordFeature(value);
+    }
+
+    /**
+     * Returns the killWordFeature value of Token
+     * 
+     * @return boolean
+     */
+    public boolean getKillWordFeature(){
+        return killWordFeature;
     }
 }

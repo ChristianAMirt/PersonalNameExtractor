@@ -37,6 +37,7 @@ public class TestToken {
         Token dictionaryFeatureToken = new Token("AkiraToriyama");
         dictionaryFeatureToken.setDictionaryFeature();
 
+        assertNotNull(dictionaryFeatureToken.getDictionaryFeature());
         assertThat(dictionaryFeatureToken.getDictionaryFeature(), is(false));
     }
 
@@ -51,7 +52,35 @@ public class TestToken {
         Token dictionaryFeatureToken = new Token("goat");
         dictionaryFeatureToken.setDictionaryFeature();
 
-        assertNotNull(dictionaryFeatureToken.getDictionaryFeature());
         assertEquals(dictionaryFeatureToken.getDictionaryFeature(), true);
+    }
+
+    /**
+     * Tests the setter method for killWordFeature value within Token
+     * 
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
+    @Test
+    public void testSetKillWordFeature() throws FileNotFoundException, IOException{
+        Token killWordFeatureToken = new Token("fuel");
+        killWordFeatureToken.setKillWordFeature();
+
+        assertNotNull(killWordFeatureToken.getKillWordFeature());
+        assertThat(killWordFeatureToken.getKillWordFeature(), is(true));
+    }
+
+    /**
+     * Tests the getter method for the killWordFeature value within Token
+     * 
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
+    @Test
+    public void testGetKillWordFeature() throws FileNotFoundException, IOException{
+        Token killWordFeatureToken = new Token("Luffy");
+        killWordFeatureToken.setKillWordFeature();
+
+        assertEquals(killWordFeatureToken.getKillWordFeature(), false);
     }
 }
