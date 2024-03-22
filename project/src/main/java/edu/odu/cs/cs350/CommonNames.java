@@ -1,19 +1,25 @@
 package edu.odu.cs.cs350;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-
+import java.io.FileNotFoundException;
 
 /**
  *  Determines if token contains a common name
  */
 public class CommonNames {
     /**
-     * 
+     * Constructor for CommonNames
      */
     public CommonNames(){
+    }
 
+    public FileReader openFile(String fileName)
+        throws FileNotFoundException
+    {
+        return new FileReader(new File(fileName));
     }
 
     /**
@@ -22,12 +28,14 @@ public class CommonNames {
      * 
      * @param token
      * @throws IOException
+     * @throws FileNotFoundException
      * @return boolean value
      */
     public boolean commonFirstName(Token token) 
-        throws IOException 
+        throws IOException
     {
-        BufferedReader commonFirstNames = new BufferedReader(new FileReader("src/main/data/CommonFirstNames.txt"));
+        String fileName = "src/main/data/CommonFirstNames.txt";
+        BufferedReader commonFirstNames = new BufferedReader(openFile(fileName));
         String inputString = commonFirstNames.readLine();
 
         while (inputString != null){
@@ -48,12 +56,14 @@ public class CommonNames {
      * 
      * @param token
      * @throws IOException 
+     * @throws FileNotFoundException
      * @return boolean value
      */
     public boolean commonLastName(Token token) 
         throws IOException
     {
-        BufferedReader commonLastNames = new BufferedReader(new FileReader("src/main/data/CommonLastNames.txt"));
+        String fileName = "src/main/data/CommonLastNames.txt";
+        BufferedReader commonLastNames = new BufferedReader(openFile(fileName));
         String inputString = commonLastNames.readLine();
 
         while (inputString != null){
