@@ -1,5 +1,8 @@
 package edu.odu.cs.cs350;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 /**
  * Tokens represent each word and punction mark from a given block of text.
  * The purpose of seperating the text is to allow for easy traversal
@@ -17,6 +20,12 @@ public class Token {
      * or not yet classified yet.
      */
     private int classification;
+
+    /**
+     * An identifier for whether or not the token is part
+     * of the English dictionary or not
+     */
+    private boolean dictionaryFeature;
 
     /**
      * Collection of features that is contains characteristics about the token.
@@ -45,5 +54,24 @@ public class Token {
      */
     public int getClassification() {
         return classification;
+    }
+
+    /**
+     * sets the dictionaryFeature value of Token
+     * 
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
+    public void setDictionaryFeature() throws FileNotFoundException, IOException{
+        dictionaryFeature = new DictionaryFeature().determineDictionaryFeature(value);
+    }
+
+    /**
+     * Returns the dictionaryFeature value of Token
+     * 
+     * @return boolean
+     */
+    public boolean getDictionaryFeature(){
+        return dictionaryFeature;
     }
 }

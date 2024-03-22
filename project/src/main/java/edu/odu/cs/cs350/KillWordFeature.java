@@ -18,8 +18,8 @@ public class KillWordFeature {
     }
 
     /**
-     * Runs a singular token through a list of designated kill words
-     * for comparison between the token's value and the word.
+     * Runs a singular string through a list of designated kill words
+     * for comparison between the string value and the word.
      * 
      * Source: collected by ODU Extract project team, primarily from
      * experience with DTIC documents.
@@ -31,7 +31,7 @@ public class KillWordFeature {
      * 
      * @return boolean value
      */
-    public boolean determineKillWordFeature(Token word) throws FileNotFoundException, IOException {
+    public boolean determineKillWordFeature(String word) throws FileNotFoundException, IOException {
 
         BufferedReader myReader = null;
 
@@ -39,11 +39,11 @@ public class KillWordFeature {
 
         String killWordLine = myReader.readLine();
 
-        // Compares every line of the kill word file with the token's value
+        // Compares every line of the kill word file with the string value
         // and returns true if they are equal.
         // Otherwise, it returns false.\
         while (killWordLine != null) {
-            if (killWordLine.contains(word.getValue())) {
+            if (killWordLine.contains(word)) {
                 myReader.close();
                 return true;
             }
@@ -55,8 +55,8 @@ public class KillWordFeature {
     }
 
     /**
-     * Runs two tokens through a list of designated kill words
-     * for comparison between the token's value and the word.
+     * Runs two strings through a list of designated kill words
+     * for comparison between the string values and the word.
      * 
      * Source: collected by ODU Extract project team, primarily from
      * experience with DTIC documents.
@@ -69,7 +69,7 @@ public class KillWordFeature {
      * 
      * @return boolean value
      */
-    public boolean determineMultipleKillWordFeatures(Token firstWord, Token secondWord)
+    public boolean determineMultipleKillWordFeatures(String firstWord, String secondWord)
             throws FileNotFoundException, IOException {
 
         BufferedReader myReader = null;
@@ -79,11 +79,11 @@ public class KillWordFeature {
         String killWordLine = myReader.readLine();
 
         // Compares every line of the kill word file with the 
-        // values of both tokens and returns
+        // values of both strings and returns
         // true if they are equal.
         // Otherwise, it returns false.\
         while (killWordLine != null) {
-            if (killWordLine.contains(firstWord.getValue()) && killWordLine.contains(secondWord.getValue())) {
+            if (killWordLine.contains(firstWord) && killWordLine.contains(secondWord)) {
                 myReader.close();
                 return true;
             }

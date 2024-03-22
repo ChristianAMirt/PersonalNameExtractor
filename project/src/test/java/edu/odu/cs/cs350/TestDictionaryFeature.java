@@ -36,11 +36,11 @@ public class TestDictionaryFeature {
         DictionaryFeature secondDictionaryFeature = new DictionaryFeature();
         Token firstToken = new Token("syntax");
 
-        assertEquals(secondDictionaryFeature.determineDictionaryFeature(firstToken) , true);
+        assertEquals(secondDictionaryFeature.determineDictionaryFeature(firstToken.getValue()) , true);
         
         DictionaryFeature thirdDictionaryFeature = new DictionaryFeature();
         Token secondToken = new Token("bdhiskThisWordShouldNotBeInTheDictionaryJmjhp");
 
-        assertNotEquals(thirdDictionaryFeature.determineDictionaryFeature(secondToken), true);
+        assertNotEquals(thirdDictionaryFeature.determineDictionaryFeature(secondToken.getValue()), true);
     }
 }

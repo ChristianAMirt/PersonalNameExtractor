@@ -17,7 +17,7 @@ public class DictionaryFeature {
     public DictionaryFeature() {}
 
     /**
-     * Runs a token through a list of (up to) 120,000 words in the English Language
+     * Runs a string through a list of (up to) 120,000 words in the English Language
      * for comparison between the token's value and the word.
      * 
      * Source: aspell English dictionary, with affixes expanded
@@ -29,7 +29,7 @@ public class DictionaryFeature {
      * 
      * @return boolean value
      */
-    public boolean determineDictionaryFeature(Token myWord) throws FileNotFoundException, IOException {
+    public boolean determineDictionaryFeature(String myWord) throws FileNotFoundException, IOException {
 
         BufferedReader myReader = null;
 
@@ -37,12 +37,12 @@ public class DictionaryFeature {
 
         String dictionaryLine = myReader.readLine();
 
-        // Compares every line of the dictionary file with the token's value
+        // Compares every line of the dictionary file with the string value
         // and returns true if they are equal.
         // Otherwise, it returns false.
         while (dictionaryLine != null) {
 
-            if (dictionaryLine.contains(myWord.getValue())) {
+            if (dictionaryLine.contains(myWord)) {
                 myReader.close();
                 return true;
             }
