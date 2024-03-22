@@ -45,6 +45,12 @@ public class Token {
     private boolean commonLastName;
 
     /**
+     * An identifier for whether or not token contains honorfiics 
+     * preceding personal name
+     */
+    private boolean honorificsValue;
+
+    /**
      * Collection of features that is contains characteristics about the token.
      */
     // private Feature features[NUMBER OF CHARACTERISTICS]; Need feature classes
@@ -147,5 +153,24 @@ public class Token {
      */
     public boolean getCommonLastName(){
         return commonLastName;
+    }
+
+    /**
+     * Sets honorifics value of Token
+     * 
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
+    public void setHonorificsValue() throws FileNotFoundException, IOException{
+        honorificsValue = new Honorifics().containsHonorifics(value);
+    }
+
+    /**
+     * Returns commonLastName value of Token
+     * 
+     * @return boolean value
+     */
+    public boolean getHonorificsValue(){
+        return honorificsValue;
     }
 }

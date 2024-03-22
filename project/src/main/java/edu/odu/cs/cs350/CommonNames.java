@@ -16,6 +16,14 @@ public class CommonNames {
     public CommonNames(){
     }
 
+    /**
+     * Opens input file dependent on string that 
+     * contains file name
+     * 
+     * @param fileName
+     * @throws FileNotFoundException
+     * @return FileReader
+     */
     public FileReader openFile(String fileName)
         throws FileNotFoundException
     {
