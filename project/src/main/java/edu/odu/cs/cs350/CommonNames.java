@@ -23,15 +23,15 @@ public class CommonNames {
     }
 
     /**
-     * Recieves token and compares contained
-     * words with common US first names
+     * Recieves token string value and compares
+     * contained words with common US first names
      * 
-     * @param token
+     * @param value
      * @throws IOException
      * @throws FileNotFoundException
      * @return boolean value
      */
-    public boolean commonFirstName(Token token) 
+    public boolean commonFirstName(String value) 
         throws IOException
     {
         String fileName = "src/main/data/CommonFirstNames.txt";
@@ -39,7 +39,7 @@ public class CommonNames {
         String inputString = commonFirstNames.readLine();
 
         while (inputString != null){
-            if (inputString.contains(token.getValue().toLowerCase())){
+            if (inputString.contains(value.toLowerCase())){
                 commonFirstNames.close();
                 return true;
             }
@@ -51,15 +51,15 @@ public class CommonNames {
     }
 
     /**
-     * Recieves token and compares contained
-     * words with common US last names
+     * Recieves token string value and compares
+     * contained words with common US last names
      * 
-     * @param token
+     * @param value
      * @throws IOException 
      * @throws FileNotFoundException
      * @return boolean value
      */
-    public boolean commonLastName(Token token) 
+    public boolean commonLastName(String value) 
         throws IOException
     {
         String fileName = "src/main/data/CommonLastNames.txt";
@@ -67,7 +67,7 @@ public class CommonNames {
         String inputString = commonLastNames.readLine();
 
         while (inputString != null){
-            if (inputString.contains(token.getValue().toLowerCase())){
+            if (inputString.contains(value.toLowerCase())){
                 commonLastNames.close();
                 return true;
             }

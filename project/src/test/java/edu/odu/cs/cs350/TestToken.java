@@ -83,4 +83,62 @@ public class TestToken {
 
         assertEquals(killWordFeatureToken.getKillWordFeature(), false);
     }
+
+    /**
+     * Test for setter method for commonFirstName
+     * 
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
+    @Test
+    public void testSetCommonFirstName()throws FileNotFoundException, IOException{
+        Token commonFirstNameToken = new Token("brendan");
+        commonFirstNameToken.setCommonFirstName();
+
+        assertNotNull(commonFirstNameToken.getCommonFirstName());
+        assertThat(commonFirstNameToken.getCommonFirstName(), is(true));
+    }
+
+    /**
+     * Test for getter method for commonFirstName
+     * 
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
+    @Test
+    public void testGetCommonFirstName() throws FileNotFoundException, IOException{
+        Token commonFirstNameToken = new Token("hearrell");
+        commonFirstNameToken.setCommonFirstName();
+
+        assertEquals(commonFirstNameToken.getCommonFirstName(), false);
+    }
+
+    /**
+     *  Test for setter method for commonLastName
+     * 
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
+    @Test
+    public void testSetCommonLastName()throws FileNotFoundException, IOException{
+        Token commonLastNameToken = new Token("smith");
+        commonLastNameToken.setCommonLastName();
+
+        assertNotNull(commonLastNameToken.getCommonLastName());
+        assertThat(commonLastNameToken.getCommonLastName(), is(true));
+    }
+
+    /**
+     * Test for getter method for commonLastName
+     * 
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
+    @Test
+    public void testGetCommonLastName() throws FileNotFoundException, IOException{
+        Token commonLastNameToken = new Token("hearrell");
+        commonLastNameToken.setCommonLastName();
+
+        assertEquals(commonLastNameToken.getCommonLastName(), false);
+    }
 }

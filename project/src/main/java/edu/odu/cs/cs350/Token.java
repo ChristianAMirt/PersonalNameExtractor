@@ -35,6 +35,16 @@ public class Token {
     private boolean killWordFeature;
 
     /**
+     * An identifier for whether or not token is a common first name
+     */
+    private boolean commonFirstName;
+
+    /**
+     * An identifier for whether or not token is a common Last name
+     */
+    private boolean commonLastName;
+
+    /**
      * Collection of features that is contains characteristics about the token.
      */
     // private Feature features[NUMBER OF CHARACTERISTICS]; Need feature classes
@@ -99,5 +109,43 @@ public class Token {
      */
     public boolean getKillWordFeature(){
         return killWordFeature;
+    }
+
+    /**
+     * Sets commonFirstName value of Token
+     * 
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
+    public void setCommonFirstName() throws FileNotFoundException, IOException{
+        commonFirstName = new CommonNames().commonFirstName(value);
+    }
+
+    /**
+     * Returns commonFirstName value of Token
+     * 
+     * @return boolean value
+     */
+    public boolean getCommonFirstName(){
+        return commonFirstName;
+    }
+
+    /**
+     * Sets commonLastName value of Token
+     * 
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
+    public void setCommonLastName() throws FileNotFoundException, IOException{
+        commonLastName = new CommonNames().commonLastName(value);
+    }
+
+    /**
+     * Returns commonLastName value of Token
+     * 
+     * @return boolean value
+     */
+    public boolean getCommonLastName(){
+        return commonLastName;
     }
 }
