@@ -50,4 +50,19 @@ public class Librarian {
             return true;
         return false;
     }
+
+    /**
+     * Returns the text between a start and end token.
+     * 
+     * - <NER>  : Start token
+     * - </NER> : End token
+     * 
+     * Example 
+     *  Input:  "ABCD EFGH <NER> IJKL MNOP </NER> QRST UVWX YZ"
+     *  Output: " IJKL MNOP "
+     */
+    public String getTextBetweenNERTags(String inputString) {
+
+        return "";
+    }
 }
