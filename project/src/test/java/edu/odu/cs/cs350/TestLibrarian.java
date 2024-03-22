@@ -34,4 +34,9 @@ public class TestLibrarian {
         assertThrows(IOException.class, () -> new Librarian(bigString));
     }
 
+    @Test
+    public void testGetTextBetweenNERTags() {
+        TextBetweenNERTags textBlock = new TextBetweenNERTags();
+
+    }
 }
