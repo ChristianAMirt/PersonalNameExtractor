@@ -35,8 +35,19 @@ public class TestLibrarian {
     }
 
     @Test
-    public void testGetTextBetweenNERTags() {
-        TextBetweenNERTags textBlock = new TextBetweenNERTags();
+    public void testGetTextBetweenNERTags() throws IOException {
+        
+        //Variable for empty text test.
+        String emptyInputText = "";
+
+        //Variable for sample input text test.
+        String sampleInputText = "ABCD EFGH <NER> IJKL MNOP </NER> QRST UVWX YZ";
+
+        //Variable for sample output text test.
+        String expectedOutputText = " IJKL MNOP ";
+
+        Librarian librarian = new Librarian(sampleInputText);
+        assertEquals(expectedOutputText, librarian.getTextBetweenNERTags(sampleInputText));
 
     }
 }
