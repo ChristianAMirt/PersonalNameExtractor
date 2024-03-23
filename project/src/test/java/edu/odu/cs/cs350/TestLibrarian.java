@@ -22,6 +22,20 @@ public class TestLibrarian {
         Librarian librarian2 = new Librarian("Is this the Krusty Krab? No this is Patrick.");
 
         assertThat(librarian2.hasDocuments(), is(true));
+        
+        Librarian librarian3 = new Librarian("<NER>ABCD EFGH </NER><NER> IJKL MNOP </NER><NER> QRST UVWX YZ</NER>");
+        String[] outputExpected = {"<NER>ABCD EFGH </NER>", "<NER> IJKL MNOP </NER>", "<NER> QRST UVWX YZ</NER>"};
+        int vectorSizeExpected = 3;
+
+        int vectorSizeActual = librarian3.getDocumentsSize();
+        assertThat(librarian3.hasDocuments(), is(true));
+        assertEquals(vectorSizeExpected, vectorSizeActual);
+
+        String documentText;
+        for (int i = 0; i<vectorSizeActual; i++) {
+            documentText = librarian3.getDocumentAt(i).getInputText();
+            assertEquals(outputExpected[i], documentText);
+        }
     }
 
     @Test
@@ -32,6 +46,23 @@ public class TestLibrarian {
 
         assertDoesNotThrow(() -> new Librarian("small String"));
         assertThrows(IOException.class, () -> new Librarian(bigString));
+    }
+
+    @Test
+    public void testSplitInputPage() throws IOException {
+        
+        Librarian librarian3 = new Librarian("<NER>ABCD EFGH </NER><NER> IJKL MNOP </NER><NER> QRST UVWX YZ</NER>");
+       
+        String[] outputExpected = {"<NER>ABCD EFGH </NER>", "<NER> IJKL MNOP </NER>", "<NER> QRST UVWX YZ</NER>"};
+        int arraySizeExpected = 3;
+
+        String[] outputActual = librarian3.splitInputPage("<NER>ABCD EFGH </NER><NER> IJKL MNOP </NER><NER> QRST UVWX YZ</NER>");
+        int arraySizeActual = outputActual.length;
+
+        assertEquals(arraySizeExpected, arraySizeActual);
+        assertEquals(outputExpected[0], outputActual[0]);
+        assertEquals(outputExpected[1], outputActual[1]);
+        assertEquals(outputExpected[2], outputActual[2]);
     }
 
     @Test

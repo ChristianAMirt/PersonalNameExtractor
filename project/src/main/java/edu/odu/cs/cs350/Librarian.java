@@ -44,11 +44,14 @@ public class Librarian {
             throw new IOException();
         else {
             if (inputPage != "") {
-                Document document = new Document(inputPage);
-                inputDocuments.add(document);
+                String[] stringArray = splitInputPage(this.inputPage);
+                int arraySize = stringArray.length;
+                for (int i = 0; i < arraySize; i++) {
+                    Document document = new Document(stringArray[i]);
+                    inputDocuments.add(document);
+                }
             }
         }
-        // THIS MAY BE MODIFIED TO ONLY CREATE A DOCUMENT FROM TEXT WITH NER TAG
     }
 
     /**
@@ -61,6 +64,11 @@ public class Librarian {
         return false;
     }
 
+    // Returns the number of elements that have been added to inputDocuments.
+    public int getDocumentsSize() { 
+        return inputDocuments.size();
+    }
+
     /**
      * 
      * @param index of the vector of Documents that is being retrived
@@ -68,6 +76,21 @@ public class Librarian {
      */
     public Document getDocumentAt(int index) {
         return inputDocuments.elementAt(index);
+    }
+
+    /*
+     * Splits the raw inputText right after each </NER>. This preserves
+     * the <NER> and </NER> tag within each string. 
+     * Uses "zero-width positive lookahead" splitting.
+     */
+    public String[] splitInputPage(String textString) {
+        String arrayNERStrings[] = inputPage.split("(?=<NER>)");
+        return arrayNERStrings;
+    }
+
+    public String[] splitTextString(String textString) {
+        String arrayNERStrings[] = textString.split("(?=<NER>)");
+        return arrayNERStrings;
     }
 
     /**
