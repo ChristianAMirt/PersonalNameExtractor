@@ -88,11 +88,6 @@ public class Librarian {
         return arrayNERStrings;
     }
 
-    public String[] splitTextString(String textString) {
-        String arrayNERStrings[] = textString.split("(?=<NER>)");
-        return arrayNERStrings;
-    }
-
     /**
      * Returns the substring text between <NER> and </NER>.
      */
