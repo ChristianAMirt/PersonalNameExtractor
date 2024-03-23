@@ -65,12 +65,13 @@ public class TestLibrarian {
     @Test
     public void testmarkNames() throws IOException {
         Librarian withNames = new Librarian("<NER> A very easy name is Steve Smith. </NER>");
-        Librarian noNames = new Librarian("<NER> This is just text with no names. </NER>");
+        Librarian noNames = new Librarian("<NER> This is text without names. </NER>");
 
         withNames.markNames();
         noNames.markNames();
 
-        assertEquals(withNames.toString(), "<NER> A very easy name is <PER> Steve Smith </PER> . </NER> ");
-        assertEquals(noNames, "<NER> This is just text with no names. </NER>");
+        assertThat(withNames.toString(),
+                containsString("<NER> A very easy name is <PER> Steve Smith </PER> . </NER> "));
+        assertThat(noNames.toString(), containsString("<NER> This is text without names . </NER> "));
     }
 }

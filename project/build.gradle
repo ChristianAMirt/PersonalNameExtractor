@@ -32,7 +32,7 @@ task copyDocs(type: Copy){
     into 'build/reports/javadoc'
 }
 run {
-    args = ['these', 'are', 'test', 'args']
+    args = ["<NER> Joe Smith should have a nametag. Randy Butternubs might have a nametag.  SyntaxSages shouldn't have a nametag.</NER>"]
 }
 
 check.dependsOn(copyDocs)

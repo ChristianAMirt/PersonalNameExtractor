@@ -53,14 +53,14 @@ public class Document implements Iterable<Token> {
     }
 
     /**
-     * @return String of document
+     * @return String of document.
      */
     public String getInputText() {
         return inputText;
     }
 
     /**
-     * Add a token at the given postion of the collection
+     * Add a token at the given postion of the collection.
      * 
      * @param index location to add Toekn
      * @param toAdd Token to add

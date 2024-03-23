@@ -50,17 +50,11 @@ public class Token {
      */
     private boolean honorificsValue;
 
-
     /**
      * An identifier for wether or not token contains locations
      * or geographical features
      */
     private boolean location;
-
-    /**
-     * Collection of features that is contains characteristics about the token.
-     */
-    // private Feature features[NUMBER OF CHARACTERISTICS]; Need feature classes
 
     /**
      * Create a new Token.

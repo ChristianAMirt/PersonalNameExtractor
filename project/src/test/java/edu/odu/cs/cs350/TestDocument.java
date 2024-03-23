@@ -9,7 +9,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
 import java.io.IOException;
-import java.util.Iterator;
+import java.util.ListIterator;
 
 public class TestDocument {
 
@@ -30,7 +30,7 @@ public class TestDocument {
     public void testParsing() throws IOException {
         Document titlePage = new Document("Written by John Doe and Randy Butternubs.");
 
-        Iterator<Token> it = titlePage.iterator();
+        ListIterator<Token> it = titlePage.iterator();
         String tokenizedSentence[] = { "Written", "by", "John", "Doe", "and", "Randy", "Butternubs", "." };
 
         int index = 0;
@@ -66,7 +66,25 @@ public class TestDocument {
     }
 
     @Test
-    public void testToAdd() {
-        // need to test
+    public void testToAdd() throws IOException {
+        Document veryImportant = new Document("It's really not that important.");
+        String tokenized[] = { "It's", "really", "not", "NOT", "that", "important", "." };
+
+        ListIterator<Token> it = veryImportant.iterator();
+
+        for (int i = 0; i < 3; i++)
+            it.next();
+
+        veryImportant.addToken(it, new Token("NOT"));
+
+        for (int i = 0; i < 4; i++)
+            it.previous();
+
+        int index = 0;
+        while (it.hasNext()) {
+            Token currentToken = it.next();
+            assertThat(currentToken.getValue(), containsString(tokenized[index]));
+            index++;
+        }
     }
 }

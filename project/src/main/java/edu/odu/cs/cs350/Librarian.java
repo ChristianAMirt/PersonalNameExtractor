@@ -15,8 +15,8 @@ import java.util.ListIterator;
  * 80 characters per line. Any input exceeding this amout will not be accepted,
  * and will throw an exception.
  * 
- * The Librarian looks through the inputPage for substring tags "<NER>" and 
- * "</NER>". If both are found, the text between the tags can be further 
+ * The Librarian looks through the inputPage for substring tags "<NER>" and
+ * "</NER>". If both are found, the text between the tags can be further
  * analyzed for names.
  */
 public class Librarian {
@@ -90,11 +90,11 @@ public class Librarian {
             indexNEREnd = getTagIndex(inputText, NER_TAG_END);
         }
 
-        if ( (indexNERStart != 0) && (indexNEREnd != 0) && (indexNERStart < indexNEREnd) )
+        if ((indexNERStart != 0) && (indexNEREnd != 0) && (indexNERStart < indexNEREnd))
             return inputText.substring(indexNERStart, indexNEREnd);
         else
             return "";
-        
+
     }
 
     /*
@@ -111,10 +111,7 @@ public class Librarian {
     public String toString() {
         StringBuilder markedUp = new StringBuilder();
 
-        // Add any part of the inputString without NER as is
-        // Any part with NER needs to come from the collection
-        // that already has been marked up
-        // All NER tags need to be preserved
+        // Super temporary, lots of other checks to do
         Document onlyDoc = inputDocuments.get(0);
         for (Token token : onlyDoc) {
             markedUp.append(token.getValue() + " ");
@@ -124,19 +121,22 @@ public class Librarian {
     }
 
     /**
-     * 
+     * Temporary stub for what the learning machine will be doing. If the
+     * first name field is set to true, a PER tag will get added before.
+     * If the last name field is set to true for the token, a PER tag will be
+     * inserted after the Token.
      */
     public void markNames() throws IOException {
         for (Document document : inputDocuments) {
-            ListIterator<Token> nextToken = document.iterator();
-            while (nextToken.hasNext()) {
-                ListIterator<Token> previous = nextToken;
-                Token tokenValue = nextToken.next();
-                if (needsTagBefore(tokenValue))
-                    previous.add(new Token("<PER>"));
-                else if (needsTagAfter(tokenValue))
-                    nextToken.add(new Token("</PER>"));
-
+            ListIterator<Token> current = document.iterator();
+            while (current.hasNext()) {
+                Token tokenValue = current.next();
+                if (needsTagBefore(tokenValue)) {
+                    current.previous();
+                    current.add(new Token("<PER>"));
+                    current.next();
+                } else if (needsTagAfter(tokenValue))
+                    current.add(new Token("</PER>"));
             }
         }
 
