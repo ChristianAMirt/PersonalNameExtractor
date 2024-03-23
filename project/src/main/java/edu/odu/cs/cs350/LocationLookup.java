@@ -22,16 +22,22 @@ public class LocationLookup {
     // Holds the unique set of location names loaded from the file.
     private Set<String> locations;
 
+    private final String file1 = "src/main/data/Dictionary.location1.txt";
+    private final String file2 = "src/main/data/Dictionary.location2.txt";
+    private final String file3 = "src/main/data/Dictionary.location3.txt";
+    private final String[] fileList = { file1, file2, file3 };
+
     /**
      * Constructs a new LocationLookup instance by loading location names from the specified file.
      *
-     * @param filename The path to the file containing location names, with one name per line.
      * @throws FileNotFoundException if the specified file does not exist.
      * @throws IOException if an I/O error occurs while reading the file.
      */
-    public LocationLookup(String filename) throws FileNotFoundException, IOException {
+    public LocationLookup() throws FileNotFoundException, IOException {
         this.locations = new HashSet<>();
-        loadLocations(filename);
+        for (var file : fileList) {
+            loadLocations(file);
+        }
     }
 
     /**
@@ -49,7 +55,7 @@ public class LocationLookup {
                 locations.add(line.trim().toLowerCase());
             }
         } catch (IOException e) {
-            System.out.println("Error: Could Not Open File");
+            System.out.println("Error: Could Not Open File: " + filename);
             // Re-throw the exception to allow the caller to handle it.
             throw e; 
         }

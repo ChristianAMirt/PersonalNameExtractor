@@ -50,6 +50,13 @@ public class Token {
      */
     private boolean honorificsValue;
 
+
+    /**
+     * An identifier for wether or not token contains locations
+     * or geographical features
+     */
+    private boolean location;
+
     /**
      * Collection of features that is contains characteristics about the token.
      */
@@ -175,5 +182,23 @@ public class Token {
      */
     public boolean getHonorificsValue() {
         return honorificsValue;
+    }
+
+    /**
+     * Sets honorifics value of Token
+     * 
+     * @throws IOException
+     */
+    public void setIsLocation() throws IOException {
+        location = new LocationLookup().checkLocation(value);
+    }
+
+    /**
+     * Returns commonLastName value of Token
+     * 
+     * @return boolean value
+     */
+    public boolean getIsLocation() {
+        return location;
     }
 }
