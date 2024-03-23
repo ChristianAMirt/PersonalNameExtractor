@@ -1,7 +1,5 @@
 package edu.odu.cs.cs350;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -14,7 +12,7 @@ import static org.hamcrest.Matchers.*;
 public class TestToken {
 
     @Test
-    public void testConstructors() {
+    public void testConstructors() throws IOException {
         Token emptyToken = new Token("");
 
         assertThat(emptyToken.getValue(), is(""));
@@ -33,7 +31,7 @@ public class TestToken {
      * @throws IOException
      */
     @Test
-    public void testSetDictionaryFeature() throws FileNotFoundException, IOException{
+    public void testSetDictionaryFeature() throws FileNotFoundException, IOException {
         Token dictionaryFeatureToken = new Token("AkiraToriyama");
         dictionaryFeatureToken.setDictionaryFeature();
 
@@ -48,7 +46,7 @@ public class TestToken {
      * @throws IOException
      */
     @Test
-    public void testGetDictionaryFeature() throws FileNotFoundException, IOException{
+    public void testGetDictionaryFeature() throws FileNotFoundException, IOException {
         Token dictionaryFeatureToken = new Token("goat");
         dictionaryFeatureToken.setDictionaryFeature();
 
@@ -62,7 +60,7 @@ public class TestToken {
      * @throws IOException
      */
     @Test
-    public void testSetKillWordFeature() throws FileNotFoundException, IOException{
+    public void testSetKillWordFeature() throws FileNotFoundException, IOException {
         Token killWordFeatureToken = new Token("fuel");
         killWordFeatureToken.setKillWordFeature();
 
@@ -77,7 +75,7 @@ public class TestToken {
      * @throws IOException
      */
     @Test
-    public void testGetKillWordFeature() throws FileNotFoundException, IOException{
+    public void testGetKillWordFeature() throws FileNotFoundException, IOException {
         Token killWordFeatureToken = new Token("Luffy");
         killWordFeatureToken.setKillWordFeature();
 
@@ -91,7 +89,7 @@ public class TestToken {
      * @throws IOException
      */
     @Test
-    public void testSetCommonFirstName()throws FileNotFoundException, IOException{
+    public void testSetCommonFirstName() throws FileNotFoundException, IOException {
         Token commonFirstNameToken = new Token("brendan");
         commonFirstNameToken.setCommonFirstName();
 
@@ -106,7 +104,7 @@ public class TestToken {
      * @throws IOException
      */
     @Test
-    public void testGetCommonFirstName() throws FileNotFoundException, IOException{
+    public void testGetCommonFirstName() throws FileNotFoundException, IOException {
         Token commonFirstNameToken = new Token("hearrell");
         commonFirstNameToken.setCommonFirstName();
 
@@ -114,13 +112,13 @@ public class TestToken {
     }
 
     /**
-     *  Test for setter method for commonLastName
+     * Test for setter method for commonLastName
      * 
      * @throws FileNotFoundException
      * @throws IOException
      */
     @Test
-    public void testSetCommonLastName()throws FileNotFoundException, IOException{
+    public void testSetCommonLastName() throws FileNotFoundException, IOException {
         Token commonLastNameToken = new Token("smith");
         commonLastNameToken.setCommonLastName();
 
@@ -135,21 +133,21 @@ public class TestToken {
      * @throws IOException
      */
     @Test
-    public void testGetCommonLastName() throws FileNotFoundException, IOException{
+    public void testGetCommonLastName() throws FileNotFoundException, IOException {
         Token commonLastNameToken = new Token("hearrell");
         commonLastNameToken.setCommonLastName();
 
         assertEquals(commonLastNameToken.getCommonLastName(), false);
     }
 
-        /**
-     *  Test for setter method for honorifics feature
+    /**
+     * Test for setter method for honorifics feature
      * 
      * @throws FileNotFoundException
      * @throws IOException
      */
     @Test
-    public void testSetHonorifics()throws FileNotFoundException, IOException{
+    public void testSetHonorifics() throws FileNotFoundException, IOException {
         Token honorificsToken = new Token("Mr");
         honorificsToken.setHonorificsValue();
 
@@ -164,7 +162,7 @@ public class TestToken {
      * @throws IOException
      */
     @Test
-    public void testGetHonorificsFeature() throws FileNotFoundException, IOException{
+    public void testGetHonorificsFeature() throws FileNotFoundException, IOException {
         Token honorificsToken = new Token("SyntaxSages");
         honorificsToken.setHonorificsValue();
 

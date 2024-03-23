@@ -36,14 +36,14 @@ public class TestLibrarian {
 
     @Test
     public void testGetTextBetweenNERTags() throws IOException {
-        
-        //Variable for empty text test.
+
+        // Variable for empty text test.
         String emptyInputText = "";
 
-        //Variable for sample input text test.
+        // Variable for sample input text test.
         String sampleInputText = "ABCD EFGH <NER> IJKL MNOP </NER> QRST UVWX YZ";
 
-        //Variable for sample output text test.
+        // Variable for sample output text test.
         String expectedOutputText = " IJKL MNOP ";
 
         Librarian librarian = new Librarian(sampleInputText);
@@ -54,11 +54,23 @@ public class TestLibrarian {
     @Test
     public void testGetTagIndex() throws IOException {
 
-        //Variable for sample input text test.
+        // Variable for sample input text test.
         String sampleInputText = "ABCD EFGH <NER> IJKL MNOP </NER> QRST UVWX YZ";
 
         Librarian librarian = new Librarian(sampleInputText);
         assertEquals(11, librarian.getTagIndex(sampleInputText, "NER"));
 
+    }
+
+    @Test
+    public void testmarkNames() throws IOException {
+        Librarian withNames = new Librarian("<NER> A very easy name is Steve Smith. </NER>");
+        Librarian noNames = new Librarian("<NER> This is just text with no names. </NER>");
+
+        withNames.markNames();
+        noNames.markNames();
+
+        assertEquals(withNames.toString(), "<NER> A very easy name is <PER> Steve Smith </PER> . </NER> ");
+        assertEquals(noNames, "<NER> This is just text with no names. </NER>");
     }
 }

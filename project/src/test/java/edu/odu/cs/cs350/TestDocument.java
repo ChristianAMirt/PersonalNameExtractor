@@ -8,12 +8,13 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
+import java.io.IOException;
 import java.util.Iterator;
 
 public class TestDocument {
 
     @Test
-    public void testConstructors() {
+    public void testConstructors() throws IOException {
         Document emptyDoc = new Document("");
 
         assertThat(emptyDoc.getInputText(), is(""));
@@ -26,7 +27,7 @@ public class TestDocument {
     }
 
     @Test
-    public void testParsing() {
+    public void testParsing() throws IOException {
         Document titlePage = new Document("Written by John Doe and Randy Butternubs.");
 
         Iterator<Token> it = titlePage.iterator();
@@ -62,5 +63,10 @@ public class TestDocument {
             index++;
         }
 
+    }
+
+    @Test
+    public void testToAdd() {
+        // need to test
     }
 }

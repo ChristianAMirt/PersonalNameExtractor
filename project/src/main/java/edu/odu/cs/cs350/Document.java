@@ -1,8 +1,9 @@
 package edu.odu.cs.cs350;
 
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Iterator;
+import java.util.ListIterator;
 import java.util.Scanner;
 
 /**
@@ -44,7 +45,7 @@ public class Document implements Iterable<Token> {
      * 
      * @param inputText
      */
-    public Document(String inputText) {
+    public Document(String inputText) throws IOException {
         this.inputText = inputText;
 
         allTokens = new LinkedList<Token>();
@@ -59,10 +60,20 @@ public class Document implements Iterable<Token> {
     }
 
     /**
+     * Add a token at the given postion of the collection
+     * 
+     * @param index location to add Toekn
+     * @param toAdd Token to add
+     */
+    public void addToken(ListIterator<Token> index, Token toAdd) {
+        index.add(toAdd);
+    }
+
+    /**
      * Places each word and certain punctuation marks in a token and adds it to
      * the collection of tokens.
      */
-    public void parseDocument() {
+    public void parseDocument() throws IOException {
         Scanner scanner = new Scanner(inputText);
 
         scanner.useDelimiter(TOKEN_DELIMITERS);
@@ -93,8 +104,8 @@ public class Document implements Iterable<Token> {
      * @return iterator of token collection.
      */
     @Override
-    public Iterator<Token> iterator() {
-        return allTokens.iterator();
+    public ListIterator<Token> iterator() {
+        return allTokens.listIterator();
     }
 
 }

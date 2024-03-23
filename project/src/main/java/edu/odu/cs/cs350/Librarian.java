@@ -2,6 +2,7 @@ package edu.odu.cs.cs350;
 
 import java.io.IOException;
 import java.util.Vector;
+import java.util.ListIterator;
 
 /**
  * The Librarian is responsible for determining what parts of the given input
@@ -25,6 +26,8 @@ public class Librarian {
      */
     private Vector<Document> inputDocuments;
 
+    private String inputPage;
+
     /**
      * 
      * @param inputPage is the string given by the user
@@ -32,6 +35,8 @@ public class Librarian {
      * @throws IOException if input is larger than 4000 characters
      */
     public Librarian(String inputPage) throws IOException {
+        this.inputPage = inputPage;
+
         inputDocuments = new Vector<Document>();
 
         if (inputPage.length() > 4000)
@@ -56,6 +61,15 @@ public class Librarian {
     }
 
     /**
+     * 
+     * @param index of the vector of Documents that is being retrived
+     * @return the document object at that index
+     */
+    public Document getDocumentAt(int index) {
+        return inputDocuments.elementAt(index);
+    }
+
+    /**
      * Returns the substring text between <NER> and </NER>.
      */
     public String getTextBetweenNERTags(String inputText) {
@@ -74,7 +88,7 @@ public class Librarian {
         if (inputText.contains(NER_TAG_END) == true) {
             indexNEREnd = getTagIndex(inputText, NER_TAG_END);
         }
-        
+
         return inputText.substring(indexNERStart, indexNEREnd);
     }
 
@@ -83,5 +97,51 @@ public class Librarian {
      */
     public int getTagIndex(String inputString, String tag) {
         return inputString.indexOf(tag);
+    }
+
+    /**
+     * @return The input document with any changes made
+     */
+    @Override
+    public String toString() {
+        StringBuilder markedUp = new StringBuilder();
+
+        // Add any part of the inputString without NER as is
+        // Any part with NER needs to come from the collection
+        // that already has been marked up
+        // All NER tags need to be preserved
+        Document onlyDoc = inputDocuments.get(0);
+        for (Token token : onlyDoc) {
+            markedUp.append(token.getValue() + " ");
+        }
+
+        return markedUp.toString();
+    }
+
+    /**
+     * 
+     */
+    public void markNames() throws IOException {
+        for (Document document : inputDocuments) {
+            ListIterator<Token> nextToken = document.iterator();
+            while (nextToken.hasNext()) {
+                ListIterator<Token> previous = nextToken;
+                Token tokenValue = nextToken.next();
+                if (needsTagBefore(tokenValue))
+                    previous.add(new Token("<PER>"));
+                else if (needsTagAfter(tokenValue))
+                    nextToken.add(new Token("</PER>"));
+
+            }
+        }
+
+    }
+
+    private boolean needsTagBefore(Token nextToken) {
+        return nextToken.getCommonFirstName();
+    }
+
+    private boolean needsTagAfter(Token nextToken) {
+        return nextToken.getCommonLastName();
     }
 }

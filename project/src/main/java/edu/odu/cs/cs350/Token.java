@@ -30,7 +30,7 @@ public class Token {
 
     /**
      * An identifier for whether or not the token is
-     *  a kill word
+     * a kill word
      */
     private boolean killWordFeature;
 
@@ -45,7 +45,7 @@ public class Token {
     private boolean commonLastName;
 
     /**
-     * An identifier for whether or not token contains honorfiics 
+     * An identifier for whether or not token contains honorfiics
      * preceding personal name
      */
     private boolean honorificsValue;
@@ -60,9 +60,12 @@ public class Token {
      * 
      * @param value word or punctuation mark represented by the token.
      */
-    public Token(String value) {
+    public Token(String value) throws IOException {
         this.value = value;
         this.classification = -1;
+
+        setCommonFirstName();
+        setCommonLastName();
     }
 
     /**
@@ -85,7 +88,7 @@ public class Token {
      * @throws FileNotFoundException
      * @throws IOException
      */
-    public void setDictionaryFeature() throws FileNotFoundException, IOException{
+    public void setDictionaryFeature() throws FileNotFoundException, IOException {
         dictionaryFeature = new DictionaryFeature().determineDictionaryFeature(value);
     }
 
@@ -94,7 +97,7 @@ public class Token {
      * 
      * @return boolean
      */
-    public boolean getDictionaryFeature(){
+    public boolean getDictionaryFeature() {
         return dictionaryFeature;
     }
 
@@ -104,7 +107,7 @@ public class Token {
      * @throws FileNotFoundException
      * @throws IOException
      */
-    public void setKillWordFeature() throws FileNotFoundException, IOException{
+    public void setKillWordFeature() throws FileNotFoundException, IOException {
         killWordFeature = new KillWordFeature().determineKillWordFeature(value);
     }
 
@@ -113,7 +116,7 @@ public class Token {
      * 
      * @return boolean
      */
-    public boolean getKillWordFeature(){
+    public boolean getKillWordFeature() {
         return killWordFeature;
     }
 
@@ -123,7 +126,7 @@ public class Token {
      * @throws FileNotFoundException
      * @throws IOException
      */
-    public void setCommonFirstName() throws FileNotFoundException, IOException{
+    public void setCommonFirstName() throws FileNotFoundException, IOException {
         commonFirstName = new CommonNames().commonFirstName(value);
     }
 
@@ -132,7 +135,7 @@ public class Token {
      * 
      * @return boolean value
      */
-    public boolean getCommonFirstName(){
+    public boolean getCommonFirstName() {
         return commonFirstName;
     }
 
@@ -142,7 +145,7 @@ public class Token {
      * @throws FileNotFoundException
      * @throws IOException
      */
-    public void setCommonLastName() throws FileNotFoundException, IOException{
+    public void setCommonLastName() throws FileNotFoundException, IOException {
         commonLastName = new CommonNames().commonLastName(value);
     }
 
@@ -151,7 +154,7 @@ public class Token {
      * 
      * @return boolean value
      */
-    public boolean getCommonLastName(){
+    public boolean getCommonLastName() {
         return commonLastName;
     }
 
@@ -161,7 +164,7 @@ public class Token {
      * @throws FileNotFoundException
      * @throws IOException
      */
-    public void setHonorificsValue() throws FileNotFoundException, IOException{
+    public void setHonorificsValue() throws FileNotFoundException, IOException {
         honorificsValue = new Honorifics().containsHonorifics(value);
     }
 
@@ -170,7 +173,7 @@ public class Token {
      * 
      * @return boolean value
      */
-    public boolean getHonorificsValue(){
+    public boolean getHonorificsValue() {
         return honorificsValue;
     }
 }
