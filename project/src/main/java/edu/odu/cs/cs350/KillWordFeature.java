@@ -43,7 +43,7 @@ public class KillWordFeature {
         // and returns true if they are equal.
         // Otherwise, it returns false.\
         while (killWordLine != null) {
-            if (killWordLine.contains(word)) {
+            if (killWordLine.equals(word)) {
                 myReader.close();
                 return true;
             }

@@ -42,7 +42,7 @@ public class DictionaryFeature {
         // Otherwise, it returns false.
         while (dictionaryLine != null) {
 
-            if (dictionaryLine.contains(myWord)) {
+            if (dictionaryLine.equals(myWord)) {
                 myReader.close();
                 return true;
             }
