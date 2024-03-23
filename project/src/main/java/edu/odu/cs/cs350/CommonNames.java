@@ -53,11 +53,9 @@ public class CommonNames {
     public boolean commonFirstName(String value) 
         throws IOException
     {
-        String fileName = "src/main/data/CommonFirstNames.txt";
-        BufferedReader reader = new BufferedReader(openFile(fileName));
         String inputString = null;
 
-        loadFirstNames(inputString, reader);
+        loadFirstNames(inputString);
 
         if(firstNames.contains(value.trim().toLowerCase())){
             return true;
@@ -78,11 +76,9 @@ public class CommonNames {
     public boolean commonLastName(String value) 
         throws IOException
     {
-        String fileName = "src/main/data/CommonLastNames.txt";
-        BufferedReader reader = new BufferedReader(openFile(fileName));
         String inputString = null;
 
-        loadLastNames(inputString, reader);
+        loadLastNames(inputString);
 
         if(lastNames.contains(value.trim().toLowerCase())){
             return true;
@@ -98,7 +94,10 @@ public class CommonNames {
      * @param reader
      * @throws IOException
      */
-    public void loadFirstNames(String inputString, BufferedReader reader) throws IOException{
+    public void loadFirstNames(String inputString) throws IOException{
+        String fileName = "src/main/data/CommonFirstNames.txt";
+        BufferedReader reader = new BufferedReader(openFile(fileName));
+
         while ((inputString = reader.readLine()) != null){
             firstNames.add(inputString.trim().toLowerCase());
         }
@@ -111,7 +110,10 @@ public class CommonNames {
      * @param reader
      * @throws IOException
      */
-    public void loadLastNames(String inputString, BufferedReader reader) throws IOException{
+    public void loadLastNames(String inputString) throws IOException{
+        String fileName = "src/main/data/CommonLastNames.txt";
+        BufferedReader reader = new BufferedReader(openFile(fileName));
+        
         while ((inputString = reader.readLine()) != null){
             lastNames.add(inputString.trim().toLowerCase());
         }

@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class TestHonorifics {
-        /**
+    /**
      * Test to make sure Honorifics constructor
      * is properly creating new instance of Honorifics
      */
@@ -24,7 +24,7 @@ public class TestHonorifics {
     public void testOpenFile()
         throws FileNotFoundException
     {
-        CommonNames testInput = new CommonNames();
+        Honorifics testInput = new Honorifics();
 
         String inputFileOne = "src/test/data/Dictionary.honorifics.txt";
         assertNotNull(testInput.openFile(inputFileOne));

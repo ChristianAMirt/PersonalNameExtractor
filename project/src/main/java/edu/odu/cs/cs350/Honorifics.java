@@ -44,17 +44,14 @@ public class Honorifics {
      * 
      * @param value
      * @throws IOException
-     * @throws FileNotFoundException
      * @return boolean value
      */
     public boolean containsHonorifics(String value) 
         throws IOException
     {
-        String fileName = "src/main/data/Dictionary.honorifics.txt";
-        BufferedReader reader = new BufferedReader(openFile(fileName));
         String inputString = null; 
 
-        loadHonorifics(inputString, reader);
+        loadHonorifics(inputString);
 
         if(honorifics.contains(value.trim().toLowerCase())){
             return true;
@@ -64,7 +61,16 @@ public class Honorifics {
         
     }
 
-    public void loadHonorifics(String inputString, BufferedReader reader) throws IOException{
+    /**
+     * Loads data from Dictionary.honorifics.txt to be compaired against
+     * 
+     * @param inputString
+     * @throws IOException
+     */
+    public void loadHonorifics(String inputString) throws IOException{
+        String fileName = "src/main/data/Dictionary.honorifics.txt";
+        BufferedReader reader = new BufferedReader(openFile(fileName));
+
         while ((inputString = reader.readLine()) != null){
             honorifics.add(inputString.trim().toLowerCase());
         }
