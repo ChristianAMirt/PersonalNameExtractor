@@ -1,6 +1,8 @@
 package edu.odu.cs.cs350;
 
 import java.io.BufferedReader;
+import java.util.HashSet;
+import java.util.Set;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -10,10 +12,15 @@ import java.io.FileNotFoundException;
  * Determines if token string value contains honorifics
  */
 public class Honorifics {
+
+    // Contains string values loaded from Dictionary.honorifics.txt
+    private Set<String> honorifics;
+
     /**
      * Constructor for Honorifics
      */
     public Honorifics(){
+        this.honorifics = new HashSet<>();
     }
 
     /**
@@ -44,19 +51,23 @@ public class Honorifics {
         throws IOException
     {
         String fileName = "src/main/data/Dictionary.honorifics.txt";
-        BufferedReader honorifics = new BufferedReader(openFile(fileName));
-        String inputString = honorifics.readLine();
+        BufferedReader reader = new BufferedReader(openFile(fileName));
+        String inputString = null; 
 
-        while (inputString != null){
-            if (inputString.contains(value)){
-                honorifics.close();
-                return true;
-            }
-            inputString = honorifics.readLine();
+        loadHonorifics(inputString, reader);
+
+        if(honorifics.contains(value.trim().toLowerCase())){
+            return true;
         }
+        else
+            return false;
         
-        honorifics.close();
-        return false; 
+    }
+
+    public void loadHonorifics(String inputString, BufferedReader reader) throws IOException{
+        while ((inputString = reader.readLine()) != null){
+            honorifics.add(inputString.trim().toLowerCase());
+        }
     }
 
 }

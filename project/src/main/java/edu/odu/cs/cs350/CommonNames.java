@@ -4,16 +4,27 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 import java.io.FileNotFoundException;
 
 /**
  *  Determines if token contains a common name
  */
 public class CommonNames {
+
+    // Contains first names loaded from CommonFirstNames.txt
+    private Set<String> firstNames;
+
+    // Contains last names loaded from CommonLastNames.txt
+    private Set<String> lastNames;
+
     /**
      * Constructor for CommonNames
      */
     public CommonNames(){
+        this.firstNames = new HashSet<>();
+        this.lastNames = new HashSet<>();
     }
 
     /**
@@ -43,19 +54,16 @@ public class CommonNames {
         throws IOException
     {
         String fileName = "src/main/data/CommonFirstNames.txt";
-        BufferedReader commonFirstNames = new BufferedReader(openFile(fileName));
-        String inputString = commonFirstNames.readLine();
+        BufferedReader reader = new BufferedReader(openFile(fileName));
+        String inputString = null;
 
-        while (inputString != null){
-            if (inputString.contains(value.toLowerCase())){
-                commonFirstNames.close();
-                return true;
-            }
-            inputString = commonFirstNames.readLine();
+        loadFirstNames(inputString, reader);
+
+        if(firstNames.contains(value.trim().toLowerCase())){
+            return true;
         }
-        
-        commonFirstNames.close();
-        return false; 
+        else
+            return false;
     }
 
     /**
@@ -71,19 +79,42 @@ public class CommonNames {
         throws IOException
     {
         String fileName = "src/main/data/CommonLastNames.txt";
-        BufferedReader commonLastNames = new BufferedReader(openFile(fileName));
-        String inputString = commonLastNames.readLine();
+        BufferedReader reader = new BufferedReader(openFile(fileName));
+        String inputString = null;
 
-        while (inputString != null){
-            if (inputString.contains(value.toLowerCase())){
-                commonLastNames.close();
-                return true;
-            }
-            inputString = commonLastNames.readLine();
+        loadLastNames(inputString, reader);
+
+        if(lastNames.contains(value.trim().toLowerCase())){
+            return true;
         }
+        else
+            return false;
+    }
 
-        commonLastNames.close();
-        return false; 
+    /**
+     * 
+     * 
+     * @param inputString
+     * @param reader
+     * @throws IOException
+     */
+    public void loadFirstNames(String inputString, BufferedReader reader) throws IOException{
+        while ((inputString = reader.readLine()) != null){
+            firstNames.add(inputString.trim().toLowerCase());
+        }
+    }
+
+        /**
+     * 
+     * 
+     * @param inputString
+     * @param reader
+     * @throws IOException
+     */
+    public void loadLastNames(String inputString, BufferedReader reader) throws IOException{
+        while ((inputString = reader.readLine()) != null){
+            lastNames.add(inputString.trim().toLowerCase());
+        }
     }
 
 }
