@@ -166,8 +166,8 @@ public class TestToken {
     @Test
     public void testGetHonorificsFeature() throws FileNotFoundException, IOException{
         Token honorificsToken = new Token("SyntaxSages");
-        honorfiicsToken.setHonorificsValue();
+        honorificsToken.setHonorificsValue();
 
-        assertEquals(honorfiicsToken.getHonorificsValue(), false);
+        assertEquals(honorificsToken.getHonorificsValue(), false);
     }
 }
