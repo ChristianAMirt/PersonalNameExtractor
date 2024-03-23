@@ -15,8 +15,9 @@ import java.util.ListIterator;
  * 80 characters per line. Any input exceeding this amout will not be accepted,
  * and will throw an exception.
  * 
- * The Librarian takes looks for the NER tags ... (FILL THIS IN WHOEVER
- * HAS THIS STORY)
+ * The Librarian looks through the inputPage for substring tags "<NER>" and 
+ * "</NER>". If both are found, the text between the tags can be further 
+ * analyzed for names.
  */
 public class Librarian {
 
@@ -89,7 +90,11 @@ public class Librarian {
             indexNEREnd = getTagIndex(inputText, NER_TAG_END);
         }
 
-        return inputText.substring(indexNERStart, indexNEREnd);
+        if ( (indexNERStart != 0) && (indexNEREnd != 0) && (indexNERStart < indexNEREnd) )
+            return inputText.substring(indexNERStart, indexNEREnd);
+        else
+            return "";
+        
     }
 
     /*
