@@ -141,4 +141,33 @@ public class TestToken {
 
         assertEquals(commonLastNameToken.getCommonLastName(), false);
     }
+
+        /**
+     *  Test for setter method for honorifics feature
+     * 
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
+    @Test
+    public void testSetHonorifics()throws FileNotFoundException, IOException{
+        Token honorificsToken = new Token("Mr");
+        honorificsToken.setHonorificsValue();
+
+        assertNotNull(honorificsToken.getHonorificsValue());
+        assertThat(honorificsToken.getHonorificsValue(), is(true));
+    }
+
+    /**
+     * Test for getter method for honorifics feature
+     * 
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
+    @Test
+    public void testGetHonorificsFeature() throws FileNotFoundException, IOException{
+        Token honorificsToken = new Token("SyntaxSages");
+        honorfiicsToken.setHonorificsValue();
+
+        assertEquals(honorfiicsToken.getHonorificsValue(), false);
+    }
 }

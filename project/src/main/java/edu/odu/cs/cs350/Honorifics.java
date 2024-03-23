@@ -48,7 +48,7 @@ public class Honorifics {
         String inputString = honorifics.readLine();
 
         while (inputString != null){
-            if (inputString.contains(value.toLowerCase())){
+            if (inputString.contains(value)){
                 honorifics.close();
                 return true;
             }
