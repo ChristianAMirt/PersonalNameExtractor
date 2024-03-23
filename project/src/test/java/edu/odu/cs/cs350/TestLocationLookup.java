@@ -17,8 +17,7 @@ public class TestLocationLookup {
 
     @BeforeEach
     void setUp() throws FileNotFoundException, IOException{
-        String filename = "/home/cs_aakin007/cs350/cs350-project-s24-ChristianAMirt/project/src/test/data/DI73B5~1.TXT";
-        location = new LocationLookup(filename);
+        location = new LocationLookup();
     }
     
 
@@ -31,5 +30,7 @@ public class TestLocationLookup {
     void TestCheckLocation() {
         String toFind = "New York";
         assertTrue(location.checkLocation(toFind));
+        toFind = "new";
+        assertFalse(location.checkLocation(toFind));
     }
 }
