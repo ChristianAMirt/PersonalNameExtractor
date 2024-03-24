@@ -16,11 +16,12 @@ public class PrefixAndSuffixFeature {
      */
     public PrefixAndSuffixFeature() {}
 
-/**
-     * Runs a string through a list of (up to) 120,000 words in the English Language
+    /**
+     * Runs a string through a list of prefixes
      * for comparison between the token's value and the word.
      * 
-     * Source: aspell English dictionary, with affixes expanded
+     * Source: collected by ODU Extract project team, primarily from
+     * experience with DTIC documents.
      * 
      * @param myWord
      * 
@@ -37,7 +38,7 @@ public class PrefixAndSuffixFeature {
 
         String prefixLine = myReader.readLine();
 
-        // Compares every line of the dictionary file with the string value
+        // Compares every line of the prefix file with the string value
         // and returns true if they are equal.
         // Otherwise, it returns false.
         while (prefixLine != null) {
@@ -48,6 +49,42 @@ public class PrefixAndSuffixFeature {
             }
 
             prefixLine = myReader.readLine();
+        }
+        myReader.close();
+        return false;
+    }
+
+    /**
+     * Runs a string through a list of suffixes
+     * for comparison between the token's value and the word.
+     * 
+     * Source: collected by ODU Extract project team, primarily from
+     * experience with DTIC documents.
+     * 
+     * @param myWord
+     * 
+     * @throws FileNotFoundException 
+     * @throws IOException
+     * 
+     * @return boolean value
+     */
+    public boolean determineSuffixFeature(String myWord) throws FileNotFoundException, IOException {
+        BufferedReader myReader = null;
+
+        myReader = new BufferedReader(new FileReader("src/main/data/Dictionary.suffixes.txt"));
+
+        String suffixLine = myReader.readLine();
+        // Compares every line of the suffix file with the string value
+        // and returns true if they are equal.
+        // Otherwise, it returns false.
+        while (suffixLine != null) {
+
+            if (suffixLine.equals(myWord)) {
+                myReader.close();
+                return true;
+            }
+
+            suffixLine = myReader.readLine();
         }
         myReader.close();
         return false;

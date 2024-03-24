@@ -40,4 +40,24 @@ public class TestPrefixAndSuffixFeature {
 
         assertNotEquals(secondPrefixAndSuffixFeature.determinePrefixFeature(secondToken.getValue()), true);
     }
+
+    /**
+     * Tests the determineSuffixFeature method for the accuracy
+     * of the returned boolean values.
+     * 
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
+    @Test
+    public void testDetermineSuffixFeature() throws FileNotFoundException, IOException
+    {
+        PrefixAndSuffixFeature thirdPrefixAndSuffixFeature = new PrefixAndSuffixFeature();
+        Token secondToken = new Token("Sr");
+
+        assertEquals(thirdPrefixAndSuffixFeature.determineSuffixFeature(secondToken.getValue()) , true);
+        
+        Token thirdToken = new Token("TheCakeIsALie");
+
+        assertNotEquals(thirdPrefixAndSuffixFeature.determineSuffixFeature(thirdToken.getValue()), true);
+    }
 }
