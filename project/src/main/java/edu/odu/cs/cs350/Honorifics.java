@@ -13,7 +13,9 @@ import java.io.FileNotFoundException;
  */
 public class Honorifics {
 
-    // Contains string values loaded from Dictionary.honorifics.txt
+    /**
+     * Contains string values loaded from Dictionary.honorifics.txt
+     */
     private Set<String> honorifics;
 
     /**

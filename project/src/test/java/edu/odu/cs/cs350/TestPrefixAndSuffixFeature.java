@@ -16,7 +16,7 @@ public class TestPrefixAndSuffixFeature {
      * the instantiation of the class of as an object actually happens.
      */
     @Test
-    public void testDictionaryFeatureConstructor(){
+    public void testPrefixAndSuffixFeatureConstructor(){
         PrefixAndSuffixFeature firstPrefixAndSuffixFeature = new PrefixAndSuffixFeature();
         assertNotNull(firstPrefixAndSuffixFeature);
     }

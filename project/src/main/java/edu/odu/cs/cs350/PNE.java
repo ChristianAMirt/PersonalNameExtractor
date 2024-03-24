@@ -2,15 +2,22 @@ package edu.odu.cs.cs350;
 
 import java.io.IOException;
 
+/**
+ * Temporary/Dummy class for the PNE
+ */
 public class PNE {
 
-    public static void main(String[] args) {
+    /**
+     * Main body for the PNE
+     * @param arguments
+     */
+    public static void main(String[] arguments) {
         Librarian librarian = null;
 
-        if (args.length == 0) {
+        if (arguments.length == 0) {
             System.err.println("PNE.jar [input text]");
         } else {
-            String inputText = String.join(" ", args);
+            String inputText = String.join(" ", arguments);
             try {
                 librarian = new Librarian(inputText);
                 librarian.markNames();
