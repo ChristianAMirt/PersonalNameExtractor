@@ -168,4 +168,62 @@ public class TestToken {
 
         assertEquals(honorificsToken.getHonorificsValue(), false);
     }
+
+    /**
+     * Tests the setter method for the prefixFeature value within Token
+     * 
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
+    @Test
+    public void testSetPrefixFeature() throws FileNotFoundException, IOException {
+        Token prefixFeatureToken = new Token("costa");
+        prefixFeatureToken.setPrefixFeature();
+
+        assertNotNull(prefixFeatureToken.getPrefixFeature());
+        assertEquals(prefixFeatureToken.getPrefixFeature(), true);
+    }
+
+    /**
+     * Tests the getter method for the prefixFeature value within Token
+     * 
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
+    @Test
+    public void testGetPrefixFeature() throws FileNotFoundException, IOException {
+        Token prefixFeatureToken = new Token("Aegislash");
+        prefixFeatureToken.setPrefixFeature();
+
+        assertEquals(prefixFeatureToken.getPrefixFeature(), false);
+    }
+
+    /**
+     * Tests the setter method for the suffixFeature value within Token
+     * 
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
+    @Test
+    public void testSetSuffixFeature() throws FileNotFoundException, IOException {
+        Token suffixFeatureToken = new Token("VI");
+        suffixFeatureToken.setSuffixFeature();
+
+        assertNotNull(suffixFeatureToken.getSuffixFeature());
+        assertEquals(suffixFeatureToken.getSuffixFeature(), true);
+    }
+
+    /**
+     * Tests the getter method for the suffixFeature value within Token
+     * 
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
+    @Test
+    public void testGetSuffixFeature() throws FileNotFoundException, IOException {
+        Token suffixFeatureToken = new Token("Exodia");
+        suffixFeatureToken.setSuffixFeature();
+
+        assertEquals(suffixFeatureToken.getSuffixFeature(), false);
+    }
 }

@@ -57,6 +57,16 @@ public class Token {
     private boolean location;
 
     /**
+     * An identifier for whether or not the token is a prefix
+     */
+    private boolean prefixFeature;
+
+    /**
+     * An identifier for whether or not the token is a suffix
+     */    
+    private boolean suffixFeature;
+
+    /**
      * Create a new Token.
      * 
      * @param value word or punctuation mark represented by the token.
@@ -194,5 +204,43 @@ public class Token {
      */
     public boolean getIsLocation() {
         return location;
+    }
+
+    /**
+     * sets the prefixFeature value of Token
+     * 
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
+    public void setPrefixFeature() throws FileNotFoundException, IOException {
+        prefixFeature = new PrefixAndSuffixFeature().determinePrefixFeature(value);
+    }
+
+    /**
+     * Returns the prefixFeature value of Token
+     * 
+     * @return boolean
+     */
+    public boolean getPrefixFeature() {
+        return prefixFeature;
+    }
+
+    /**
+     * sets the suffixFeature value of Token
+     * 
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
+    public void setSuffixFeature() throws FileNotFoundException, IOException {
+        suffixFeature = new PrefixAndSuffixFeature().determineSuffixFeature(value);
+    }
+
+    /**
+     * Returns the suffixFeature value of Token
+     * 
+     * @return boolean
+     */
+    public boolean getSuffixFeature() {
+        return suffixFeature;
     }
 }

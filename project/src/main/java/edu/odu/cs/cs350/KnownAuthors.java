@@ -5,6 +5,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Determins if a name is a known author or not
+ */
 public class KnownAuthors {
 
     

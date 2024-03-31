@@ -44,3 +44,5 @@ public class TestDictionaryFeature {
         assertNotEquals(thirdDictionaryFeature.determineDictionaryFeature(secondToken.getValue()), true);
     }
 }
+
+// Note to self: switch the expected and actual values around
