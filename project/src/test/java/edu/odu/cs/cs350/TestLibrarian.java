@@ -105,4 +105,14 @@ public class TestLibrarian {
                 containsString("<NER> A very easy name is <PER> Steve Smith </PER> . </NER> "));
         assertThat(noNames.toString(), containsString("<NER> This is text without names . </NER> "));
     }
+
+    @Test
+    public void testPrintDocumentText() throws IOException { 
+        
+        String outputText = "<NER>ABCD EFGH </NER>";
+                
+        Librarian librarian = new Librarian(outputText);
+        librarian.printDocumentText(outputText);
+    }
+    
 }

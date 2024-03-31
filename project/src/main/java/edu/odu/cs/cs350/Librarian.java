@@ -15,19 +15,22 @@ import java.util.ListIterator;
  * 80 characters per line. Any input exceeding this amout will not be accepted,
  * and will throw an exception.
  * 
- * The Librarian looks through the inputPage for substring tags "<NER>" and
- * "</NER>". If both are found, the text between the tags can be further
- * analyzed for names.
+ * The inputPage variable is checked for substring tags "<NER>....</NER>". 
+ * If found, the inputDocuments vector is iterated and the text data is 
+ * added for each tag occurance. 
  */
 public class Librarian {
+
+    /**
+     * Raw input string provided by the user.
+     */
+    private String inputPage;
 
     /**
      * Collection of each part of input string that is surrounded by
      * NER tags.
      */
     private Vector<Document> inputDocuments;
-
-    private String inputPage;
 
     /**
      * 
@@ -138,6 +141,13 @@ public class Librarian {
         return markedUp.toString();
     }
 
+    /*
+     *  Print the output of a text string to the console.
+     */
+    public void printDocumentText(String outputText) {
+        System.out.println(outputText);
+    }
+
     /**
      * Temporary stub for what the learning machine will be doing. If the
      * first name field is set to true, a PER tag will get added before.
@@ -167,4 +177,5 @@ public class Librarian {
     private boolean needsTagAfter(Token nextToken) {
         return nextToken.getCommonLastName();
     }
+
 }
