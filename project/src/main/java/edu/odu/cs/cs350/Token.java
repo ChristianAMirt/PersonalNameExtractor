@@ -67,6 +67,16 @@ public class Token {
     private boolean suffixFeature;
 
     /**
+     * An identifier for known Author first names
+     */
+    private boolean authorFirstName;
+
+    /**
+     * An identifier for known Author last names
+     */
+    private boolean authorLastName;
+
+    /**
      * Create a new Token.
      * 
      * @param value word or punctuation mark represented by the token.
@@ -242,5 +252,43 @@ public class Token {
      */
     public boolean getSuffixFeature() {
         return suffixFeature;
+    }
+
+    /**
+     * Sets Author first name value of Token
+     * 
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
+    public void setAuthorFirstName() throws FileNotFoundException, IOException {
+        authorFirstName = new KnownAuthors().firstName(value);
+    }
+
+    /**
+     * Returns Author first name value of Token
+     * 
+     * @return boolean value
+     */
+    public boolean getAuthorFirstName() {
+        return authorFirstName;
+    }
+
+    /**
+     * Sets Author last name value of Token
+     * 
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
+    public void setAuthorLastName() throws FileNotFoundException, IOException {
+        authorLastName = new KnownAuthors().lastName(value);
+    }
+
+    /**
+     * Returns Author last name value of Token
+     * 
+     * @return boolean value
+     */
+    public boolean getAuthorLastName() {
+        return authorLastName;
     }
 }

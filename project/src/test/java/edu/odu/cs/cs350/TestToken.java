@@ -226,4 +226,62 @@ public class TestToken {
 
         assertEquals(suffixFeatureToken.getSuffixFeature(), false);
     }
+
+    /**
+     * Test for setter method for Author first name feature
+     * 
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
+    @Test
+    public void testSetAuthorFirstName() throws FileNotFoundException, IOException {
+        Token firstName = new Token("brendan");
+        firstName.setAuthorFirstName();
+
+        assertNotNull(firstName.getAuthorFirstName());
+        assertThat(firstName.getAuthorFirstName(), is(true));
+    }
+
+    /**
+     * Test for getter method for Author first name feature
+     * 
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
+    @Test
+    public void testGetAuthorFirstName() throws FileNotFoundException, IOException {
+        Token firstName = new Token("SyntaxSages");
+        firstName.setAuthorFirstName();
+
+        assertEquals(firstName.getAuthorFirstName(), false);
+    }
+
+    /**
+     * Test for setter method for Author last name feature
+     * 
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
+    @Test
+    public void testSetAuthorLastName() throws FileNotFoundException, IOException {
+        Token lastName = new Token("hearrell");
+        lastName.setAuthorLastName();
+
+        assertNotNull(lastName.getAuthorLastName());
+        assertThat(lastName.getAuthorLastName(), is(true));
+    }
+
+    /**
+     * Test for getter method for Author last name feature
+     * 
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
+    @Test
+    public void testGetAuthorLastName() throws FileNotFoundException, IOException {
+        Token lastName = new Token("SyntaxSages");
+        lastName.setAuthorLastName();
+
+        assertEquals(lastName.getAuthorLastName(), false);
+    }
 }
