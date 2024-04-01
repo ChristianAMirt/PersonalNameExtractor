@@ -56,7 +56,7 @@ public class TestKnownAuthors {
      * located within Dictionary.firstNames.txt
      */
     @Test
-    public void testCommonFirstName() 
+    public void testFirstName() 
         throws IOException
     {
         KnownAuthors knownAuthors = new KnownAuthors();
@@ -71,10 +71,10 @@ public class TestKnownAuthors {
     /**
      * Test to see that token value is accepted and verified 
      * as true or false dependent on the string value being
-     * located within Dictionary.firstNames.txt
+     * located within Dictionary.lastNames.txt
      */
     @Test
-    public void testCommonLastName() 
+    public void testLastName() 
         throws IOException
     {
         KnownAuthors knownAuthors = new KnownAuthors();
