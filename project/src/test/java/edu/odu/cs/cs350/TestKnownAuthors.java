@@ -49,4 +49,40 @@ public class TestKnownAuthors {
             fail("IOException occurred while reading last names file: " + e.getMessage());
         }
     }
+
+    /**
+     * Test to see that token value is accepted and verified 
+     * as true or false dependent on the string value being
+     * located within Dictionary.firstNames.txt
+     */
+    @Test
+    public void testCommonFirstName() 
+        throws IOException
+    {
+        KnownAuthors knownAuthors = new KnownAuthors();
+        Token token = new Token("brendan");
+        assertEquals(knownAuthors.firstName(token.getValue()) , true);
+        
+        KnownAuthors knownAuthorsTwo = new KnownAuthors();
+        Token tokenTwo = new Token("SyntaxSages");
+        assertNotEquals(knownAuthorsTwo.firstName(tokenTwo.getValue()), true);
+    }
+
+    /**
+     * Test to see that token value is accepted and verified 
+     * as true or false dependent on the string value being
+     * located within Dictionary.firstNames.txt
+     */
+    @Test
+    public void testCommonLastName() 
+        throws IOException
+    {
+        KnownAuthors knownAuthors = new KnownAuthors();
+        Token token = new Token("hearrell");
+        assertEquals(knownAuthors.lastName(token.getValue()) , true);
+        
+        KnownAuthors knownAuthorsTwo = new KnownAuthors();
+        Token tokenTwo = new Token("SyntaxSages");
+        assertNotEquals(knownAuthorsTwo.lastName(tokenTwo.getValue()), true);
+    }
 }

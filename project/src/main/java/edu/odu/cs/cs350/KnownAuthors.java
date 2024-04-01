@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Determins if a name is a known author or not
@@ -62,8 +63,8 @@ public class KnownAuthors {
     public boolean lastName(String value) throws IOException {
        
         String[] lastNameArray = readLastNameToArray();
-        // TO be implemented
-        return false; // Placeholder return value
+
+        return Arrays.asList(lastNameArray).contains(value);
     }
 
  /**
@@ -75,8 +76,8 @@ public class KnownAuthors {
     public boolean firstName(String value) throws IOException {
        
         String[] firstNameArray = readFirstNameToArray();
-        // TO be implemented
-        return false; // Placeholder return value
+        
+        return Arrays.asList(firstNameArray).contains(value);
     }
 
 
