@@ -91,7 +91,6 @@ public class CommonNames {
      * 
      * 
      * @param inputString
-     * @param reader
      * @throws IOException
      */
     public void loadFirstNames(String inputString) throws IOException{
@@ -107,7 +106,6 @@ public class CommonNames {
      * 
      * 
      * @param inputString
-     * @param reader
      * @throws IOException
      */
     public void loadLastNames(String inputString) throws IOException{

@@ -15,7 +15,7 @@ import java.util.ListIterator;
  * 80 characters per line. Any input exceeding this amout will not be accepted,
  * and will throw an exception.
  * 
- * The inputPage variable is checked for substring tags "<NER>....</NER>". 
+ * The inputPage variable is checked for beginning and ending NER substring tags
  * If found, the inputDocuments vector is iterated and the text data is 
  * added for each tag occurance. 
  */
@@ -92,7 +92,7 @@ public class Librarian {
     }
 
     /**
-     * Returns the substring text between <NER> and </NER>.
+     * Returns the substring text between the NER tags
      */
     public String getTextBetweenNERTags(String inputText) {
 
