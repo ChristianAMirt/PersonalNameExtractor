@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'application'
+    id 'org.ajoberstar.git-publish' version '4.2.0'
 }
 
 java {
@@ -24,13 +25,53 @@ application {
 test {
     ignoreFailures = true
     useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+        }
 } 
+
+task copyHTML(type: Copy){
+    copyHTML.dependsOn(build)
+    copyHTML.dependsOn(javadoc)
+    from 'src/main/html/'
+    into 'build/reports/'
+}
 
 task copyDocs(type: Copy){
     copyDocs.dependsOn(javadoc)
-    from 'build/docs/javadoc'
-    into 'build/reports/javadoc'
+    copyDocs.dependsOn(build)
+    from 'build/docs/'
+    into 'build/reports/'
 }
+
+task reports{
+    reports.dependsOn(copyHTML)
+    reports.dependsOn(copyDocs)
+}
+
+gitPublish{
+
+    // the repository
+    repoUri = 'git@github.com:Old-Dominion-Univ-CS350/cs350-project-s24-ChristianAMirt.git'
+    
+
+    // branch in which to publish
+    branch = 'gh-pages'
+
+    // what to publish
+    contents{
+        from 'build/reports/'
+    }
+}
+
+task deployReports{
+    deployReports.dependsOn(reports)
+    deployReports.dependsOn(gitPublishPush)
+    group = "Reporting"
+}
+
+gitPublishCopy.dependsOn reports
+
 run {
     args = ["<NER> Joe Smith should have a nametag. Randy Butternubs might have a nametag.  SyntaxSages shouldn't have a nametag.</NER>"]
 }
