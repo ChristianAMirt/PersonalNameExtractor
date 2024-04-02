@@ -6,8 +6,8 @@ import java.io.FileReader;
 import java.io.IOException;
 
 /**
+ * Determines if a word is a kill word or not
  * @author Jaylen Wheeler
- *         Determines if a word is a kill word or not
  */
 public class KillWordFeature {
 

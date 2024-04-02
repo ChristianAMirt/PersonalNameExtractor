@@ -6,8 +6,8 @@ import java.io.FileReader;
 import java.io.IOException;
 
 /**
+ * Determines if a word is a prefix or suffix
  * @author Jaylen Wheeler
- *         Determines if a word is a prefix or suffix
  */
 public class PrefixAndSuffixFeature {
 

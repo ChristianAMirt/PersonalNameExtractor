@@ -6,8 +6,8 @@ import java.io.FileReader;
 import java.io.IOException;
 
 /**
+ * Determines if a word is part of the English dictionary
  * @author Jaylen Wheeler
- *         Determines if a word is part of the English dictionary
  */
 public class DictionaryFeature {
 
