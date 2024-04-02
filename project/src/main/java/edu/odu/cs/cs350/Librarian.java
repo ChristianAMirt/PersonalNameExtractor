@@ -33,7 +33,6 @@ public class Librarian {
     private Vector<Document> inputDocuments;
 
     /**
-     * 
      * @param inputPage is the string given by the user
      * 
      * @throws IOException if input is larger than 4000 characters
@@ -58,7 +57,6 @@ public class Librarian {
     }
 
     /**
-     * 
      * @return true if one or more Documents have been added to collection
      */
     public boolean hasDocuments() {
@@ -67,13 +65,14 @@ public class Librarian {
         return false;
     }
 
-    // Returns the number of elements that have been added to inputDocuments.
+    /**
+     * Returns the number of elements that have been added to inputDocuments.
+     */
     public int getDocumentsSize() { 
         return inputDocuments.size();
     }
 
-    /**
-     * 
+    /** 
      * @param index of the vector of Documents that is being retrived
      * @return the document object at that index
      */
@@ -81,10 +80,8 @@ public class Librarian {
         return inputDocuments.elementAt(index);
     }
 
-    /*
-     * Splits the raw inputText right after each </NER>. This preserves
-     * the <NER> and </NER> tag within each string. 
-     * Uses "zero-width positive lookahead" splitting.
+    /**
+     * Splits the raw inputText right after each </NER>.
      */
     public String[] splitInputPage(String textString) {
         String arrayNERStrings[] = inputPage.split("(?=<NER>)");
@@ -118,7 +115,7 @@ public class Librarian {
 
     }
 
-    /*
+    /**
      * Returns index of "tag" within "inputString".
      */
     public int getTagIndex(String inputString, String tag) {
@@ -141,8 +138,8 @@ public class Librarian {
         return markedUp.toString();
     }
 
-    /*
-     *  Print the output of a text string to the console.
+    /**
+     * Print the output of a text string to the console.
      */
     public void printDocumentText(String outputText) {
         System.out.println(outputText);
