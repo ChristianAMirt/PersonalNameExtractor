@@ -1,3 +1,5 @@
+* [Reports](https://old-dominion-univ-cs350.github.io/cs350-project-s24-ChristianAMirt/)
+
 # Project structure
 
 This is the top-level directory for your project.
