@@ -16,8 +16,8 @@ import java.util.ListIterator;
  * and will throw an exception.
  * 
  * The inputPage variable is checked for beginning and ending NER substring tags
- * If found, the inputDocuments vector is iterated and the text data is 
- * added for each tag occurance. 
+ * If found, the inputDocuments vector is iterated and the text data is
+ * added for each tag occurance.
  */
 public class Librarian {
 
@@ -68,11 +68,11 @@ public class Librarian {
     /**
      * Returns the number of elements that have been added to inputDocuments.
      */
-    public int getDocumentsSize() { 
+    public int getDocumentsSize() {
         return inputDocuments.size();
     }
 
-    /** 
+    /**
      * @param index of the vector of Documents that is being retrived
      * @return the document object at that index
      */
@@ -81,7 +81,7 @@ public class Librarian {
     }
 
     /**
-     * Splits the raw inputText right after each </NER>.
+     * Splits the raw inputText right after each /NER.
      */
     public String[] splitInputPage(String textString) {
         String arrayNERStrings[] = inputPage.split("(?=<NER>)");
