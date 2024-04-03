@@ -63,7 +63,7 @@ public class Token {
 
     /**
      * An identifier for whether or not the token is a suffix
-     */    
+     */
     private boolean suffixFeature;
 
     /**
@@ -77,9 +77,15 @@ public class Token {
     private boolean authorLastName;
 
     /**
+     * An identifier for common parts of speech
+     */
+    private boolean partOfSpeech;
+
+    /**
      * Create a new Token.
      * 
      * @param value word or punctuation mark represented by the token.
+     * @throws IOException for files that cannot load
      */
     public Token(String value) throws IOException {
         this.value = value;
@@ -290,5 +296,13 @@ public class Token {
      */
     public boolean getAuthorLastName() {
         return authorLastName;
+    }
+
+    public void setPartOfSpeech() throws FileNotFoundException, IOException {
+        partOfSpeech = new PartsOfSpeech().isPartOfSpeech(value);
+    }
+
+    public boolean getPartOfSpeech() {
+        return partOfSpeech;
     }
 }

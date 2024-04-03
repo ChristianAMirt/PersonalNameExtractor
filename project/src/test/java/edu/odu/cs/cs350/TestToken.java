@@ -284,4 +284,16 @@ public class TestToken {
 
         assertEquals(lastName.getAuthorLastName(), false);
     }
+
+    @Test
+    public void testSetPartOfSpeech() throws FileNotFoundException, IOException {
+        Token t1 = new Token("Twas");
+        Token t2 = new Token("willing");
+
+        t1.setPartOfSpeech();
+        t2.setPartOfSpeech();
+
+        assertThat(t1.getPartOfSpeech(), is(true));
+        assertThat(t2.getPartOfSpeech(), is(false));
+    }
 }
