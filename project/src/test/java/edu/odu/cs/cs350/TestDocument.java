@@ -36,7 +36,7 @@ public class TestDocument {
         int index = 0;
         while (it.hasNext()) {
             Token currentToken = it.next();
-            assertThat(currentToken.getValue(), containsString(tokenizedSentence[index]));
+            assertTrue(currentToken.getValue().equals(tokenizedSentence[index]));
             index++;
         }
 
@@ -47,7 +47,7 @@ public class TestDocument {
         index = 0;
         while (it.hasNext()) {
             Token currentToken = it.next();
-            assertThat(currentToken.getValue(), containsString(tokenized2[index]));
+            assertTrue(currentToken.getValue().equals(tokenized2[index]));
             index++;
         }
 
@@ -59,7 +59,7 @@ public class TestDocument {
         index = 0;
         while (it.hasNext()) {
             Token currentToken = it.next();
-            assertThat(currentToken.getValue(), containsString(tokenized3[index]));
+            assertTrue(currentToken.getValue().equals(tokenized3[index]));
             index++;
         }
 
@@ -83,7 +83,7 @@ public class TestDocument {
         int index = 0;
         while (it.hasNext()) {
             Token currentToken = it.next();
-            assertThat(currentToken.getValue(), containsString(tokenized[index]));
+            assertTrue(currentToken.getValue().equals(tokenized[index]));
             index++;
         }
     }

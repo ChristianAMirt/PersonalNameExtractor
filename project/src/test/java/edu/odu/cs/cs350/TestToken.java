@@ -32,7 +32,7 @@ public class TestToken {
      */
     @Test
     public void testSetDictionaryFeature() throws FileNotFoundException, IOException {
-        Token dictionaryFeatureToken = new Token("AkiraToriyama");
+        Token dictionaryFeatureToken = new Token("AkiraToriyama"); // DBZ reference
         dictionaryFeatureToken.setDictionaryFeature();
 
         assertNotNull(dictionaryFeatureToken.getDictionaryFeature());
