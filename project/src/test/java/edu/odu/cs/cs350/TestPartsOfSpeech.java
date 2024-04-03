@@ -24,6 +24,11 @@ public class TestPartsOfSpeech {
     public void testIsPartOfSpeach() throws FileNotFoundException, IOException {
         PartsOfSpeech checker = new PartsOfSpeech();
 
-        // assertThat(checker.testIsPartOfSpeach("A"), is(true));
+        assertThat(checker.isPartOfSpeech("A"), is(true));
+        assertThat(checker.isPartOfSpeech("going"), is(false));
+        assertThat(checker.isPartOfSpeech("ALMOST"), is(true));
+        assertThat(checker.isPartOfSpeech("Squidward"), is(false));
+        assertThat(checker.isPartOfSpeech("bypass"), is(false));
+        assertThat(checker.isPartOfSpeech(""), is(false));
     }
 }
