@@ -10,20 +10,20 @@ public class PartsOfSpeech {
 
     private final String STOPLIST_FILE_PATH = "src/main/data/Stoplist.english.txt";
 
-    private HashSet<String> commonSpeach;
+    private HashSet<String> commonSpeech;
 
     /*
      * Create a new PartsOfSpeech object
      */
     public PartsOfSpeech() throws FileNotFoundException, IOException {
-        this.commonSpeach = new HashSet<String>();
+        this.commonSpeech = new HashSet<String>();
         loadData(STOPLIST_FILE_PATH);
     }
 
     private void loadData(String filePath) throws FileNotFoundException, IOException {
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
         while (reader.ready()) {
-            commonSpeach.add(reader.readLine());
+            commonSpeech.add(reader.readLine());
         }
         reader.close();
     }
