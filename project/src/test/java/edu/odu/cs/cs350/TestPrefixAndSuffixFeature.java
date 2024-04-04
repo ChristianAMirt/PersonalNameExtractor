@@ -34,11 +34,11 @@ public class TestPrefixAndSuffixFeature {
         PrefixAndSuffixFeature secondPrefixAndSuffixFeature = new PrefixAndSuffixFeature();
         Token firstToken = new Token("berg");
 
-        assertEquals(secondPrefixAndSuffixFeature.determinePrefixFeature(firstToken.getValue()) , true);
+        assertEquals(true , secondPrefixAndSuffixFeature.determinePrefixFeature(firstToken.getValue()));
         
         Token secondToken = new Token("HalfLife3IsntReal");
 
-        assertNotEquals(secondPrefixAndSuffixFeature.determinePrefixFeature(secondToken.getValue()), true);
+        assertNotEquals(true, secondPrefixAndSuffixFeature.determinePrefixFeature(secondToken.getValue()));
     }
 
     /**
@@ -54,10 +54,10 @@ public class TestPrefixAndSuffixFeature {
         PrefixAndSuffixFeature thirdPrefixAndSuffixFeature = new PrefixAndSuffixFeature();
         Token secondToken = new Token("Sr");
 
-        assertEquals(thirdPrefixAndSuffixFeature.determineSuffixFeature(secondToken.getValue()) , true);
+        assertEquals(true, thirdPrefixAndSuffixFeature.determineSuffixFeature(secondToken.getValue()));
         
         Token thirdToken = new Token("TheCakeIsALie");
 
-        assertNotEquals(thirdPrefixAndSuffixFeature.determineSuffixFeature(thirdToken.getValue()), true);
+        assertNotEquals(true, thirdPrefixAndSuffixFeature.determineSuffixFeature(thirdToken.getValue()));
     }
 }

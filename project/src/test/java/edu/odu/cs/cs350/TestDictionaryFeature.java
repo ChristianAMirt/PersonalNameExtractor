@@ -36,13 +36,11 @@ public class TestDictionaryFeature {
         DictionaryFeature secondDictionaryFeature = new DictionaryFeature();
         Token firstToken = new Token("syntax");
 
-        assertEquals(secondDictionaryFeature.determineDictionaryFeature(firstToken.getValue()) , true);
+        assertEquals(true , secondDictionaryFeature.determineDictionaryFeature(firstToken.getValue()));
         
         DictionaryFeature thirdDictionaryFeature = new DictionaryFeature();
         Token secondToken = new Token("bdhiskThisWordShouldNotBeInTheDictionaryJmjhp");
 
-        assertNotEquals(thirdDictionaryFeature.determineDictionaryFeature(secondToken.getValue()), true);
+        assertNotEquals(true, thirdDictionaryFeature.determineDictionaryFeature(secondToken.getValue()));
     }
 }
-
-// Note to self: switch the expected and actual values around

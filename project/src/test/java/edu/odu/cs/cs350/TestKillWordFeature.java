@@ -37,11 +37,11 @@ public class TestKillWordFeature {
         KillWordFeature secondKillWordFeature = new KillWordFeature();
         Token firstToken = new Token("pacific");
 
-        assertEquals(secondKillWordFeature.determineKillWordFeature(firstToken.getValue()), true);
+        assertEquals(true, secondKillWordFeature.determineKillWordFeature(firstToken.getValue()));
 
         Token secondToken = new Token("sage");
 
-        assertEquals(secondKillWordFeature.determineKillWordFeature(secondToken.getValue()), false);
+        assertEquals(false, secondKillWordFeature.determineKillWordFeature(secondToken.getValue()));
     }
     
     /**
@@ -58,16 +58,16 @@ public class TestKillWordFeature {
         Token thirdToken = new Token("united");
         Token fourthToken = new Token("states");
 
-        assertEquals(thirdKillWordFeature.determineMultipleKillWordFeatures(thirdToken.getValue(), fourthToken.getValue()), true);
+        assertEquals(true, thirdKillWordFeature.determineMultipleKillWordFeatures(thirdToken.getValue(), fourthToken.getValue()));
 
         Token fifthToken = new Token("Naruto");
         Token sixthToken = new Token("Uzumaki");
 
-        assertEquals(thirdKillWordFeature.determineMultipleKillWordFeatures(fifthToken.getValue(), sixthToken.getValue()), false);
+        assertEquals(false, thirdKillWordFeature.determineMultipleKillWordFeatures(fifthToken.getValue(), sixthToken.getValue()));
 
         Token seventhToken = new Token("mirmar");
         Token eighthToken = new Token("snacks");
 
-        assertEquals(thirdKillWordFeature.determineMultipleKillWordFeatures(seventhToken.getValue(), eighthToken.getValue()), false);
+        assertEquals(false, thirdKillWordFeature.determineMultipleKillWordFeatures(seventhToken.getValue(), eighthToken.getValue()));
     }
 }
