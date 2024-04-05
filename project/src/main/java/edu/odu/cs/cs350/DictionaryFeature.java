@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 /**
- * Determines if a word is part of the English dictionary
+ * Determines if a word is part of the English dictionary.
  * @author Jaylen Wheeler
  */
 public class DictionaryFeature {
@@ -20,14 +20,14 @@ public class DictionaryFeature {
      * Runs a string through a list of (up to) 120,000 words in the English Language
      * for comparison between the token's value and the word.
      * 
-     * Source: aspell English dictionary, with affixes expanded
+     * Source: aspell English dictionary, with affixes expanded.
      * 
      * @param myWord
      * 
      * @throws FileNotFoundException 
      * @throws IOException
      * 
-     * @return boolean value
+     * @return boolean value.
      */
     public boolean determineDictionaryFeature(String myWord) throws FileNotFoundException, IOException {
 

@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 /**
- * Determines if a word is a prefix or suffix
+ * Determines if a word is a prefix or suffix.
  * @author Jaylen Wheeler
  */
 public class PrefixAndSuffixFeature {
@@ -28,7 +28,7 @@ public class PrefixAndSuffixFeature {
      * @throws FileNotFoundException 
      * @throws IOException
      * 
-     * @return boolean value
+     * @return boolean value.
      */
     public boolean determinePrefixFeature(String myWord) throws FileNotFoundException, IOException {
 
@@ -66,7 +66,7 @@ public class PrefixAndSuffixFeature {
      * @throws FileNotFoundException 
      * @throws IOException
      * 
-     * @return boolean value
+     * @return boolean value.
      */
     public boolean determineSuffixFeature(String myWord) throws FileNotFoundException, IOException {
         BufferedReader myReader = null;

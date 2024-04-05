@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 /**
- * Determines if a word is a kill word or not
+ * Determines if a word is a kill word or not.
  * @author Jaylen Wheeler
  */
 public class KillWordFeature {
@@ -29,7 +29,7 @@ public class KillWordFeature {
      * @throws FileNotFoundException
      * @throws IOException
      * 
-     * @return boolean value
+     * @return boolean value.
      */
     public boolean determineKillWordFeature(String word) throws FileNotFoundException, IOException {
 
@@ -67,7 +67,7 @@ public class KillWordFeature {
      * @throws FileNotFoundException
      * @throws IOException
      * 
-     * @return boolean value
+     * @return boolean value.
      */
     public boolean determineMultipleKillWordFeatures(String firstWord, String secondWord)
             throws FileNotFoundException, IOException {
@@ -81,7 +81,7 @@ public class KillWordFeature {
         // Compares every line of the kill word file with the 
         // values of both strings and returns
         // true if they are equal.
-        // Otherwise, it returns false.\
+        // Otherwise, it returns false.
         while (killWordLine != null) {
             if (killWordLine.contains(firstWord) && killWordLine.contains(secondWord)) {
                 myReader.close();
