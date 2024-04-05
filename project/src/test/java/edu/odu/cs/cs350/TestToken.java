@@ -287,13 +287,13 @@ public class TestToken {
 
     @Test
     public void testSetPartOfSpeech() throws FileNotFoundException, IOException {
-        Token t1 = new Token("Twas");
+        Token t1 = new Token("thus");
         Token t2 = new Token("willing");
 
         t1.setPartOfSpeech();
         t2.setPartOfSpeech();
 
-        assertThat(t1.getPartOfSpeech(), is(true));
-        assertThat(t2.getPartOfSpeech(), is(false));
+        assertThat(t1.getPartOfSpeech(), is("conjunction"));
+        assertThat(t2.getPartOfSpeech(), is("other"));
     }
 }

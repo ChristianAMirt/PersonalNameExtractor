@@ -10,6 +10,15 @@ import java.io.IOException;
  * over the text.
  */
 public class Token {
+    /*
+     * I think I will create a new class Features that handles setting all of
+     * these attributes at a later time. Features will be an attribute to this
+     * class, but setting the features for each token will be done in the
+     * Librarian to avoid copying files for every Token created. There will
+     * only be one instance of a Feature object, and it will have an instance
+     * of every attribute object. The Features object will no longer exist once
+     * the Librarian does not exist.
+     */
 
     /**
      * Word or punctuation mark that is being held by token.
@@ -79,7 +88,7 @@ public class Token {
     /**
      * An identifier for common parts of speech
      */
-    private boolean partOfSpeech;
+    private String partOfSpeech;
 
     /**
      * Create a new Token.
@@ -299,10 +308,10 @@ public class Token {
     }
 
     public void setPartOfSpeech() throws FileNotFoundException, IOException {
-        partOfSpeech = new PartsOfSpeech().isPartOfSpeech(value);
+        partOfSpeech = new PartsOfSpeech().checkForPartsOfSpeech(value);
     }
 
-    public boolean getPartOfSpeech() {
+    public String getPartOfSpeech() {
         return partOfSpeech;
     }
 }
