@@ -27,7 +27,7 @@ public class Document implements Iterable<Token> {
     /**
      * Regular expression for punctation marks that can be seperate tokens.
      */
-    private static final String PUNCTUATION_MARKS = "(?<=\")|(?=[.,!?;:()\"&])";// add more marks next to "&"
+    private static final String PUNCTUATION_MARKS = "(?<=\")|(?=[.,!?;:()\"&-])";// add more marks next to "&"
 
     /**
      * Collection of tokens that hold words and certain punctuation marks from
