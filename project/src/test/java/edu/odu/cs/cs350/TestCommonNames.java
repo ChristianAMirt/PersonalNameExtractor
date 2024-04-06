@@ -47,11 +47,11 @@ public class TestCommonNames {
     {
         CommonNames commonFirstName = new CommonNames();
         Token token = new Token("brendan");
-        assertEquals(commonFirstName.commonFirstName(token.getValue()) , true);
+        assertEquals(true, commonFirstName.commonFirstName(token.getValue()));
         
         CommonNames commonFirstNameTwo = new CommonNames();
         Token tokenTwo = new Token("SyntaxSages");
-        assertNotEquals(commonFirstNameTwo.commonFirstName(tokenTwo.getValue()), true);
+        assertNotEquals(true, commonFirstNameTwo.commonFirstName(tokenTwo.getValue()));
     }
 
     /**
@@ -65,11 +65,11 @@ public class TestCommonNames {
     {
         CommonNames commonLastName = new CommonNames();
         Token token = new Token("smith");
-        assertEquals(commonLastName.commonLastName(token.getValue()) , true);
+        assertEquals(true, commonLastName.commonLastName(token.getValue()));
         
         CommonNames commonLastNameTwo = new CommonNames(); 
         Token tokenTwo = new Token("hearrell");
-        assertNotEquals(commonLastNameTwo.commonLastName(tokenTwo.getValue()), true);
+        assertNotEquals(true, commonLastNameTwo.commonLastName(tokenTwo.getValue()));
     }
     
 }
