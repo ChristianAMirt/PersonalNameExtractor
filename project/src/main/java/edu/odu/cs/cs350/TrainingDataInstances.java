@@ -17,14 +17,27 @@ import java.util.Arrays;
  */
 public class TrainingDataInstances {
     
-    //Attributes to look for:
-    //first
-    String[] firstNames;
+    // //Attributes to look for:
+    // //first
+    // String[] firstNames;
     
-    String[] lastNames;
+    // String[] lastNames;
 
     String[] englishDictionaryWords = readFile("src/main/data/Dictionary.english.txt");
-    Attribute englishDictinary = new Attribute("englishDictionary", fastV(englishDictionaryWords));
+    Attribute englishDictionary = new Attribute("englishDictionary", fastV(englishDictionaryWords));
+
+    String[] killWords = readFile("src/main/data/Dictionary.nonPersonalProperNames.txt");
+    Attribute kill = new Attribute("kill", fastV(killWords));
+
+    String[] prefixWords = readFile("src/main/data/Dictionary.prefixes.txt");
+    Attribute prefix = new Attribute("prefix", fastV(prefixWords));
+
+    String[] suffixWords = readFile("src/main/data/Dictionary.suffixes.txt");
+    Attribute suffix = new Attribute("prefix", fastV(suffixWords));
+
+    String[] lexicalWords = {"number", "punct", "CapLetter", "capitalized", "AllCaps", "other"};
+    Attribute lexical = new Attribute("lexical", fastV(lexicalWords));
+    
     
 
     //honorifics
