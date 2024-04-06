@@ -108,7 +108,10 @@ public class TestToken {
     @Test
     public void testSetCommonFirstName() throws FileNotFoundException, IOException {
         Token commonFirstNameToken = new Token("brendan");
-        commonFirstNameToken.setCommonFirstName();
+        CommonNames commonFirstName = new CommonNames();
+
+        boolean expectedName = commonFirstName.commonFirstName(commonFirstNameToken.getValue());
+        commonFirstNameToken.setCommonFirstName(expectedName);
 
         assertNotNull(commonFirstNameToken.getCommonFirstName());
         assertThat(commonFirstNameToken.getCommonFirstName(), is(true));
@@ -123,7 +126,10 @@ public class TestToken {
     @Test
     public void testGetCommonFirstName() throws FileNotFoundException, IOException {
         Token commonFirstNameToken = new Token("hearrell");
-        commonFirstNameToken.setCommonFirstName();
+        CommonNames commonFirstName = new CommonNames();
+
+        boolean expectedName = commonFirstName.commonFirstName(commonFirstNameToken.getValue());
+        commonFirstNameToken.setCommonFirstName(expectedName);
 
         assertEquals(false, commonFirstNameToken.getCommonFirstName());
     }
@@ -137,7 +143,10 @@ public class TestToken {
     @Test
     public void testSetCommonLastName() throws FileNotFoundException, IOException {
         Token commonLastNameToken = new Token("smith");
-        commonLastNameToken.setCommonLastName();
+        CommonNames commonLastName = new CommonNames();
+
+        boolean expectedName = commonLastName.commonFirstName(commonLastNameToken.getValue());
+        commonLastNameToken.setCommonLastName(expectedName);
 
         assertNotNull(commonLastNameToken.getCommonLastName());
         assertThat(commonLastNameToken.getCommonLastName(), is(true));
@@ -152,7 +161,10 @@ public class TestToken {
     @Test
     public void testGetCommonLastName() throws FileNotFoundException, IOException {
         Token commonLastNameToken = new Token("hearrell");
-        commonLastNameToken.setCommonLastName();
+        CommonNames commonLastName = new CommonNames();
+
+        boolean expectedName = commonLastName.commonFirstName(commonLastNameToken.getValue());
+        commonLastNameToken.setCommonLastName(expectedName);
 
         assertEquals(false, commonLastNameToken.getCommonLastName());
     }
@@ -166,7 +178,10 @@ public class TestToken {
     @Test
     public void testSetHonorifics() throws FileNotFoundException, IOException {
         Token honorificsToken = new Token("Mr");
-        honorificsToken.setHonorificsValue();
+        Honorifics honorifics = new Honorifics();
+
+        boolean expectedValue = honorifics.containsHonorifics(honorificsToken.getValue());
+        honorificsToken.setHonorificsValue(expectedValue);
 
         assertNotNull(honorificsToken.getHonorificsValue());
         assertThat(honorificsToken.getHonorificsValue(), is(true));
@@ -181,7 +196,10 @@ public class TestToken {
     @Test
     public void testGetHonorificsFeature() throws FileNotFoundException, IOException {
         Token honorificsToken = new Token("SyntaxSages");
-        honorificsToken.setHonorificsValue();
+        Honorifics honorifics = new Honorifics();
+
+        boolean expectedValue = honorifics.containsHonorifics(honorificsToken.getValue());
+        honorificsToken.setHonorificsValue(expectedValue);
 
         assertEquals(false, honorificsToken.getHonorificsValue());
     }
@@ -265,7 +283,10 @@ public class TestToken {
     @Test
     public void testSetAuthorFirstName() throws FileNotFoundException, IOException {
         Token firstName = new Token("brendan");
-        firstName.setAuthorFirstName();
+        KnownAuthors authorFirstName = new KnownAuthors();
+
+        boolean expectedName = authorFirstName.firstName(firstName.getValue());
+        firstName.setAuthorFirstName(expectedName);
 
         assertNotNull(firstName.getAuthorFirstName());
         assertThat(firstName.getAuthorFirstName(), is(true));
@@ -280,7 +301,10 @@ public class TestToken {
     @Test
     public void testGetAuthorFirstName() throws FileNotFoundException, IOException {
         Token firstName = new Token("SyntaxSages");
-        firstName.setAuthorFirstName();
+        KnownAuthors authorFirstName = new KnownAuthors();
+
+        boolean expectedName = authorFirstName.firstName(firstName.getValue());
+        firstName.setAuthorFirstName(expectedName);
 
         assertEquals(false, firstName.getAuthorFirstName());
     }
@@ -294,7 +318,10 @@ public class TestToken {
     @Test
     public void testSetAuthorLastName() throws FileNotFoundException, IOException {
         Token lastName = new Token("hearrell");
-        lastName.setAuthorLastName();
+        KnownAuthors authorLastName = new KnownAuthors();
+
+        boolean expectedName = authorLastName.lastName(lastName.getValue());
+        lastName.setAuthorLastName(expectedName);
 
         assertNotNull(lastName.getAuthorLastName());
         assertThat(lastName.getAuthorLastName(), is(true));
@@ -309,7 +336,10 @@ public class TestToken {
     @Test
     public void testGetAuthorLastName() throws FileNotFoundException, IOException {
         Token lastName = new Token("SyntaxSages");
-        lastName.setAuthorLastName();
+        KnownAuthors authorLastName = new KnownAuthors();
+
+        boolean expectedName = authorLastName.lastName(lastName.getValue());
+        lastName.setAuthorLastName(expectedName);
 
         assertEquals(false, lastName.getAuthorLastName());
     }
