@@ -15,20 +15,25 @@ public class TestDocument {
 
     @Test
     public void testConstructors() throws IOException {
-        Document emptyDoc = new Document("");
-
-        assertThat(emptyDoc.getInputText(), is(""));
-        assertThat(emptyDoc.size(), is(0));
-
-        Document titlePage = new Document("Written by John Doe and Randy Butternubs.");
-
-        assertThat(titlePage.getInputText(), containsString("Written by John Doe and Randy Butternubs."));
-        assertThat(titlePage.size(), is(8));
+        assertDoesNotThrow(() -> new Document(""));
     }
 
     @Test
     public void testParsing() throws IOException {
+        Document emptyDoc = new Document("");
+        emptyDoc.parseDocument();
+
+        assertThat(emptyDoc.getInputText(), is(""));
+        assertThat(emptyDoc.size(), is(0));
+
+        Document firstLine = new Document("Written by John Doe and Randy Butternubs.");
+        firstLine.parseDocument();
+
+        assertThat(firstLine.getInputText(), containsString("Written by John Doe and Randy Butternubs."));
+        assertThat(firstLine.size(), is(8));
+
         Document titlePage = new Document("Written by John Doe and Randy Butternubs.");
+        titlePage.parseDocument();
 
         ListIterator<Token> it = titlePage.iterator();
         String tokenizedSentence[] = { "Written", "by", "John", "Doe", "and", "Randy", "Butternubs", "." };
@@ -41,6 +46,7 @@ public class TestDocument {
         }
 
         Document multiLine = new Document("Testing with:\nLine\nBreaks.\n");
+        titlePage.parseDocument();
         String tokenized2[] = { "Testing", "with", ":", "Line", "Breaks", "." };
         it = multiLine.iterator();
 
@@ -52,6 +58,7 @@ public class TestDocument {
         }
 
         Document weirdPunctuation = new Document("My drink? My \"Diet Dr. Kelp!\" Don't tell me you forgot my drink&!");
+        weirdPunctuation.parseDocument();
         String tokenized3[] = { "My", "drink", "?", "My", "\"", "Diet", "Dr", ".", "Kelp", "!", "\"",
                 "Don't", "tell", "me", "you", "forgot", "my", "drink", "&", "!" };
         it = weirdPunctuation.iterator();
@@ -68,6 +75,7 @@ public class TestDocument {
     @Test
     public void testToAdd() throws IOException {
         Document veryImportant = new Document("It's really not that important.");
+        veryImportant.parseDocument();
         String tokenized[] = { "It's", "really", "not", "NOT", "that", "important", "." };
 
         ListIterator<Token> it = veryImportant.iterator();

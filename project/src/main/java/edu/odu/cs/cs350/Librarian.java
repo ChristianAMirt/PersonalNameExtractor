@@ -51,6 +51,9 @@ public class Librarian {
                 for (int i = 0; i < arraySize; i++) {
                     Document document = new Document(stringArray[i]);
                     inputDocuments.add(document);
+
+                    if (stringArray[i].contains("<NER>"))
+                        document.parseDocument();
                 }
             }
         }
@@ -130,9 +133,13 @@ public class Librarian {
         StringBuilder markedUp = new StringBuilder();
 
         // Super temporary, lots of other checks to do
-        Document onlyDoc = inputDocuments.get(0);
-        for (Token token : onlyDoc) {
-            markedUp.append(token.getValue() + " ");
+        for (Document document : inputDocuments) {
+            if (document.size() > 0) {
+                for (Token token : document)
+                    markedUp.append(token.getValue() + " ");
+            } else {
+                markedUp.append(document.getInputText());
+            }
         }
 
         return markedUp.toString();

@@ -73,5 +73,5 @@ task deployReports{
 gitPublishCopy.dependsOn reports
 
 run {
-    args = ["<NER> Joe Smith should have a nametag. Randy Butternubs might have a nametag.  SyntaxSages shouldn't have a nametag.</NER>"]
+    args = ["Trying to add stuff outside of the tags. <NER> Joe Smith should have a nametag. Randy Butternubs might have a nametag.  SyntaxSages shouldn't have a nametag.</NER> Very curious."]
 }
