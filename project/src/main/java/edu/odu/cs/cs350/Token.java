@@ -100,8 +100,17 @@ public class Token {
         this.value = value;
         this.classification = -1;
 
+        setAuthorFirstName();
+        setAuthorLastName();
         setCommonFirstName();
         setCommonLastName();
+        setDictionaryFeature();
+        setHonorificsValue();
+        // setIsLocation(); //Remove print statement in LocationLookup
+        setKillWordFeature();
+        setPartOfSpeech();
+        setPrefixFeature();
+        setSuffixFeature();
     }
 
     /**
