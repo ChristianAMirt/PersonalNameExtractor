@@ -18,13 +18,30 @@ import java.io.IOException;
  * for quick and easy look up access.
  */
 public class LocationLookup {
-    
-    // Holds the unique set of location names loaded from the file.
+
+    /**
+     * Holds the unique set of location names loaded from the file.
+     */
     private Set<String> locations;
 
+    /**
+     * File for locations
+     */
     private final String file1 = "src/main/data/Dictionary.location1.txt";
+
+    /**
+     * File for locations
+     */
     private final String file2 = "src/main/data/Dictionary.location2.txt";
+
+    /**
+     * File for locations
+     */
     private final String file3 = "src/main/data/Dictionary.location3.txt";
+
+    /**
+     * Stores the files for locations
+     */
     private final String[] fileList = { file1, file2, file3 };
 
     /**
