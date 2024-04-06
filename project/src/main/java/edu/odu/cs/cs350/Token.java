@@ -105,18 +105,6 @@ public class Token {
         this.value = value;
         this.classification = -1;
 
-        setAuthorFirstName();
-        setAuthorLastName();
-        setCommonFirstName();
-        setCommonLastName();
-        setDictionaryFeature();
-        setHonorificsValue();
-        setIsLocation();
-        setKillWordFeature();
-        setLexicalFeature();
-        setPartOfSpeech();
-        setPrefixFeature();
-        setSuffixFeature();
     }
 
     /**
@@ -124,6 +112,13 @@ public class Token {
      */
     public String getValue() {
         return value;
+    }
+
+    /**
+     * Set classification of Token
+     */
+    public void setClassification(int classification) {
+        this.classification = classification;
     }
 
     /**
@@ -139,8 +134,8 @@ public class Token {
      * @throws FileNotFoundException
      * @throws IOException
      */
-    public void setDictionaryFeature() throws FileNotFoundException, IOException {
-        dictionaryFeature = new DictionaryFeature().determineDictionaryFeature(value);
+    public void setDictionaryFeature(boolean feature) throws FileNotFoundException, IOException {
+        dictionaryFeature = feature;
     }
 
     /**
@@ -158,8 +153,8 @@ public class Token {
      * @throws FileNotFoundException
      * @throws IOException
      */
-    public void setKillWordFeature() throws FileNotFoundException, IOException {
-        killWordFeature = new KillWordFeature().determineKillWordFeature(value);
+    public void setKillWordFeature(boolean feature) throws FileNotFoundException, IOException {
+        killWordFeature = feature;
     }
 
     /**
@@ -177,8 +172,8 @@ public class Token {
      * @throws FileNotFoundException
      * @throws IOException
      */
-    public void setCommonFirstName() throws FileNotFoundException, IOException {
-        commonFirstName = new CommonNames().commonFirstName(value);
+    public void setCommonFirstName(boolean feature) throws FileNotFoundException, IOException {
+        commonFirstName = feature;
     }
 
     /**
@@ -196,8 +191,8 @@ public class Token {
      * @throws FileNotFoundException
      * @throws IOException
      */
-    public void setCommonLastName() throws FileNotFoundException, IOException {
-        commonLastName = new CommonNames().commonLastName(value);
+    public void setCommonLastName(boolean feature) throws FileNotFoundException, IOException {
+        commonLastName = feature;
     }
 
     /**
@@ -215,8 +210,8 @@ public class Token {
      * @throws FileNotFoundException
      * @throws IOException
      */
-    public void setHonorificsValue() throws FileNotFoundException, IOException {
-        honorificsValue = new Honorifics().containsHonorifics(value);
+    public void setHonorificsValue(boolean feature) throws FileNotFoundException, IOException {
+        honorificsValue = feature;
     }
 
     /**
@@ -233,8 +228,8 @@ public class Token {
      * 
      * @throws IOException
      */
-    public void setIsLocation() throws IOException {
-        location = new LocationLookup().checkLocation(value);
+    public void setIsLocation(boolean feature) throws IOException {
+        location = feature;
     }
 
     /**
@@ -252,8 +247,8 @@ public class Token {
      * @throws FileNotFoundException
      * @throws IOException
      */
-    public void setPrefixFeature() throws FileNotFoundException, IOException {
-        prefixFeature = new PrefixAndSuffixFeature().determinePrefixFeature(value);
+    public void setPrefixFeature(boolean feature) throws FileNotFoundException, IOException {
+        prefixFeature = feature;
     }
 
     /**
@@ -271,8 +266,8 @@ public class Token {
      * @throws FileNotFoundException
      * @throws IOException
      */
-    public void setSuffixFeature() throws FileNotFoundException, IOException {
-        suffixFeature = new PrefixAndSuffixFeature().determineSuffixFeature(value);
+    public void setSuffixFeature(boolean feature) throws FileNotFoundException, IOException {
+        suffixFeature = feature;
     }
 
     /**
@@ -290,8 +285,8 @@ public class Token {
      * @throws FileNotFoundException
      * @throws IOException
      */
-    public void setAuthorFirstName() throws FileNotFoundException, IOException {
-        authorFirstName = new KnownAuthors().firstName(value);
+    public void setAuthorFirstName(boolean feature) throws FileNotFoundException, IOException {
+        authorFirstName = feature;
     }
 
     /**
@@ -309,8 +304,8 @@ public class Token {
      * @throws FileNotFoundException
      * @throws IOException
      */
-    public void setAuthorLastName() throws FileNotFoundException, IOException {
-        authorLastName = new KnownAuthors().lastName(value);
+    public void setAuthorLastName(boolean feature) throws FileNotFoundException, IOException {
+        authorLastName = feature;
     }
 
     /**
@@ -322,8 +317,8 @@ public class Token {
         return authorLastName;
     }
 
-    public void setPartOfSpeech() throws FileNotFoundException, IOException {
-        partOfSpeech = new PartsOfSpeech().checkForPartsOfSpeech(value);
+    public void setPartOfSpeech(String speech) {
+        partOfSpeech = speech;
     }
 
     public String getPartOfSpeech() {
@@ -333,8 +328,8 @@ public class Token {
     /**
      * Sets the lexicalFeature value of Token
      */
-    public void setLexicalFeature() {
-        lexicalFeature = new LexicalFeature().determineLexicalFeature(value);
+    public void setLexicalFeature(String lexical) {
+        lexicalFeature = lexical;
     }
 
     /**
