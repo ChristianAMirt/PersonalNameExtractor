@@ -111,7 +111,7 @@ public class Token {
         setCommonLastName();
         setDictionaryFeature();
         setHonorificsValue();
-        // setIsLocation(); //Remove print statement in LocationLookup
+        setIsLocation();
         setKillWordFeature();
         setLexicalFeature();
         setPartOfSpeech();
