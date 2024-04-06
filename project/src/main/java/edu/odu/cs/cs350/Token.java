@@ -91,6 +91,11 @@ public class Token {
     private String partOfSpeech;
 
     /**
+     * An identifier for lexical features
+     */
+    private String lexicalFeature;
+
+    /**
      * Create a new Token.
      * 
      * @param value word or punctuation mark represented by the token.
@@ -108,6 +113,7 @@ public class Token {
         setHonorificsValue();
         // setIsLocation(); //Remove print statement in LocationLookup
         setKillWordFeature();
+        setLexicalFeature();
         setPartOfSpeech();
         setPrefixFeature();
         setSuffixFeature();
@@ -322,5 +328,21 @@ public class Token {
 
     public String getPartOfSpeech() {
         return partOfSpeech;
+    }
+
+    /**
+     * Sets the lexicalFeature value of Token
+     */
+    public void setLexicalFeature() {
+        lexicalFeature = new LexicalFeature().determineLexicalFeature(value);
+    }
+
+    /**
+     * Returns the lexicalFeature value of Token
+     * 
+     * @return String value
+     */
+    public String getLexicalFeature() {
+        return lexicalFeature;
     }
 }

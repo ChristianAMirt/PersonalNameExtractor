@@ -25,9 +25,9 @@ public class KnownAuthors {
     public String[] readFile(String filePath) throws IOException {
         ArrayList<String> lines = new ArrayList<>(); 
 
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+        try (BufferedReader myBufferedReader = new BufferedReader(new FileReader(filePath))) {
             String line;
-            while ((line = br.readLine()) != null) {
+            while ((line = myBufferedReader.readLine()) != null) {
                 lines.add(line); // Added lines to the array
             }
         }

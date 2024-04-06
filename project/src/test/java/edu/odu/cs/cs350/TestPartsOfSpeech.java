@@ -64,12 +64,12 @@ public class TestPartsOfSpeech {
     public void testPunctuation() {
         assertThat(checker.isPeriod(""), is(false));
         assertThat(checker.isPeriod("."), is(true));
-        assertThat(checker.isCommma(""), is(false));
-        assertThat(checker.isCommma(","), is(true));
+        assertThat(checker.isComma(""), is(false));
+        assertThat(checker.isComma(","), is(true));
         assertThat(checker.isHyphen(""), is(false));
         assertThat(checker.isHyphen("-"), is(true));
         assertThat(checker.isPeriod(","), is(false));
-        assertThat(checker.isCommma("-"), is(false));
+        assertThat(checker.isComma("-"), is(false));
         assertThat(checker.isHyphen("."), is(false));
     }
 

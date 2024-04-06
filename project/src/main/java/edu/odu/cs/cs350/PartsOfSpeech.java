@@ -38,7 +38,7 @@ public class PartsOfSpeech {
     public String checkForPartsOfSpeech(String valueToCheck) {
         if (isPeriod(valueToCheck))
             return "period";
-        if (isCommma(valueToCheck))
+        if (isComma(valueToCheck))
             return "comma";
         if (isHyphen(valueToCheck))
             return "hyphen";
@@ -112,7 +112,7 @@ public class PartsOfSpeech {
      * @param valueToCheck single Token value to check
      * @return true if value is a comma
      */
-    public boolean isCommma(String valueToCheck) {
+    public boolean isComma(String valueToCheck) {
         if (valueToCheck.equals(","))
             return true;
         return false;

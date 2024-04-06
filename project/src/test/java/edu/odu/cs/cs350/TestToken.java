@@ -11,6 +11,11 @@ import static org.hamcrest.Matchers.*;
 
 public class TestToken {
 
+    /**
+     * Tests the constructor for Token.
+     * 
+     * @throws IOException
+     */
     @Test
     public void testConstructors() throws IOException {
         Token emptyToken = new Token("");
@@ -36,7 +41,7 @@ public class TestToken {
         dictionaryFeatureToken.setDictionaryFeature();
 
         assertNotNull(dictionaryFeatureToken.getDictionaryFeature());
-        assertThat(dictionaryFeatureToken.getDictionaryFeature(), is(false));
+        assertEquals(false, dictionaryFeatureToken.getDictionaryFeature());
     }
 
     /**
@@ -50,7 +55,7 @@ public class TestToken {
         Token dictionaryFeatureToken = new Token("goat");
         dictionaryFeatureToken.setDictionaryFeature();
 
-        assertEquals(dictionaryFeatureToken.getDictionaryFeature(), true);
+        assertEquals(true, dictionaryFeatureToken.getDictionaryFeature());
     }
 
     /**
@@ -65,7 +70,7 @@ public class TestToken {
         killWordFeatureToken.setKillWordFeature();
 
         assertNotNull(killWordFeatureToken.getKillWordFeature());
-        assertThat(killWordFeatureToken.getKillWordFeature(), is(true));
+        assertEquals(true, killWordFeatureToken.getKillWordFeature());
     }
 
     /**
@@ -79,7 +84,7 @@ public class TestToken {
         Token killWordFeatureToken = new Token("Luffy");
         killWordFeatureToken.setKillWordFeature();
 
-        assertEquals(killWordFeatureToken.getKillWordFeature(), false);
+        assertEquals(false, killWordFeatureToken.getKillWordFeature());
     }
 
     /**
@@ -181,7 +186,7 @@ public class TestToken {
         prefixFeatureToken.setPrefixFeature();
 
         assertNotNull(prefixFeatureToken.getPrefixFeature());
-        assertEquals(prefixFeatureToken.getPrefixFeature(), true);
+        assertEquals(true, prefixFeatureToken.getPrefixFeature());
     }
 
     /**
@@ -195,7 +200,7 @@ public class TestToken {
         Token prefixFeatureToken = new Token("Aegislash");
         prefixFeatureToken.setPrefixFeature();
 
-        assertEquals(prefixFeatureToken.getPrefixFeature(), false);
+        assertEquals(false, prefixFeatureToken.getPrefixFeature());
     }
 
     /**
@@ -210,7 +215,7 @@ public class TestToken {
         suffixFeatureToken.setSuffixFeature();
 
         assertNotNull(suffixFeatureToken.getSuffixFeature());
-        assertEquals(suffixFeatureToken.getSuffixFeature(), true);
+        assertEquals(true, suffixFeatureToken.getSuffixFeature());
     }
 
     /**
@@ -224,7 +229,7 @@ public class TestToken {
         Token suffixFeatureToken = new Token("Exodia");
         suffixFeatureToken.setSuffixFeature();
 
-        assertEquals(suffixFeatureToken.getSuffixFeature(), false);
+        assertEquals(false, suffixFeatureToken.getSuffixFeature());
     }
 
     /**
@@ -295,5 +300,32 @@ public class TestToken {
 
         assertThat(t1.getPartOfSpeech(), is("conjunction"));
         assertThat(t2.getPartOfSpeech(), is("other"));
+    }
+
+    /**
+     * Tests the setter method for the lexicalFeature value in Token
+     * 
+     * @throws IOException
+     */
+    @Test
+    public void testSetLexicalFeature() throws IOException{
+        Token lexicalFeatureToken = new Token("HELLO");
+        lexicalFeatureToken.setLexicalFeature();
+
+        assertNotNull(lexicalFeatureToken.getLexicalFeature());
+        assertEquals("AllCaps", lexicalFeatureToken.getLexicalFeature());
+    }
+
+    /**
+     * Tests the getter method for the lexicalFeature value in Token
+     * 
+     * @throws IOException
+     */
+    @Test
+    public void testGetLexicalFeature() throws IOException{
+        Token lexicalFeatureToken = new Token("World");
+        lexicalFeatureToken.setLexicalFeature();
+
+        assertEquals("capitalized", lexicalFeatureToken.getLexicalFeature());
     }
 }
