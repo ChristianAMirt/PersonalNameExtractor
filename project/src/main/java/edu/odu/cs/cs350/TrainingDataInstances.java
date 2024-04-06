@@ -1,7 +1,15 @@
 package edu.odu.cs.cs350;
 
 import weka.core.Instances;
+//import weka.core.pmml.jaxbbindings.Attribute;
+import weka.core.Attribute;
 import weka.core.FastVector;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 
 /**
  * The Trainer class is responsible for:
@@ -14,6 +22,10 @@ public class TrainingDataInstances {
     String[] firstNames;
     
     String[] lastNames;
+
+    String[] englishDictionaryWords = readFile("src/main/data/Dictionary.english.txt");
+    Attribute englishDictinary = new Attribute("englishDictionary", fastV(englishDictionaryWords));
+    
 
     //honorifics
 
@@ -62,6 +74,11 @@ public class TrainingDataInstances {
         String accumulated = buffer.toString();
     }
 
+    /**
+     * Places the file data into a fast vector
+     * @param data
+     * @return
+     */
     @Deprecated
     private FastVector fastV(String[] data) {
         FastVector result = new FastVector(data.length);
@@ -71,4 +88,24 @@ public class TrainingDataInstances {
         return result;
     }
 
+    /**
+     * Read lines from a file and store them in an array
+     * 
+     * @param filePath 
+     * @return An array containing each line from the file
+     * @throws IOException 
+     */
+    public String[] readFile(String filePath) throws IOException {
+        ArrayList<String> lines = new ArrayList<>(); 
+
+        try (BufferedReader myBufferedReader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = myBufferedReader.readLine()) != null) {
+                lines.add(line); // Added lines to the array
+            }
+        }
+
+        String[] linesArray = new String[lines.size()]; 
+        return lines.toArray(linesArray);
+    }
 }
