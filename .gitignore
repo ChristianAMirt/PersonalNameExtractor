@@ -5,4 +5,4 @@
 **/*.jar
 /project/build/*
 /.gradle/*
-./.vscode/
+/.vscode/

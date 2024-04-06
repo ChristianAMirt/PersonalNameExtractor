@@ -49,7 +49,6 @@ public class Document implements Iterable<Token> {
         this.inputText = inputText;
 
         allTokens = new LinkedList<Token>();
-        parseDocument();
     }
 
     /**
