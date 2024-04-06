@@ -11,6 +11,11 @@ import static org.hamcrest.Matchers.*;
 
 public class TestToken {
 
+    /**
+     * Tests the constructor for Token.
+     * 
+     * @throws IOException
+     */
     @Test
     public void testConstructors() throws IOException {
         Token emptyToken = new Token("");

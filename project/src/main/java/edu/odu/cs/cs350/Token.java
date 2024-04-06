@@ -107,6 +107,11 @@ public class Token {
 
         setCommonFirstName();
         setCommonLastName();
+        setDictionaryFeature();
+        setKillWordFeature();
+        setPrefixFeature();
+        setSuffixFeature();
+        setLexicalFeature();
     }
 
     /**
