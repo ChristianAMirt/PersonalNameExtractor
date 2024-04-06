@@ -15,6 +15,7 @@ import java.util.Arrays;
  * The Trainer class is responsible for:
  * - Creating a data set for WEKA
  */
+@SuppressWarnings("deprecation")
 public class TrainingDataInstances {
     
     // //Attributes to look for:
@@ -23,6 +24,18 @@ public class TrainingDataInstances {
     
     // String[] lastNames;
 
+    //Attributes to look for:
+    //first
+    String[] commonFirstNames = readFile("src/main/data/CommonFirstNames.txt");
+    Attribute commonFirstNameValue = new Attribute("commonFirstNameValue", fastV(commonFirstNames));
+    String[] commonLastNames = readFile("src/main/data/CommonLastNames.txt");
+    Attribute commonLastNameValue = new Attribute("commonLastNameValue", fastV(commonLastNames));
+    String[] authorFirstNames = readFile("src/main/data/Dictionary.firstNames.txt");
+    Attribute authorFirstNameValue = new Attribute("authorFirstNameValue", fastV(authorFirstNames));
+    String[] authorLastNames = readFile("src/main/data/Dictionary.lastNames.txt");
+    Attribute authorLastNameValue = new Attribute("authorLastNameValue", fastV(authorLastNames));
+    String[] honorifics = readFile("src/main/data/Dictionary.honorifics.txt"); 
+    Attribute honorificsValue = new Attribute("honorificsValue", fastV(honorifics));
     String[] englishDictionaryWords = readFile("src/main/data/Dictionary.english.txt");
     Attribute englishDictionary = new Attribute("englishDictionary", fastV(englishDictionaryWords));
 
