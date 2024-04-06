@@ -41,10 +41,10 @@ public class TestHonorifics {
     {
         Honorifics honorificsOne = new Honorifics();
         Token token = new Token("Mr");
-        assertEquals(honorificsOne.containsHonorifics(token.getValue()) , true);
+        assertEquals(true, honorificsOne.containsHonorifics(token.getValue()));
         
         Honorifics honorificsTwo = new Honorifics();
         Token tokenTwo = new Token("SyntaxSages");
-        assertNotEquals(honorificsTwo.containsHonorifics(tokenTwo.getValue()), true);
+        assertNotEquals(true, honorificsTwo.containsHonorifics(tokenTwo.getValue()));
     }
 }

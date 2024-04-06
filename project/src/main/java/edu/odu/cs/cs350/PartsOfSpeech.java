@@ -8,9 +8,15 @@ import java.util.HashSet;
 
 public class PartsOfSpeech {
 
-    private final String STOPLIST_FILE_PATH = "src/main/data/Stoplist.english.txt";
+    /**
+     * Constant to hold filepath for list of conjuctions
+     */
+    private final String CONJUNCTIONS_FILE_PATH = "src/main/data/Conjunctions.txt";
 
-    private HashSet<String> commonSpeech;
+    /**
+     * Hashset to store list of common conjuctions
+     */
+    private HashSet<String> commonConjunctions;
 
     /**
      * Create new PartsOfSpeech object
@@ -19,8 +25,28 @@ public class PartsOfSpeech {
      * @throws IOException           if error occurs while reading from file
      */
     public PartsOfSpeech() throws FileNotFoundException, IOException {
-        this.commonSpeech = new HashSet<String>();
-        loadData(STOPLIST_FILE_PATH);
+        this.commonConjunctions = new HashSet<String>();
+        loadData(CONJUNCTIONS_FILE_PATH);
+    }
+
+    /**
+     * Checks for all parts of speech
+     * 
+     * @param valueToCheck single Token value to check
+     * @return what part of speech value is or other if none apply
+     */
+    public String checkForPartsOfSpeech(String valueToCheck) {
+        if (isPeriod(valueToCheck))
+            return "period";
+        if (isComma(valueToCheck))
+            return "comma";
+        if (isHyphen(valueToCheck))
+            return "hyphen";
+        if (isConjunction(valueToCheck))
+            return "conjunction";
+        if (isArticle(valueToCheck))
+            return "article";
+        return "other";
     }
 
     /**
@@ -33,23 +59,74 @@ public class PartsOfSpeech {
     private void loadData(String filePath) throws FileNotFoundException, IOException {
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
         while (reader.ready()) {
-            commonSpeech.add(reader.readLine());
+            commonConjunctions.add(reader.readLine());
         }
         reader.close();
     }
 
     /**
-     * Check to see if value is in list of parts of speech
+     * Check to see if value is in list of conjunctions
      * 
-     * @param valueToCheck single word to check
-     * @return true if value matches any words in list of parts of speech
+     * @param valueToCheck single Token value to check
+     * @return true if value matches any words in list of conjunctions
      */
-    public boolean isPartOfSpeech(String valueToCheck) {
+    public boolean isConjunction(String valueToCheck) {
         valueToCheck = valueToCheck.toLowerCase();
-        for (String word : commonSpeech) {
+        for (String word : commonConjunctions) {
             if (word.equals(valueToCheck))
                 return true;
         }
+        return false;
+    }
+
+    /**
+     * Checks to see if value is one of the three English articles (a, an, the)
+     * function may mark the initial "A" as an article
+     * 
+     * @param valueToCheck single Token value to check
+     * @return true if value is an article
+     */
+    public boolean isArticle(String valueToCheck) {
+        valueToCheck = valueToCheck.toLowerCase();
+        if (valueToCheck.equals("a") || valueToCheck.equals("an")
+                || valueToCheck.equals("the"))
+            return true;
+        return false;
+    }
+
+    /**
+     * Check to see if value is a period
+     * 
+     * @param valueToCheck single Token value to check
+     * @return true if value is a period
+     */
+    public boolean isPeriod(String valueToCheck) {
+        if (valueToCheck.equals("."))
+            return true;
+        return false;
+    }
+
+    /**
+     * Check to see if value is a comma
+     * 
+     * @param valueToCheck single Token value to check
+     * @return true if value is a comma
+     */
+    public boolean isComma(String valueToCheck) {
+        if (valueToCheck.equals(","))
+            return true;
+        return false;
+    }
+
+    /**
+     * Check to see if value is a hyphen
+     * 
+     * @param valueToCheck single Token value to check
+     * @return true if value is a hyphen
+     */
+    public boolean isHyphen(String valueToCheck) {
+        if (valueToCheck.equals("-"))
+            return true;
         return false;
     }
 }
