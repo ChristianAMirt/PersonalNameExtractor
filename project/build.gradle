@@ -72,6 +72,14 @@ task deployReports{
 
 gitPublishCopy.dependsOn reports
 
-run {
-    args = ["<NER> Joe Smith should have a nametag. Randy Butternubs might have a nametag.  SyntaxSages shouldn't have a nametag.</NER>"]
-}
+// run {
+//     args = ["<NER> Joe Smith should have a nametag. Randy Butternubs might have a nametag.  SyntaxSages shouldn't have a nametag.</NER>"]
+// }
+
+// If you want to run the program currently, type: 
+
+// If in root
+// ./gradlew run --args='"<NER> Joe Smith should have a nametag. Joey Wheeler should also have a nametag. Sytax Sages should not have a nametag.</NER>"'
+
+//If in project
+// ../gradlew run --args='"<NER> Joe Smith should have a nametag. Joey Wheeler should also have a nametag. Sytax Sages should not have a nametag.</NER>"'
