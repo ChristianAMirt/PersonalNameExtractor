@@ -291,11 +291,16 @@ public class TestToken {
     }
 
     @Test
-    public void testSetPartOfSpeech() throws FileNotFoundException, IOException {
+    public void testSetPartOfSpeech() throws FileNotFoundException,
+            IOException {
+        PartsOfSpeech partsOfSpeech = new PartsOfSpeech();
+
         Token t1 = new Token("thus");
         Token t2 = new Token("willing");
 
-        t1.setPartOfSpeech();
+        String t1Result = partsOfSpeech.checkForPartsOfSpeech(t1.getValue());
+
+        t1.setPartOfSpeech(t1);
         t2.setPartOfSpeech();
 
         assertThat(t1.getPartOfSpeech(), is("conjunction"));
@@ -308,7 +313,7 @@ public class TestToken {
      * @throws IOException
      */
     @Test
-    public void testSetLexicalFeature() throws IOException{
+    public void testSetLexicalFeature() throws IOException {
         Token lexicalFeatureToken = new Token("HELLO");
         lexicalFeatureToken.setLexicalFeature();
 
@@ -322,7 +327,7 @@ public class TestToken {
      * @throws IOException
      */
     @Test
-    public void testGetLexicalFeature() throws IOException{
+    public void testGetLexicalFeature() throws IOException {
         Token lexicalFeatureToken = new Token("World");
         lexicalFeatureToken.setLexicalFeature();
 

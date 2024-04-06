@@ -1,11 +1,13 @@
 package edu.odu.cs.cs350;
 
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-
-import weka.core.Instance;
-import weka.core.Instances;
+import java.util.Scanner;
+import java.util.Vector;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 /**
  * The Trainer class is responsible for:
@@ -13,97 +15,105 @@ import weka.core.Instances;
  * - Creating a classifier model for Librarian
  */
 public class Trainer {
-    
-    double gamma = 0.01;  // initial guess
-    double C = 1.0;       // initial guess
 
-    // Create classifier
-    public void createClassifier(training) {
-        SMO svm = new SMO();        // new classifier instance
-        svm.setOptions(options);    // set the options
-        svm.setKernel(new RBFKernel(training, 25007, gamma));
-        svm.setC(C);
+    private final String TRAINING_DATA_FILEPATH = "src/main/data/trainingDataSmol.txt";
 
-        // Train classifier
-        svm.buildClassifier(training);
-    }
+    double gamma = 0.01; // initial guess
+    double C = 1.0; // initial guess
 
-    /**
-     * Generate the instances of training data
-     */
+    // // Create classifier
+    // public void createClassifier(training) {
+    // SMO svm = new SMO(); // new classifier instance
+    // svm.setOptions(options); // set the options
+    // svm.setKernel(new RBFKernel(training, 25007, gamma));
+    // svm.setC(C);
 
+    // // Train classifier
+    // svm.buildClassifier(training);
+    // }
 
     /**
-     * Use features classes and token class to classify text
+     * Tokenizes all of the training data and sets it's features
+     * 
+     * @throws FileNotFoundException
+     * @throws IOException
      */
-    public static void runClassifier(training) {
-        
-        //Set shingle size
+    public void importTrainingData() throws FileNotFoundException, IOException {
+        Vector<Token> allTokens = new Vector<Token>();
+        String wholeFile = null;
 
-        //Found <PER>
+        try {
+            // Read all bytes from a file into a byte array
+            byte[] bytes = Files.readAllBytes(Paths.get(TRAINING_DATA_FILEPATH));
 
-        //Found </PER> tag
+            // Convert byte array to a string
+            wholeFile = new String(bytes);
 
-        //Found anything else
-
-
-    }
-
-        //Attributes to look for:
-    //first
-    String[] firstNames;
-    
-    String[] lastNames;
-
-    //honorifics
-
-    //prefixes
-
-    //suffixes
-
-    //killwords
-
-    /* 
-    ****Not sure if we need this...****
-    ****Zeil included it in his code, but WEKA docs say its deprecated****
-
-    FastVector attrInfo = new FastVector();
-    private FastVector fastV(String[] data) {
-        FastVector result = new FastVector(data.length);
-        for (String s: data) {
-            result.addElement(s);
+        } catch (IOException e) {
+            System.err.println("Error reading file: " + e.getMessage());
         }
-        return result;
-    } */
-    
-    /**
-     * Create an ARFF file with attributes and data from raw text file.
-     */
-    public void CreateDataSet() {
-        // Call AccumulateLargeString
+        Scanner scanner = new Scanner(wholeFile);
 
-        //n-gram process data (aka shingling)
+        scanner.useDelimiter("\\s");
 
-        //apply attributes
+        CommonNames commonNames = new CommonNames();
+        DictionaryFeature dictionaryFeature = new DictionaryFeature();
+        Honorifics honorifics = new Honorifics();
+        KillWordFeature killWordFeature = new KillWordFeature();
+        KnownAuthors knownAuthors = new KnownAuthors();
+        LexicalFeature lexicalFeature = new LexicalFeature();
+        LocationLookup locationLookup = new LocationLookup();
+        PartsOfSpeech partsOfSpeech = new PartsOfSpeech();
+        PrefixAndSuffixFeature prefixAndSuffixFeature = new PrefixAndSuffixFeature();
 
-        //transform data for Trainer
-    }
+        Boolean inPER = false;
+        Boolean startPER = false;
 
-    /**
-     * Build a large data stream for processing text file. 
-     */
-    public void AccumulateLargeString(inputStream) {
-        StringBuffer buffer = new StringBuffer;
-        while (!done) {
-            string line = readALineFrom(inputStream);
-            buffer.append(line);
-            done =- moreInputIn(inputStream);
+        while (scanner.hasNext()) {
+
+            String nextWord = scanner.next();
+            Token nextToken;
+
+            // split if string contains punctuation
+            String separatedNextWord[] = nextWord.split("(?<=\")|(?=[.,!?;:()\"&-])|(?=<\\/?(PER)>)|(?<=<PER>)");
+            for (String phrase : separatedNextWord) {
+                nextToken = new Token(phrase);
+
+                nextToken.setCommonFirstName(commonNames.commonFirstName(phrase));
+                nextToken.setCommonLastName(commonNames.commonLastName(phrase));
+                nextToken.setDictionaryFeature(dictionaryFeature.determineDictionaryFeature(phrase));
+                nextToken.setKillWordFeature(killWordFeature.determineKillWordFeature(phrase));
+                nextToken.setHonorificsValue(honorifics.containsHonorifics(phrase));
+                nextToken.setIsLocation(locationLookup.checkLocation(phrase));
+                nextToken.setPrefixFeature(prefixAndSuffixFeature.determinePrefixFeature(phrase));
+                nextToken.setSuffixFeature(prefixAndSuffixFeature.determineSuffixFeature(phrase));
+                nextToken.setAuthorFirstName(knownAuthors.firstName(phrase));
+                nextToken.setAuthorFirstName(knownAuthors.lastName(phrase));
+                nextToken.setPartOfSpeech(partsOfSpeech.checkForPartsOfSpeech(phrase));
+                nextToken.setLexicalFeature(lexicalFeature.determineLexicalFeature(phrase));
+
+                if (phrase.equals("</PER>"))
+                    inPER = false;
+
+                if (startPER)
+                    nextToken.setClassification(1);
+                else if (inPER)
+                    nextToken.setClassification(2);
+                else
+                    nextToken.setClassification(0);
+
+                allTokens.add(nextToken);
+
+                startPER = false;
+
+                if (phrase.equals("<PER>")) {
+                    inPER = true;
+                    startPER = true;
+                }
+            }
         }
-        String accumulated = buffer.toString();
+        scanner.close();
+
     }
 
-
-
-
-    
 }
