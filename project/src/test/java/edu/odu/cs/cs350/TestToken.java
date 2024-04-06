@@ -113,7 +113,7 @@ public class TestToken {
         Token commonFirstNameToken = new Token("hearrell");
         commonFirstNameToken.setCommonFirstName();
 
-        assertEquals(commonFirstNameToken.getCommonFirstName(), false);
+        assertEquals(false, commonFirstNameToken.getCommonFirstName());
     }
 
     /**
@@ -142,7 +142,7 @@ public class TestToken {
         Token commonLastNameToken = new Token("hearrell");
         commonLastNameToken.setCommonLastName();
 
-        assertEquals(commonLastNameToken.getCommonLastName(), false);
+        assertEquals(false, commonLastNameToken.getCommonLastName());
     }
 
     /**
@@ -171,7 +171,7 @@ public class TestToken {
         Token honorificsToken = new Token("SyntaxSages");
         honorificsToken.setHonorificsValue();
 
-        assertEquals(honorificsToken.getHonorificsValue(), false);
+        assertEquals(false, honorificsToken.getHonorificsValue());
     }
 
     /**
@@ -258,7 +258,7 @@ public class TestToken {
         Token firstName = new Token("SyntaxSages");
         firstName.setAuthorFirstName();
 
-        assertEquals(firstName.getAuthorFirstName(), false);
+        assertEquals(false, firstName.getAuthorFirstName());
     }
 
     /**
@@ -287,7 +287,7 @@ public class TestToken {
         Token lastName = new Token("SyntaxSages");
         lastName.setAuthorLastName();
 
-        assertEquals(lastName.getAuthorLastName(), false);
+        assertEquals(false, lastName.getAuthorLastName());
     }
 
     @Test
