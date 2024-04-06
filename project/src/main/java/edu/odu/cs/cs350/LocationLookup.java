@@ -60,19 +60,19 @@ public class LocationLookup {
     /**
      * Loads location names from a specified file and stores them in a Set. Each location name is trimmed and converted to lowercase before storage to ensure case-insensitive matching.
      *
-     * @param filename The path to the file from which to load location names.
+     * @param fileName The path to the file from which to load location names.
      * @throws FileNotFoundException if the file cannot be found.
      * @throws IOException if an I/O error occurs during reading from the file.
      */
-    private void loadLocations(String filename) throws FileNotFoundException, IOException{
-        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+    private void loadLocations(String fileName) throws FileNotFoundException, IOException{
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             System.out.println("File opened");
             String line;
             while ((line = reader.readLine()) != null) {
                 locations.add(line.trim().toLowerCase());
             }
         } catch (IOException e) {
-            System.out.println("Error: Could Not Open File: " + filename);
+            System.out.println("Error: Could Not Open File: " + fileName);
             // Re-throw the exception to allow the caller to handle it.
             throw e; 
         }
@@ -81,11 +81,11 @@ public class LocationLookup {
     /**
      * Checks if the specified location is present in the set of locations loaded from the file.
      *
-     * @param loc The location name to check, ignoring case.
+     * @param thisLocation The location name to check, ignoring case.
      * @return true if the location is present, false otherwise.
      */
-    public boolean checkLocation(String loc) {
-        return this.locations.contains(loc.trim().toLowerCase());
+    public boolean checkLocation(String thisLocation) {
+        return this.locations.contains(thisLocation.trim().toLowerCase());
     }
 
     /**

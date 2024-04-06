@@ -84,8 +84,8 @@ public class Document implements Iterable<Token> {
             Token nextToken;
 
             // split if string contains punctuation
-            String speratedNextWord[] = nextWord.split(PUNCTUATION_MARKS);
-            for (String phrase : speratedNextWord) {
+            String separatedNextWord[] = nextWord.split(PUNCTUATION_MARKS);
+            for (String phrase : separatedNextWord) {
                 nextToken = new Token(phrase);
                 allTokens.add(nextToken);
             }
