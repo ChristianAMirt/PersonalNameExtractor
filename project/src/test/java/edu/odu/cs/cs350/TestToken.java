@@ -38,7 +38,10 @@ public class TestToken {
     @Test
     public void testSetDictionaryFeature() throws FileNotFoundException, IOException {
         Token dictionaryFeatureToken = new Token("AkiraToriyama"); // DBZ reference
-        dictionaryFeatureToken.setDictionaryFeature();
+        DictionaryFeature dictionaryFeature = new DictionaryFeature();
+
+        boolean dictionaryFeatureTokenResult = dictionaryFeature.determineDictionaryFeature(dictionaryFeatureToken.getValue());
+        dictionaryFeatureToken.setDictionaryFeature(dictionaryFeatureTokenResult);
 
         assertNotNull(dictionaryFeatureToken.getDictionaryFeature());
         assertEquals(false, dictionaryFeatureToken.getDictionaryFeature());
@@ -53,7 +56,10 @@ public class TestToken {
     @Test
     public void testGetDictionaryFeature() throws FileNotFoundException, IOException {
         Token dictionaryFeatureToken = new Token("goat");
-        dictionaryFeatureToken.setDictionaryFeature();
+        DictionaryFeature dictionaryFeature = new DictionaryFeature();
+
+        boolean dictionaryFeatureTokenResult = dictionaryFeature.determineDictionaryFeature(dictionaryFeatureToken.getValue());
+        dictionaryFeatureToken.setDictionaryFeature(dictionaryFeatureTokenResult);
 
         assertEquals(true, dictionaryFeatureToken.getDictionaryFeature());
     }
@@ -67,7 +73,10 @@ public class TestToken {
     @Test
     public void testSetKillWordFeature() throws FileNotFoundException, IOException {
         Token killWordFeatureToken = new Token("fuel");
-        killWordFeatureToken.setKillWordFeature();
+        KillWordFeature killWordFeature = new KillWordFeature();
+
+        boolean killWordFeatureResult = killWordFeature.determineKillWordFeature(killWordFeatureToken.getValue());
+        killWordFeatureToken.setKillWordFeature(killWordFeatureResult);
 
         assertNotNull(killWordFeatureToken.getKillWordFeature());
         assertEquals(true, killWordFeatureToken.getKillWordFeature());
@@ -82,7 +91,10 @@ public class TestToken {
     @Test
     public void testGetKillWordFeature() throws FileNotFoundException, IOException {
         Token killWordFeatureToken = new Token("Luffy");
-        killWordFeatureToken.setKillWordFeature();
+        KillWordFeature killWordFeature = new KillWordFeature();
+
+        boolean killWordFeatureResult = killWordFeature.determineKillWordFeature(killWordFeatureToken.getValue());
+        killWordFeatureToken.setKillWordFeature(killWordFeatureResult);
 
         assertEquals(false, killWordFeatureToken.getKillWordFeature());
     }
@@ -183,7 +195,10 @@ public class TestToken {
     @Test
     public void testSetPrefixFeature() throws FileNotFoundException, IOException {
         Token prefixFeatureToken = new Token("costa");
-        prefixFeatureToken.setPrefixFeature();
+        PrefixAndSuffixFeature prefixAndSuffixFeature = new PrefixAndSuffixFeature();
+
+        boolean prefixFeatureResult = prefixAndSuffixFeature.determinePrefixFeature(prefixFeatureToken.getValue());
+        prefixFeatureToken.setPrefixFeature(prefixFeatureResult);
 
         assertNotNull(prefixFeatureToken.getPrefixFeature());
         assertEquals(true, prefixFeatureToken.getPrefixFeature());
@@ -198,7 +213,10 @@ public class TestToken {
     @Test
     public void testGetPrefixFeature() throws FileNotFoundException, IOException {
         Token prefixFeatureToken = new Token("Aegislash");
-        prefixFeatureToken.setPrefixFeature();
+        PrefixAndSuffixFeature prefixAndSuffixFeature = new PrefixAndSuffixFeature();
+
+        boolean prefixFeatureResult = prefixAndSuffixFeature.determinePrefixFeature(prefixFeatureToken.getValue());
+        prefixFeatureToken.setPrefixFeature(prefixFeatureResult);
 
         assertEquals(false, prefixFeatureToken.getPrefixFeature());
     }
@@ -212,7 +230,10 @@ public class TestToken {
     @Test
     public void testSetSuffixFeature() throws FileNotFoundException, IOException {
         Token suffixFeatureToken = new Token("VI");
-        suffixFeatureToken.setSuffixFeature();
+        PrefixAndSuffixFeature prefixAndSuffixFeature = new PrefixAndSuffixFeature();
+
+        boolean suffixFeatureResult = prefixAndSuffixFeature.determineSuffixFeature(suffixFeatureToken.getValue());
+        suffixFeatureToken.setSuffixFeature(suffixFeatureResult);
 
         assertNotNull(suffixFeatureToken.getSuffixFeature());
         assertEquals(true, suffixFeatureToken.getSuffixFeature());
@@ -227,7 +248,10 @@ public class TestToken {
     @Test
     public void testGetSuffixFeature() throws FileNotFoundException, IOException {
         Token suffixFeatureToken = new Token("Exodia");
-        suffixFeatureToken.setSuffixFeature();
+        PrefixAndSuffixFeature prefixAndSuffixFeature = new PrefixAndSuffixFeature();
+
+        boolean suffixFeatureResult = prefixAndSuffixFeature.determineSuffixFeature(suffixFeatureToken.getValue());
+        suffixFeatureToken.setSuffixFeature(suffixFeatureResult);
 
         assertEquals(false, suffixFeatureToken.getSuffixFeature());
     }
@@ -300,8 +324,7 @@ public class TestToken {
 
         String t1Result = partsOfSpeech.checkForPartsOfSpeech(t1.getValue());
 
-        t1.setPartOfSpeech(t1);
-        t2.setPartOfSpeech();
+        t1.setPartOfSpeech(t1Result);
 
         assertThat(t1.getPartOfSpeech(), is("conjunction"));
         assertThat(t2.getPartOfSpeech(), is("other"));
@@ -315,7 +338,10 @@ public class TestToken {
     @Test
     public void testSetLexicalFeature() throws IOException {
         Token lexicalFeatureToken = new Token("HELLO");
-        lexicalFeatureToken.setLexicalFeature();
+        LexicalFeature lexicalFeature = new LexicalFeature();
+
+        String lexicalFeatureResult = lexicalFeature.determineLexicalFeature(lexicalFeatureToken.getValue());
+        lexicalFeatureToken.setLexicalFeature(lexicalFeatureResult);
 
         assertNotNull(lexicalFeatureToken.getLexicalFeature());
         assertEquals("AllCaps", lexicalFeatureToken.getLexicalFeature());
@@ -329,7 +355,10 @@ public class TestToken {
     @Test
     public void testGetLexicalFeature() throws IOException {
         Token lexicalFeatureToken = new Token("World");
-        lexicalFeatureToken.setLexicalFeature();
+        LexicalFeature lexicalFeature = new LexicalFeature();
+        
+        String lexicalFeatureResult = lexicalFeature.determineLexicalFeature(lexicalFeatureToken.getValue());
+        lexicalFeatureToken.setLexicalFeature(lexicalFeatureResult);
 
         assertEquals("capitalized", lexicalFeatureToken.getLexicalFeature());
     }
