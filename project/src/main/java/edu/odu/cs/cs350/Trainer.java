@@ -4,21 +4,56 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+//For ARFF data
 import weka.core.Instance;
 import weka.core.Instances;
+import weka.core.converters.ConverterUtils.DataSource;
+
+//For classifier
+import weka.core.FastVector;
+import weka.core.SerializationHelper;
+import weka.classifiers.functions.SMO;
+import weka.classifiers.functions.supportVector.RBFKernel;
+import weka.filters.supervised.attribute.AddClassification;
+
+//For evaluation
+import weka.classifiers.Evaluation;
+
 
 /**
  * The Trainer class is responsible for:
  * - Running the WEKA training session
- * - Creating a classifier model for Librarian
+ * - Creating a classifier model for NameLearningMachine
+ * - https://github.com/charlesSeek/weka-example/
  */
 public class Trainer {
     
-    double gamma = 0.01;  // initial guess
-    double C = 1.0;       // initial guess
+    double gamma = 0.01;
+    final double C = 1.0;
 
-    // Create classifier
-    public void createClassifier(training) {
+    //Number of training attributes
+    int numberofAttributes;
+
+    //Set WEKA options
+    String[] options = {"-N", "0", "-V", "-1"};
+
+    FastVector attrInfo = new FastVector();
+    //List all attributes
+
+
+    /**
+     * Get Instances dataset
+     */
+    public Instances createInstances(Datasource source) {
+        //Need to finish after we determine datasource format
+    }
+
+    /**
+     * Create classifier
+     */
+    public void createClassifier(Instances training) {
+
+
         SMO svm = new SMO();        // new classifier instance
         svm.setOptions(options);    // set the options
         svm.setKernel(new RBFKernel(training, 25007, gamma));
@@ -26,81 +61,37 @@ public class Trainer {
 
         // Train classifier
         svm.buildClassifier(training);
+
     }
 
-    /**
-     * Generate the instances of training data
-     */
-
-
-    /**
-     * Use features classes and token class to classify text
-     */
-    public static void runClassifier(training) {
+    public static void SaveModel(Instances traindata) {
         
-        //Set shingle size
-
-        //Found <PER>
-
-        //Found </PER> tag
-
-        //Found anything else
-
-
-    }
-
-        //Attributes to look for:
-    //first
-    String[] firstNames;
-    
-    String[] lastNames;
-
-    //honorifics
-
-    //prefixes
-
-    //suffixes
-
-    //killwords
-
-    /* 
-    ****Not sure if we need this...****
-    ****Zeil included it in his code, but WEKA docs say its deprecated****
-
-    FastVector attrInfo = new FastVector();
-    private FastVector fastV(String[] data) {
-        FastVector result = new FastVector(data.length);
-        for (String s: data) {
-            result.addElement(s);
-        }
-        return result;
-    } */
-    
-    /**
-     * Create an ARFF file with attributes and data from raw text file.
-     */
-    public void CreateDataSet() {
-        // Call AccumulateLargeString
-
-        //n-gram process data (aka shingling)
-
-        //apply attributes
-
-        //transform data for Trainer
+        SMOreg smo = new SMOreg;
+        SerializationHelper.write("smo.model", smo);
     }
 
     /**
-     * Build a large data stream for processing text file. 
+     * Evaluate clasification prediction
      */
-    public void AccumulateLargeString(inputStream) {
-        StringBuffer buffer = new StringBuffer;
-        while (!done) {
-            string line = readALineFrom(inputStream);
-            buffer.append(line);
-            done =- moreInputIn(inputStream);
-        }
-        String accumulated = buffer.toString();
+    public static void EvaluateClassification(Instances training) {
+
+        SMO svm = new SMO();        // new classifier instance
+        svm.setOptions(options);    // set the options
+        svm.setKernel(new RBFKernel(training, 25007, gamma));
+        svm.setC(C);
+        
+        Evaluation eval = new Evaluation(training);
+        final int numberofCrossClasses = 10;
+
+        eval.crossValidateModel(svm, training, numberofCrossClasses, new Random(1));
+
+        double score = eval.pctCorrect();
+        System.out.println("Score: " + score + "%");
+
     }
+
+   
+
 
 
 
