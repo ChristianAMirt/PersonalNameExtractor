@@ -15,7 +15,7 @@ import java.util.Arrays;
  * The Trainer class is responsible for:
  * - Creating a data set for WEKA
  */
-@SuppressWarnings({"deprecation", "unchecked"})
+@SuppressWarnings({"deprecation", "unchecked", "rawtypes"})
 public class TrainingDataInstances {
     
     /**
@@ -156,6 +156,12 @@ public class TrainingDataInstances {
      */
     Attribute partOfSpeech = new Attribute("lexical", fastV(partOfSpeechWords));
 
+    /**
+     * Holds all of the attributes
+     */
+    FastVector attributeInfo = new FastVector();
+
+    //attributeInfo.addElement(partOfSpeech);
 
     
     /**
