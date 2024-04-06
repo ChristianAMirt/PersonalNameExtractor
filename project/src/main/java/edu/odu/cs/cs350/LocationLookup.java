@@ -66,13 +66,11 @@ public class LocationLookup {
      */
     private void loadLocations(String fileName) throws FileNotFoundException, IOException{
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
-            System.out.println("File opened");
             String line;
             while ((line = reader.readLine()) != null) {
                 locations.add(line.trim().toLowerCase());
             }
         } catch (IOException e) {
-            System.out.println("Error: Could Not Open File: " + fileName);
             // Re-throw the exception to allow the caller to handle it.
             throw e; 
         }
