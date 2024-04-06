@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
+ * @author Rahul Malik and Brendan Hearrell
  * Determins if a name is a known author or not
  */
 public class KnownAuthors {

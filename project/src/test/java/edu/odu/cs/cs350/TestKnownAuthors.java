@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.io.IOException;
 
 /**
- * @author Rahul Malik 
+ * @author Rahul Malik and Brendan Hearrell
  *  Tests for KnownAuthors.java
  */
 
@@ -61,11 +61,11 @@ public class TestKnownAuthors {
     {
         KnownAuthors knownAuthors = new KnownAuthors();
         Token token = new Token("brendan");
-        assertEquals(knownAuthors.firstName(token.getValue()) , true);
+        assertEquals(true, knownAuthors.firstName(token.getValue()));
         
         KnownAuthors knownAuthorsTwo = new KnownAuthors();
         Token tokenTwo = new Token("SyntaxSages");
-        assertNotEquals(knownAuthorsTwo.firstName(tokenTwo.getValue()), true);
+        assertNotEquals(true, knownAuthorsTwo.firstName(tokenTwo.getValue()));
     }
 
     /**
@@ -79,10 +79,10 @@ public class TestKnownAuthors {
     {
         KnownAuthors knownAuthors = new KnownAuthors();
         Token token = new Token("hearrell");
-        assertEquals(knownAuthors.lastName(token.getValue()) , true);
+        assertEquals(true, knownAuthors.lastName(token.getValue()));
         
         KnownAuthors knownAuthorsTwo = new KnownAuthors();
         Token tokenTwo = new Token("SyntaxSages");
-        assertNotEquals(knownAuthorsTwo.lastName(tokenTwo.getValue()), true);
+        assertNotEquals(true, knownAuthorsTwo.lastName(tokenTwo.getValue()));
     }
 }
