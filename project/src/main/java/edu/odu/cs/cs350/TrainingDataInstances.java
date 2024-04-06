@@ -1,6 +1,7 @@
 package edu.odu.cs.cs350;
 
 import weka.core.Instances;
+import weka.core.FastVector;
 
 /**
  * The Trainer class is responsible for:
@@ -60,6 +61,14 @@ public class TrainingDataInstances {
         }
         String accumulated = buffer.toString();
     }
-    
+
+    @Deprecated
+    private FastVector fastV(String[] data) {
+        FastVector result = new FastVector(data.length);
+        for (String s: data) {
+            result.addElement(s);
+        }
+        return result;
+    }
 
 }
