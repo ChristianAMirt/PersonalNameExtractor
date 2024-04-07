@@ -95,7 +95,7 @@ public class Trainer {
         Boolean inPER = false;
         Boolean startPER = false;
 
-        while (scanner.hasNext()) {
+        while (scanner.hasNext()) { // This loop takes way too long for some reason
 
             String nextWord = scanner.next();
             Token nextToken;
@@ -143,7 +143,7 @@ public class Trainer {
         scanner.close();
 
         Token[] window = new Token[5];
-        for (int index = 0; index > allTokens.size(); index++) {
+        for (int index = 0; index < allTokens.size(); index++) {
             window[2] = allTokens.elementAt(index);
             if (index == 0) {
                 window[0] = null;
@@ -172,21 +172,21 @@ public class Trainer {
                 window[4] = allTokens.elementAt(index + 2);
             }
 
-            if (window[0].getValue().equals("<NER>")) {
+            if (window[0] != null && window[0].getValue().equals("<NER>")) {
                 window[0] = null;
             }
-            if (window[1].getValue().equals("<NER>")) {
+            if (window[1] != null && window[1].getValue().equals("<NER>")) {
                 window[0] = null;
                 window[1] = null;
             }
-            if (window[2].getValue().equals("<NER>") || window[2].getValue().equals("</NER>")) {
+            if (window[2] != null && window[2].getValue().equals("<NER>") || window[2].getValue().equals("</NER>")) {
                 continue; // no dataString gets set
             }
-            if (window[3].getValue().equals("</NER>")) {
+            if (window[3] != null && window[3].getValue().equals("</NER>")) {
                 window[3] = null;
                 window[4] = null;
             }
-            if (window[4].getValue().equals("</NER>")) {
+            if (window[4] != null && window[4].getValue().equals("</NER>")) {
                 window[4] = null;
             }
 
@@ -235,6 +235,7 @@ public class Trainer {
 
     /**
      * Get Instances dataset
+     * 
      * @param instances
      */
     public static void createInstances(TrainingDataInstances instances) {
@@ -243,6 +244,7 @@ public class Trainer {
 
     /**
      * Create classifier
+     * 
      * @param training
      * @throws Exception
      */
@@ -261,6 +263,7 @@ public class Trainer {
 
     /**
      * Evaluate clasification prediction
+     * 
      * @param training
      * @throws Exception
      */
