@@ -35,8 +35,8 @@ public class Trainer {
 
     private final String TRAINING_DATA_FILEPATH = "src/main/data/trainingDataSmol.txt";
 
-    double gamma = 0.01; // initial guess
-    double C = 1.0; // initial guess
+    static double gamma = 0.01; // initial guess
+    static double C = 1.0; // initial guess
 
     // // Create classifier
     // public void createClassifier(training) {
