@@ -33,6 +33,7 @@ public class Librarian {
     private Vector<Document> inputDocuments;
 
     /**
+     * Takes in a string from the user to read
      * @param inputPage is the string given by the user
      * 
      * @throws IOException if input is larger than 4000 characters
@@ -60,6 +61,7 @@ public class Librarian {
     }
 
     /**
+     * Checks to see if documents have been added
      * @return true if one or more Documents have been added to collection
      */
     public boolean hasDocuments() {
