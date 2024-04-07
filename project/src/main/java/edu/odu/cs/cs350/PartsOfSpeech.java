@@ -6,6 +6,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashSet;
 
+/**
+ * Determines the parts of speech of a token
+ */
 public class PartsOfSpeech {
 
     /**

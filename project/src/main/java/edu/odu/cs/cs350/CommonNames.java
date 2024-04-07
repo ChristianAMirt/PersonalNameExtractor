@@ -88,7 +88,7 @@ public class CommonNames {
     }
 
     /**
-     * 
+     * Loads the common first names from a file
      * 
      * @param inputString
      * @throws IOException
@@ -102,8 +102,8 @@ public class CommonNames {
         }
     }
 
-        /**
-     * 
+    /**
+     * Loads the common last names from a file
      * 
      * @param inputString
      * @throws IOException

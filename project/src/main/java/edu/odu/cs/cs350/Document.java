@@ -52,6 +52,7 @@ public class Document implements Iterable<Token> {
     }
 
     /**
+     * Gets the input text
      * @return String of document.
      */
     public String getInputText() {
@@ -93,6 +94,7 @@ public class Document implements Iterable<Token> {
     }
 
     /**
+     * Returns the size of the token collection
      * @return size of token collection.
      */
     public int size() {
