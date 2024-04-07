@@ -137,33 +137,29 @@ public class Trainer {
         scanner.close();
 
         Token[] window = new Token[5];
-        for (int index = 0; index > allTokens.size(), index++) {
+        for (int index = 0; index > allTokens.size(); index++) {
             window[2] = allTokens.elementAt(index);
             if (index == 0) {
                 window[0] = null;
                 window[1] = null;
                 window[3] = allTokens.elementAt(index + 1);
                 window[4] = allTokens.elementAt(index + 2);
-            }
-            else if (index == 1) {
+            } else if (index == 1) {
                 window[0] = null;
                 window[1] = allTokens.elementAt(index - 1);
                 window[3] = allTokens.elementAt(index + 1);
                 window[4] = allTokens.elementAt(index + 2);
-            }
-            else if (index == allTokens.size() - 2) {
+            } else if (index == allTokens.size() - 2) {
                 window[0] = allTokens.elementAt(index - 2);
                 window[1] = allTokens.elementAt(index - 1);
                 window[3] = allTokens.elementAt(index + 1);
                 window[4] = null;
-            }
-            else if (index == allTokens.size() - 1) {
+            } else if (index == allTokens.size() - 1) {
                 window[0] = allTokens.elementAt(index - 2);
                 window[1] = allTokens.elementAt(index - 1);
                 window[3] = null;
                 window[4] = null;
-            }
-            else {
+            } else {
                 window[0] = allTokens.elementAt(index - 2);
                 window[1] = allTokens.elementAt(index - 1);
                 window[3] = allTokens.elementAt(index + 1);
@@ -200,9 +196,8 @@ public class Trainer {
         svm.setC(C);
     }
 
-
     public void SaveModel(SMO svm) throws Exception {
-        
+
         weka.core.SerializationHelper.write("smo.model", svm);
     }
 
