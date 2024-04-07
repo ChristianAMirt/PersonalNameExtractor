@@ -138,14 +138,14 @@ public class Trainer {
     /**
      * Get Instances dataset
      */
-    public Instances createInstances(Datasource source) {
+    public static void createInstances(TrainingDataInstances instances) {
         // Need to finish after we determine datasource format
     }
 
     /**
      * Create classifier
      */
-    public void createClassifier(Instances training) {
+    public static void createClassifier(Instances training) {
 
         SMO svm = new SMO(); // new classifier instance
         svm.setOptions(options); // set the options
