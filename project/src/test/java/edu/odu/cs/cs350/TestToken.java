@@ -395,4 +395,18 @@ public class TestToken {
 
         assertEquals("capitalized", lexicalFeatureToken.getLexicalFeature());
     }
+
+    @Test
+    public void testSetLocation() throws IOException {
+        String mystring = new String("Indianna");
+        Token token = new Token(mystring);
+        LocationLookup location = new LocationLookup();
+
+        var result =  location.checkLocation(mystring);
+        token.setIsLocation(result);
+        assertFalse(token.getIsLocation());
+
+        token.setIsLocation(true);
+        assertTrue(token.getIsLocation());
+    }
 }
