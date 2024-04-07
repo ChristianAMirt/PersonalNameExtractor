@@ -45,13 +45,12 @@ public class Trainer {
     // svm.setKernel(new RBFKernel(training, 25007, gamma));
     // svm.setC(C);
 
-    //Number of training attributes
+    // Number of training attributes
     int numberofAttributes;
 
-    //Set WEKA options
-    String[] options = {"-N", "0", "-V", "-1"};
+    // Set WEKA options
+    String[] options = { "-N", "0", "-V", "-1" };
 
-    
     /**
      * Tokenizes all of the training data and sets it's features
      * 
@@ -136,16 +135,11 @@ public class Trainer {
 
     }
 
-
-
-
-
-
     /**
      * Get Instances dataset
      */
     public Instances createInstances(Datasource source) {
-        //Need to finish after we determine datasource format
+        // Need to finish after we determine datasource format
     }
 
     /**
@@ -153,9 +147,8 @@ public class Trainer {
      */
     public void createClassifier(Instances training) {
 
-
-        SMO svm = new SMO();        // new classifier instance
-        svm.setOptions(options);    // set the options
+        SMO svm = new SMO(); // new classifier instance
+        svm.setOptions(options); // set the options
         svm.setKernel(new RBFKernel(training, 25007, gamma));
         svm.setC(C);
     }
@@ -171,11 +164,11 @@ public class Trainer {
      */
     public static void EvaluateClassification(Instances training) {
 
-        SMO svm = new SMO();        // new classifier instance
-        svm.setOptions(options);    // set the options
+        SMO svm = new SMO(); // new classifier instance
+        svm.setOptions(options); // set the options
         svm.setKernel(new RBFKernel(training, 25007, gamma));
         svm.setC(C);
-        
+
         Evaluation eval = new Evaluation(training);
         final int numberofCrossClasses = 10;
 
@@ -186,11 +179,4 @@ public class Trainer {
 
     }
 
-   
-
-
-
-
-
-    
 }
