@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import weka.core.converters.ConverterUtils.DataSource;
+import weka.core.pmml.Array;
 import weka.core.Instance;
 import weka.core.Instances;
 
@@ -110,8 +111,10 @@ public class Trainer {
                 nextToken.setPartOfSpeech(partsOfSpeech.checkForPartsOfSpeech(phrase));
                 nextToken.setLexicalFeature(lexicalFeature.determineLexicalFeature(phrase));
 
-                if (phrase.equals("</PER>"))
+                if (phrase.equals("</PER>")) {
                     inPER = false;
+                    continue;
+                }
 
                 if (startPER)
                     nextToken.setClassification(1);
@@ -120,18 +123,62 @@ public class Trainer {
                 else
                     nextToken.setClassification(0);
 
-                allTokens.add(nextToken);
-
                 startPER = false;
 
                 if (phrase.equals("<PER>")) {
                     inPER = true;
                     startPER = true;
+                    continue;
                 }
+                allTokens.add(nextToken);
             }
         }
         scanner.close();
 
+        Token[] window = new Token[5];
+        for (int index = 0; index > allTokens.size(), index++) {
+            window[2] = allTokens.elementAt(index);
+            if (index == 0) {
+                window[0] = null;
+                window[1] = null;
+                window[3] = allTokens.elementAt(index + 1);
+                window[4] = allTokens.elementAt(index + 2);
+            }
+            else if (index == 1) {
+                window[0] = null;
+                window[1] = allTokens.elementAt(index - 1);
+                window[3] = allTokens.elementAt(index + 1);
+                window[4] = allTokens.elementAt(index + 2);
+            }
+            else if (index == allTokens.size() - 2) {
+                window[0] = allTokens.elementAt(index - 2);
+                window[1] = allTokens.elementAt(index - 1);
+                window[3] = allTokens.elementAt(index + 1);
+                window[4] = null;
+            }
+            else if (index == allTokens.size() - 1) {
+                window[0] = allTokens.elementAt(index - 2);
+                window[1] = allTokens.elementAt(index - 1);
+                window[3] = null;
+                window[4] = null;
+            }
+            else {
+                window[0] = allTokens.elementAt(index - 2);
+                window[1] = allTokens.elementAt(index - 1);
+                window[3] = allTokens.elementAt(index + 1);
+                window[4] = allTokens.elementAt(index + 2);
+            }
+            createDataString(window);
+        }
+    }
+
+    private void createDataString(Token[] window) {
+        StringBuffer buffer = new StringBuffer();
+        // print the value of the token
+        // print the attributes of the token
+        // print the window attributes
+        // if the window values are null, set as zero
+        // if the window values are <NER>, set to null
     }
 
     /**
@@ -144,7 +191,7 @@ public class Trainer {
     /**
      * Create classifier
      */
-    public void createClassifier(Instances training) {
+    public void createClassifier(Instances training) throws Exception {
 
         SMO svm = new SMO(); // new classifier instance
         svm.setOptions(options); // set the options
