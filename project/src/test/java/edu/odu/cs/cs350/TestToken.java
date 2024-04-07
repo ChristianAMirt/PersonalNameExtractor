@@ -40,7 +40,8 @@ public class TestToken {
         Token dictionaryFeatureToken = new Token("AkiraToriyama"); // DBZ reference
         DictionaryFeature dictionaryFeature = new DictionaryFeature();
 
-        boolean dictionaryFeatureTokenResult = dictionaryFeature.determineDictionaryFeature(dictionaryFeatureToken.getValue());
+        boolean dictionaryFeatureTokenResult = dictionaryFeature
+                .determineDictionaryFeature(dictionaryFeatureToken.getValue());
         dictionaryFeatureToken.setDictionaryFeature(dictionaryFeatureTokenResult);
 
         assertNotNull(dictionaryFeatureToken.getDictionaryFeature());
@@ -58,7 +59,8 @@ public class TestToken {
         Token dictionaryFeatureToken = new Token("goat");
         DictionaryFeature dictionaryFeature = new DictionaryFeature();
 
-        boolean dictionaryFeatureTokenResult = dictionaryFeature.determineDictionaryFeature(dictionaryFeatureToken.getValue());
+        boolean dictionaryFeatureTokenResult = dictionaryFeature
+                .determineDictionaryFeature(dictionaryFeatureToken.getValue());
         dictionaryFeatureToken.setDictionaryFeature(dictionaryFeatureTokenResult);
 
         assertEquals(true, dictionaryFeatureToken.getDictionaryFeature());
@@ -345,16 +347,17 @@ public class TestToken {
     }
 
     @Test
-    public void testSetPartOfSpeech() throws FileNotFoundException,
-            IOException {
+    public void testSetPartOfSpeech() throws FileNotFoundException, IOException {
         PartsOfSpeech partsOfSpeech = new PartsOfSpeech();
 
         Token t1 = new Token("thus");
         Token t2 = new Token("willing");
 
         String t1Result = partsOfSpeech.checkForPartsOfSpeech(t1.getValue());
+        String t2Result = partsOfSpeech.checkForPartsOfSpeech(t2.getValue());
 
         t1.setPartOfSpeech(t1Result);
+        t2.setPartOfSpeech(t2Result);
 
         assertThat(t1.getPartOfSpeech(), is("conjunction"));
         assertThat(t2.getPartOfSpeech(), is("other"));
@@ -386,7 +389,7 @@ public class TestToken {
     public void testGetLexicalFeature() throws IOException {
         Token lexicalFeatureToken = new Token("World");
         LexicalFeature lexicalFeature = new LexicalFeature();
-        
+
         String lexicalFeatureResult = lexicalFeature.determineLexicalFeature(lexicalFeatureToken.getValue());
         lexicalFeatureToken.setLexicalFeature(lexicalFeatureResult);
 
