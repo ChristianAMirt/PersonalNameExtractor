@@ -117,6 +117,7 @@ public class Token {
 
     /**
      * Set classification of Token
+     * @param classification
      */
     public void setClassification(int classification) {
         this.classification = classification;
@@ -135,6 +136,7 @@ public class Token {
      * 
      * @throws FileNotFoundException
      * @throws IOException
+     * @param feature
      */
     public void setDictionaryFeature(boolean feature) throws FileNotFoundException, IOException {
         dictionaryFeature = feature;
@@ -154,6 +156,7 @@ public class Token {
      * 
      * @throws FileNotFoundException
      * @throws IOException
+     * @param feature
      */
     public void setKillWordFeature(boolean feature) throws FileNotFoundException, IOException {
         killWordFeature = feature;
@@ -173,6 +176,7 @@ public class Token {
      * 
      * @throws FileNotFoundException
      * @throws IOException
+     * @param feature
      */
     public void setCommonFirstName(boolean feature) throws FileNotFoundException, IOException {
         commonFirstName = feature;
@@ -192,6 +196,7 @@ public class Token {
      * 
      * @throws FileNotFoundException
      * @throws IOException
+     * @param feature
      */
     public void setCommonLastName(boolean feature) throws FileNotFoundException, IOException {
         commonLastName = feature;
@@ -211,6 +216,7 @@ public class Token {
      * 
      * @throws FileNotFoundException
      * @throws IOException
+     * @param feature
      */
     public void setHonorificsValue(boolean feature) throws FileNotFoundException, IOException {
         honorificsValue = feature;
@@ -229,6 +235,7 @@ public class Token {
      * Sets honorifics value of Token
      * 
      * @throws IOException
+     * @param feature
      */
     public void setIsLocation(boolean feature) throws IOException {
         location = feature;
@@ -248,6 +255,7 @@ public class Token {
      * 
      * @throws FileNotFoundException
      * @throws IOException
+     * @param feature
      */
     public void setPrefixFeature(boolean feature) throws FileNotFoundException, IOException {
         prefixFeature = feature;
@@ -267,6 +275,7 @@ public class Token {
      * 
      * @throws FileNotFoundException
      * @throws IOException
+     * @param feature
      */
     public void setSuffixFeature(boolean feature) throws FileNotFoundException, IOException {
         suffixFeature = feature;
@@ -286,6 +295,7 @@ public class Token {
      * 
      * @throws FileNotFoundException
      * @throws IOException
+     * @param feature
      */
     public void setAuthorFirstName(boolean feature) throws FileNotFoundException, IOException {
         authorFirstName = feature;
@@ -305,6 +315,7 @@ public class Token {
      * 
      * @throws FileNotFoundException
      * @throws IOException
+     * @param feature
      */
     public void setAuthorLastName(boolean feature) throws FileNotFoundException, IOException {
         authorLastName = feature;
@@ -337,6 +348,7 @@ public class Token {
 
     /**
      * Sets the lexicalFeature value of Token
+     * @param lexical
      */
     public void setLexicalFeature(String lexical) {
         lexicalFeature = lexical;
