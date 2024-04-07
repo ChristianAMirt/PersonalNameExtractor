@@ -248,10 +248,10 @@ public class Trainer {
      */
     public void createClassification(Instances training) throws Exception {
 
-        SMO svm = new SMO(); // new classifier instance
-        svm.setOptions(options); // set the options
-        svm.setKernel(new RBFKernel(training, 25007, gamma));
-        svm.setC(C);
+        SMO supportVectorModel = new SMO(); // new classifier instance
+        supportVectorModel.setOptions(options); // set the options
+        supportVectorModel.setKernel(new RBFKernel(training, 25007, gamma));
+        supportVectorModel.setC(C);
     }
 
     public void SaveModel(SMO svm) throws Exception {
