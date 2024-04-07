@@ -49,7 +49,7 @@ public class Trainer {
     // svm.setC(C);
 
     // Number of training attributes
-    int numberofAttributes;
+    int numberOfAttributes;
 
     // Set WEKA options
     String[] options = { "-N", "0", "-V", "-1" };
@@ -248,17 +248,17 @@ public class Trainer {
      * @param training
      * @throws Exception
      */
-    public void createClassifier(Instances training) throws Exception {
+    public void createClassification(Instances training) throws Exception {
 
-        SMO svm = new SMO(); // new classifier instance
-        svm.setOptions(options); // set the options
-        svm.setKernel(new RBFKernel(training, 25007, gamma));
-        svm.setC(C);
+        SMO supportVectorModel = new SMO(); // new classifier instance
+        supportVectorModel.setOptions(options); // set the options
+        supportVectorModel.setKernel(new RBFKernel(training, 25007, gamma));
+        supportVectorModel.setC(C);
     }
 
-    public void SaveModel(SMO svm) throws Exception {
+    public void SaveModel(SMO supportVectorModel) throws Exception {
 
-        weka.core.SerializationHelper.write("smo.model", svm);
+        weka.core.SerializationHelper.write("smo.model", supportVectorModel);
     }
 
     /**
@@ -269,17 +269,17 @@ public class Trainer {
      */
     public void EvaluateClassification(Instances training) throws Exception {
 
-        SMO svm = new SMO(); // new classifier instance
-        svm.setOptions(options); // set the options
-        svm.setKernel(new RBFKernel(training, 25007, gamma));
-        svm.setC(C);
+        SMO supportVectorModel = new SMO(); // new classifier instance
+        supportVectorModel.setOptions(options); // set the options
+        supportVectorModel.setKernel(new RBFKernel(training, 25007, gamma));
+        supportVectorModel.setC(C);
 
-        Evaluation eval = new Evaluation(training);
-        final int numberofCrossClasses = 10;
+        Evaluation trainingEvaluation = new Evaluation(training);
+        final int numberOfCrossClasses = 10;
 
-        eval.crossValidateModel(svm, training, numberofCrossClasses, new Random(1));
+        trainingEvaluation.crossValidateModel(supportVectorModel, training, numberOfCrossClasses, new Random(1));
 
-        double score = eval.pctCorrect();
+        double score = trainingEvaluation.pctCorrect();
         System.out.println("Score: " + score + "%");
 
     }
