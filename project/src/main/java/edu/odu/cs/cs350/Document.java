@@ -42,8 +42,8 @@ public class Document implements Iterable<Token> {
 
     /**
      * Create a new Document.
-     * 
      * @param inputText
+     * @throws IOException
      */
     public Document(String inputText) throws IOException {
         this.inputText = inputText;
@@ -72,6 +72,7 @@ public class Document implements Iterable<Token> {
     /**
      * Places each word and certain punctuation marks in a token and adds it to
      * the collection of tokens.
+     * @throws IOException
      */
     public void parseDocument() throws IOException {
         Scanner scanner = new Scanner(inputText);

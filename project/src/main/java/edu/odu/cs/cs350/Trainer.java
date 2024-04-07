@@ -180,6 +180,7 @@ public class Trainer {
 
     /**
      * Get Instances dataset
+     * @param instances
      */
     public static void createInstances(TrainingDataInstances instances) {
         // Need to finish after we determine datasource format
@@ -187,6 +188,8 @@ public class Trainer {
 
     /**
      * Create classifier
+     * @param training
+     * @throws Exception
      */
     public void createClassifier(Instances training) throws Exception {
 
@@ -203,6 +206,8 @@ public class Trainer {
 
     /**
      * Evaluate clasification prediction
+     * @param training
+     * @throws Exception
      */
     public void EvaluateClassification(Instances training) throws Exception {
 

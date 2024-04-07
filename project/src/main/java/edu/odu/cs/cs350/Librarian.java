@@ -72,6 +72,7 @@ public class Librarian {
 
     /**
      * Returns the number of elements that have been added to inputDocuments.
+     * @return int
      */
     public int getDocumentsSize() {
         return inputDocuments.size();
@@ -88,6 +89,8 @@ public class Librarian {
 
     /**
      * Splits the raw inputText right after each /NER.
+     * @param textString
+     * @return String[]
      */
     public String[] splitInputPage(String textString) {
         String arrayNERStrings[] = inputPage.split("(?=<NER>)");
@@ -96,6 +99,8 @@ public class Librarian {
 
     /**
      * Returns the substring text between the NER tags
+     * @param inputText
+     * @return String
      */
     public String getTextBetweenNERTags(String inputText) {
 
@@ -123,6 +128,9 @@ public class Librarian {
 
     /**
      * Returns index of "tag" within "inputString".
+     * @param inputString
+     * @param tag
+     * @return int
      */
     public int getTagIndex(String inputString, String tag) {
         return inputString.indexOf(tag);
@@ -150,6 +158,7 @@ public class Librarian {
 
     /**
      * Print the output of a text string to the console.
+     * @param outputText
      */
     public void printDocumentText(String outputText) {
         System.out.println(outputText);
@@ -160,6 +169,7 @@ public class Librarian {
      * first name field is set to true, a PER tag will get added before.
      * If the last name field is set to true for the token, a PER tag will be
      * inserted after the Token.
+     * @throws IOException
      */
     public void markNames() throws IOException {
         for (Document document : inputDocuments) {
