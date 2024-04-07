@@ -254,9 +254,9 @@ public class Trainer {
         supportVectorModel.setC(C);
     }
 
-    public void SaveModel(SMO svm) throws Exception {
+    public void SaveModel(SMO supportVectorModel) throws Exception {
 
-        weka.core.SerializationHelper.write("smo.model", svm);
+        weka.core.SerializationHelper.write("smo.model", supportVectorModel);
     }
 
     /**
