@@ -69,6 +69,7 @@ public class Trainer {
         svm.setOptions(options);    // set the options
         svm.setKernel(new RBFKernel(training, 25007, gamma));
         svm.setC(C);
+    }
 
     // // Train classifier
     // svm.buildClassifier(training);
