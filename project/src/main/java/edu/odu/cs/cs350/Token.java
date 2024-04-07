@@ -108,6 +108,7 @@ public class Token {
     }
 
     /**
+     * Gets the value of a token
      * @return value in Token.
      */
     public String getValue() {
@@ -122,6 +123,7 @@ public class Token {
     }
 
     /**
+     * Returns a token's classification
      * @return classification of Token.
      */
     public int getClassification() {

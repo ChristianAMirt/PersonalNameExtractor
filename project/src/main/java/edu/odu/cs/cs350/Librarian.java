@@ -78,6 +78,7 @@ public class Librarian {
     }
 
     /**
+     * Returns the document at the specified index
      * @param index of the vector of Documents that is being retrived
      * @return the document object at that index
      */
