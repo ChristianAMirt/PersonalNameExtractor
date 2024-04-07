@@ -5,11 +5,14 @@ import java.util.Vector;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+
 //For ARFF data
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import weka.core.converters.ConverterUtils.DataSource;
+import weka.core.Instance;
+import weka.core.Instances;
 
 //For classifier
 import weka.core.FastVector;
@@ -46,31 +49,6 @@ public class Trainer {
 
     // Set WEKA options
     String[] options = { "-N", "0", "-V", "-1" };
-
-    FastVector attrInfo = new FastVector();
-    // List all attributes
-
-    /**
-     * Get Instances dataset
-     */
-    public Instances createInstances(Datasource source) {
-        // Need to finish after we determine datasource format
-    }
-
-    /**
-     * Create classifier
-     */
-    public void createClassifier(Instances training) {
-
-        SMO svm = new SMO(); // new classifier instance
-        svm.setOptions(options); // set the options
-        svm.setKernel(new RBFKernel(training, 25007, gamma));
-        svm.setC(C);
-    }
-
-    // // Train classifier
-    // svm.buildClassifier(training);
-    // }
 
     /**
      * Tokenizes all of the training data and sets it's features
@@ -156,9 +134,27 @@ public class Trainer {
 
     }
 
+    /**
+     * Get Instances dataset
+     */
+    public Instances createInstances(Datasource source) {
+        // Need to finish after we determine datasource format
+    }
+
+    /**
+     * Create classifier
+     */
+    public void createClassifier(Instances training) {
+
+        SMO svm = new SMO(); // new classifier instance
+        svm.setOptions(options); // set the options
+        svm.setKernel(new RBFKernel(training, 25007, gamma));
+        svm.setC(C);
+    }
+
     public static void SaveModel(Instances traindata) {
         
-        SMOreg smo = new SMOreg;
+        SMO smo = new SMO;
         SerializationHelper.write("smo.model", smo);
     }
 
