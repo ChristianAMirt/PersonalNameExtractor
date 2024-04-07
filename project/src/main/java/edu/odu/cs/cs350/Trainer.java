@@ -36,6 +36,8 @@ public class Trainer {
 
     private final String TRAINING_DATA_FILEPATH = "src/main/data/trainingDataSmol.txt";
 
+    private Vector<String> dataStrings;
+
     static double gamma = 0.01; // initial guess
     static double C = 1.0; // initial guess
 
@@ -51,6 +53,10 @@ public class Trainer {
 
     // Set WEKA options
     String[] options = { "-N", "0", "-V", "-1" };
+
+    public Trainer() {
+        dataStrings = new Vector<String>();
+    }
 
     /**
      * Tokenizes all of the training data and sets it's features
@@ -165,17 +171,66 @@ public class Trainer {
                 window[3] = allTokens.elementAt(index + 1);
                 window[4] = allTokens.elementAt(index + 2);
             }
+
+            if (window[0].getValue().equals("<NER>")) {
+                window[0] = null;
+            }
+            if (window[1].getValue().equals("<NER>")) {
+                window[0] = null;
+                window[1] = null;
+            }
+            if (window[2].getValue().equals("<NER>") || window[2].getValue().equals("</NER>")) {
+                continue; // no dataString gets set
+            }
+            if (window[3].getValue().equals("</NER>")) {
+                window[3] = null;
+                window[4] = null;
+            }
+            if (window[4].getValue().equals("</NER>")) {
+                window[4] = null;
+            }
+
             createDataString(window);
         }
     }
 
     private void createDataString(Token[] window) {
         StringBuffer buffer = new StringBuffer();
-        // print the value of the token
-        // print the attributes of the token
-        // print the window attributes
-        // if the window values are null, set as zero
-        // if the window values are <NER>, set to null
+
+        buffer.append(window[2].getValue() + ", ");
+
+        int index = 0;
+        for (Token token : window) {
+            if (token == null) {
+                buffer.append("FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, other, other, 0");
+            } else {
+                buffer.append(booleanToString(token.getCommonFirstName()) + ", ");
+                buffer.append(booleanToString(token.getCommonLastName()) + ", ");
+                buffer.append(booleanToString(token.getDictionaryFeature()) + ", ");
+                buffer.append(booleanToString(token.getKillWordFeature()) + ", ");
+                buffer.append(booleanToString(token.getHonorificsValue()) + ", ");
+                buffer.append(booleanToString(token.getIsLocation()) + ", ");
+                buffer.append(booleanToString(token.getPrefixFeature()) + ", ");
+                buffer.append(booleanToString(token.getSuffixFeature()) + ", ");
+                buffer.append(booleanToString(token.getAuthorFirstName()) + ", ");
+                buffer.append(booleanToString(token.getAuthorLastName()) + ", ");
+                buffer.append(token.getPartOfSpeech() + ", ");
+                buffer.append(token.getLexicalFeature() + ", ");
+                buffer.append(token.getClassification());
+            }
+
+            if (index != 4)
+                buffer.append(", ");
+
+            index++;
+        }
+        dataStrings.add(buffer.toString());
+    }
+
+    private String booleanToString(boolean itIsTrue) {
+        if (itIsTrue)
+            return "TRUE";
+        return "FALSE";
     }
 
     /**
