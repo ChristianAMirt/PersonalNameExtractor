@@ -24,6 +24,7 @@ import weka.filters.supervised.attribute.AddClassification;
 
 //For evaluation
 import weka.classifiers.Evaluation;
+import java.util.Random;
 
 /**
  * The Trainer class is responsible for:
@@ -35,8 +36,8 @@ public class Trainer {
 
     private final String TRAINING_DATA_FILEPATH = "src/main/data/trainingDataSmol.txt";
 
-    double gamma = 0.01; // initial guess
-    double C = 1.0; // initial guess
+    static double gamma = 0.01; // initial guess
+    static double C = 1.0; // initial guess
 
     // // Create classifier
     // public void createClassifier(training) {
@@ -184,7 +185,7 @@ public class Trainer {
     /**
      * Get Instances dataset
      */
-    public Instances createInstances(Datasource source) {
+    public static void createInstances(TrainingDataInstances instances) {
         // Need to finish after we determine datasource format
     }
 
@@ -199,16 +200,16 @@ public class Trainer {
         svm.setC(C);
     }
 
-    public static void SaveModel(Instances traindata) {
+
+    public void SaveModel(SMO svm) throws Exception {
         
-        SMO smo = new SMO;
-        SerializationHelper.write("smo.model", smo);
+        weka.core.SerializationHelper.write("smo.model", svm);
     }
 
     /**
      * Evaluate clasification prediction
      */
-    public static void EvaluateClassification(Instances training) {
+    public void EvaluateClassification(Instances training) throws Exception {
 
         SMO svm = new SMO(); // new classifier instance
         svm.setOptions(options); // set the options
