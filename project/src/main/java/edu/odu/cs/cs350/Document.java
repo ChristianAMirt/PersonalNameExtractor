@@ -40,8 +40,20 @@ public class Document implements Iterable<Token> {
      */
     private String inputText;
 
+    // Temporary
+    CommonNames commonNames = new CommonNames();
+    DictionaryFeature dictionaryFeature = new DictionaryFeature();
+    Honorifics honorifics = new Honorifics();
+    KillWordFeature killWordFeature = new KillWordFeature();
+    KnownAuthors knownAuthors = new KnownAuthors();
+    LexicalFeature lexicalFeature = new LexicalFeature();
+    LocationLookup locationLookup = new LocationLookup();
+    PartsOfSpeech partsOfSpeech = new PartsOfSpeech();
+    PrefixAndSuffixFeature prefixAndSuffixFeature = new PrefixAndSuffixFeature();
+
     /**
      * Create a new Document.
+     * 
      * @param inputText
      * @throws IOException
      */
@@ -53,6 +65,7 @@ public class Document implements Iterable<Token> {
 
     /**
      * Gets the input text
+     * 
      * @return String of document.
      */
     public String getInputText() {
@@ -72,6 +85,7 @@ public class Document implements Iterable<Token> {
     /**
      * Places each word and certain punctuation marks in a token and adds it to
      * the collection of tokens.
+     * 
      * @throws IOException
      */
     public void parseDocument() throws IOException {
@@ -88,6 +102,20 @@ public class Document implements Iterable<Token> {
             String separatedNextWord[] = nextWord.split(PUNCTUATION_MARKS);
             for (String phrase : separatedNextWord) {
                 nextToken = new Token(phrase);
+                // Temporary
+                nextToken.setCommonFirstName(commonNames.commonFirstName(phrase));
+                nextToken.setCommonLastName(commonNames.commonLastName(phrase));
+                nextToken.setDictionaryFeature(dictionaryFeature.determineDictionaryFeature(phrase));
+                nextToken.setKillWordFeature(killWordFeature.determineKillWordFeature(phrase));
+                nextToken.setHonorificsValue(honorifics.containsHonorifics(phrase));
+                nextToken.setIsLocation(locationLookup.checkLocation(phrase));
+                nextToken.setPrefixFeature(prefixAndSuffixFeature.determinePrefixFeature(phrase));
+                nextToken.setSuffixFeature(prefixAndSuffixFeature.determineSuffixFeature(phrase));
+                nextToken.setAuthorFirstName(knownAuthors.firstName(phrase));
+                nextToken.setAuthorFirstName(knownAuthors.lastName(phrase));
+                nextToken.setPartOfSpeech(partsOfSpeech.checkForPartsOfSpeech(phrase));
+                nextToken.setLexicalFeature(lexicalFeature.determineLexicalFeature(phrase));
+
                 allTokens.add(nextToken);
             }
         }
@@ -96,6 +124,7 @@ public class Document implements Iterable<Token> {
 
     /**
      * Returns the size of the token collection
+     * 
      * @return size of token collection.
      */
     public int size() {
