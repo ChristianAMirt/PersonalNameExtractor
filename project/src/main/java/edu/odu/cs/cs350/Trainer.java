@@ -23,7 +23,7 @@ import weka.filters.supervised.attribute.AddClassification;
 
 //For evaluation
 import weka.classifiers.Evaluation;
-
+import java.util.Random;
 
 /**
  * The Trainer class is responsible for:
@@ -161,10 +161,9 @@ public class Trainer {
     }
 
 
-    public static void SaveModel(Instances traindata) {
+    public static void SaveModel(SMO svm) {
         
-        SMO smo = new SMO;
-        SerializationHelper.write("smo.model", smo);
+        weka.core.SerializationHelper.write("smo.model", svm);
     }
 
     /**
