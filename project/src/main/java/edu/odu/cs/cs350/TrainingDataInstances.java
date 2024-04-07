@@ -165,7 +165,7 @@ public class TrainingDataInstances {
     /**
      * Create an ARFF file with attributes and data from raw text file.
      */
-    public void CreateDataSet() {
+    public void CreateDataSet() {}
     // Call AccumulateLargeString
 
     // //n-gram process data (aka shingling)
