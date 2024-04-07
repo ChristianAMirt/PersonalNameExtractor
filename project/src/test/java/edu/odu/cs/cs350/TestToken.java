@@ -147,7 +147,7 @@ public class TestToken {
         Token commonLastNameToken = new Token("smith");
         CommonNames commonLastName = new CommonNames();
 
-        boolean expectedName = commonLastName.commonFirstName(commonLastNameToken.getValue());
+        boolean expectedName = commonLastName.commonLastName(commonLastNameToken.getValue());
         commonLastNameToken.setCommonLastName(expectedName);
 
         assertNotNull(commonLastNameToken.getCommonLastName());
