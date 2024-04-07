@@ -147,7 +147,7 @@ public class TestToken {
         Token commonLastNameToken = new Token("smith");
         CommonNames commonLastName = new CommonNames();
 
-        boolean expectedName = commonLastName.commonFirstName(commonLastNameToken.getValue());
+        boolean expectedName = commonLastName.commonLastName(commonLastNameToken.getValue());
         commonLastNameToken.setCommonLastName(expectedName);
 
         assertNotNull(commonLastNameToken.getCommonLastName());
@@ -394,5 +394,19 @@ public class TestToken {
         lexicalFeatureToken.setLexicalFeature(lexicalFeatureResult);
 
         assertEquals("capitalized", lexicalFeatureToken.getLexicalFeature());
+    }
+
+    @Test
+    public void testSetLocation() throws IOException {
+        String mystring = new String("Indianna");
+        Token token = new Token(mystring);
+        LocationLookup location = new LocationLookup();
+
+        var result =  location.checkLocation(mystring);
+        token.setIsLocation(result);
+        assertFalse(token.getIsLocation());
+
+        token.setIsLocation(true);
+        assertTrue(token.getIsLocation());
     }
 }
