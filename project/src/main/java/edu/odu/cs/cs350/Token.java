@@ -319,10 +319,18 @@ public class Token {
         return authorLastName;
     }
 
+    /**
+     * Sets the part of speech value of token
+     * @param speech
+     */
     public void setPartOfSpeech(String speech) {
         partOfSpeech = speech;
     }
 
+    /**
+     * Returns the part of speech value of token
+     * @return String
+     */
     public String getPartOfSpeech() {
         return partOfSpeech;
     }
@@ -336,7 +344,6 @@ public class Token {
 
     /**
      * Returns the lexicalFeature value of Token
-     * 
      * @return String value
      */
     public String getLexicalFeature() {
