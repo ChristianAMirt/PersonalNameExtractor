@@ -145,7 +145,7 @@ public class Trainer {
     /**
      * Create classifier
      */
-    public static void createClassifier(Instances training) {
+    public void createClassifier(Instances training) throws Exception {
 
         SMO svm = new SMO(); // new classifier instance
         svm.setOptions(options); // set the options
@@ -154,7 +154,7 @@ public class Trainer {
     }
 
 
-    public static void SaveModel(SMO svm) {
+    public void SaveModel(SMO svm) throws Exception {
         
         weka.core.SerializationHelper.write("smo.model", svm);
     }
@@ -162,7 +162,7 @@ public class Trainer {
     /**
      * Evaluate clasification prediction
      */
-    public static void EvaluateClassification(Instances training) {
+    public void EvaluateClassification(Instances training) throws Exception {
 
         SMO svm = new SMO(); // new classifier instance
         svm.setOptions(options); // set the options
