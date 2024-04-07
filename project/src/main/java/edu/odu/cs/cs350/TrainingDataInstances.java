@@ -1,4 +1,4 @@
-// package edu.odu.cs.cs350;
+package edu.odu.cs.cs350;
 
 import weka.core.Instances;
 //import weka.core.pmml.jaxbbindings.Attribute;
@@ -9,6 +9,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.io.IOException;
+
 
 /**
  * The Trainer class is responsible for:
@@ -18,9 +20,14 @@ import java.util.Arrays;
 public class TrainingDataInstances {
 
     /**
+     * instantiation of this class as an object.
+     */
+    public TrainingDataInstances()throws IOException{};
+
+    /**
      * Stores the common first names.
      */
-    String[] commonFirstNames = readFile("src/main/data/CommonFirstNames.txt");
+    String[] commonFirstNames = {"TRUE", "FALSE"};
 
     /**
      * Attribute for common first names.
@@ -30,7 +37,7 @@ public class TrainingDataInstances {
     /**
      * Stores the common last names.
      */
-    String[] commonLastNames = readFile("src/main/data/CommonLastNames.txt");
+    String[] commonLastNames = {"TRUE", "FALSE"};
 
     /**
      * Attribute for common last names.
@@ -40,7 +47,7 @@ public class TrainingDataInstances {
     /**
      * Stores the author first names.
      */
-    String[] authorFirstNames = readFile("src/main/data/Dictionary.firstNames.txt");
+    String[] authorFirstNames = {"TRUE", "FALSE"};
 
     /**
      * Attribute for author first names.
@@ -50,7 +57,7 @@ public class TrainingDataInstances {
     /**
      * Stores the author last names.
      */
-    String[] authorLastNames = readFile("src/main/data/Dictionary.lastNames.txt");
+    String[] authorLastNames = {"TRUE", "FALSE"};
 
     /**
      * Attribute for the author last names.
@@ -60,7 +67,7 @@ public class TrainingDataInstances {
     /**
      * Stores the honorifics.
      */
-    String[] honorifics = readFile("src/main/data/Dictionary.honorifics.txt");
+    String[] honorifics = {"TRUE", "FALSE"};
 
     /**
      * Attribute for the honorifics.
@@ -70,7 +77,7 @@ public class TrainingDataInstances {
     /**
      * Stores the English dictionary words.
      */
-    String[] englishDictionaryWords = readFile("src/main/data/Dictionary.english.txt");
+    String[] englishDictionaryWords = {"TRUE", "FALSE"};
 
     /**
      * Attribute for the English dictionary words.
@@ -80,7 +87,7 @@ public class TrainingDataInstances {
     /**
      * Stores the kill words.
      */
-    String[] killWords = readFile("src/main/data/Dictionary.nonPersonalProperNames.txt");
+    String[] killWords = {"TRUE", "FALSE"};
 
     /**
      * Attribute for the kill words.
@@ -90,7 +97,7 @@ public class TrainingDataInstances {
     /**
      * Stores the prefixes.
      */
-    String[] prefixWords = readFile("src/main/data/Dictionary.prefixes.txt");
+    String[] prefixWords = {"TRUE", "FALSE"};
 
     /**
      * Attribute for the prefixes.
@@ -100,7 +107,7 @@ public class TrainingDataInstances {
     /**
      * Stores the suffixes.
      */
-    String[] suffixWords = readFile("src/main/data/Dictionary.suffixes.txt");
+    String[] suffixWords = {"TRUE", "FALSE"};
 
     /**
      * Attribute for the suffixes.
@@ -110,7 +117,7 @@ public class TrainingDataInstances {
     /**
      * Stores the first group of locations.
      */
-    String[] locationWords1 = readFile("src/main/data/Dictionary.location1.txt");
+    String[] locationWords1 = {"TRUE", "FALSE"};
 
     /**
      * Attribute for the first group of locations.
@@ -120,7 +127,7 @@ public class TrainingDataInstances {
     /**
      * Stores the second group of locations.
      */
-    String[] locationWords2 = readFile("src/main/data/Dictionary.location2.txt");
+    String[] locationWords2 = {"TRUE", "FALSE"};
 
     /**
      * Attribute for the second group of locations.
@@ -130,7 +137,7 @@ public class TrainingDataInstances {
     /**
      * Stores the third group of locations.
      */
-    String[] locationWords3 = readFile("src/main/data/Dictionary.location3.txt");
+    String[] locationWords3 = {"TRUE", "FALSE"};
 
     /**
      * Attribute for the third group of locations.
@@ -158,35 +165,64 @@ public class TrainingDataInstances {
     /**
      * Holds all of the attributes
      */
-    FastVector attributeInfo = new FastVector();
-
-    // attributeInfo.addElement(partOfSpeech);
-
+    ArrayList<Attribute> attributeInfo = new ArrayList<Attribute>();
+    
     /**
-     * Create an ARFF file with attributes and data from raw text file.
+     * Method to add the attributes to the attributeInfo array
+     * @param attributeArray
      */
-    public void CreateDataSet() {}
-    // Call AccumulateLargeString
-
-    // //n-gram process data (aka shingling)
-
-    // //apply attributes
-
-    // //transform data for Trainer
-    // }
-
-    /**
-     * Build a large data stream for processing text file. 
-     */
-    public void AccumulateLargeString(inputStream) {
-        StringBuffer buffer = new StringBuffer;
-        while (!done) {
-            string line = readALineFrom(inputStream);
-            buffer.append(line);
-            done =- moreInputIn(inputStream);
-        }
-        String accumulated = buffer.toString();
+    public void attributeAdding( ArrayList<Attribute> attributeArray){
+        attributeArray.add(commonFirstNameValue);
+        attributeArray.add(commonLastNameValue);
+        attributeArray.add(authorFirstNameValue);
+        attributeArray.add(authorLastNameValue);
+        attributeArray.add(honorificsValue);
+        attributeArray.add(englishDictionary);
+        attributeArray.add(kill);
+        attributeArray.add(prefix);
+        attributeArray.add(suffix);
+        attributeArray.add(location1);
+        attributeArray.add(location2);
+        attributeArray.add(location3);
+        attributeArray.add(lexical);
+        attributeArray.add(partOfSpeech);
     }
+
+    /**
+     * Stores the number of attributes
+     */
+    final int numberOfAttributes = attributeInfo.size();
+
+    /**
+     * Gets the number of lines in the files
+     * @param filePath
+     * @return
+     * @throws IOException
+     */
+    public int getFileSize(String filePath) throws IOException{
+
+        BufferedReader myReader = null;
+        myReader = new BufferedReader(new FileReader(filePath));
+
+        String dataLine = myReader.readLine();
+        int lineCounter = 1;
+        while (dataLine != null) {
+            dataLine = myReader.readLine();
+            lineCounter += 1;
+        }
+        myReader.close();
+        return lineCounter;
+    }
+
+    /**
+     * Stores the number of lines in the file
+     */
+    int dataFileSize = getFileSize("src/main/data/trainingDataSmol.txt");
+
+    // creates an instance holding the trainer information
+    Instances trainerInformation = new Instances("data", attributeInfo, dataFileSize);
+
+    
 
     /**
      * Places the file data into a fast vector
@@ -206,24 +242,4 @@ public class TrainingDataInstances {
         return result;
     }
 
-    /**
-     * Read lines from a file and store them in an array
-     * 
-     * @param filePath
-     * @return An array containing each line from the file
-     * @throws IOException
-     */
-    public String[] readFile(String filePath) throws IOException {
-        ArrayList<String> lines = new ArrayList<>();
-
-        try (BufferedReader myBufferedReader = new BufferedReader(new FileReader(filePath))) {
-            String line;
-            while ((line = myBufferedReader.readLine()) != null) {
-                lines.add(line); // Added lines to the array
-            }
-        }
-
-        String[] linesArray = new String[lines.size()];
-        return lines.toArray(linesArray);
-    }
 }
