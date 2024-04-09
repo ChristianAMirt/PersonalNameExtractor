@@ -4,7 +4,9 @@ import java.util.Scanner;
 import java.util.Vector;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.FileReader;
+import java.io.FileWriter;
 
 //For ARFF data
 import java.io.IOException;
@@ -192,6 +194,14 @@ public class Trainer {
 
             createDataString(window);
         }
+
+        // Debugging output for making sure the data strings are correct
+        // FileWriter myFile = new FileWriter("src/main/data/ARFF_Training.txt");
+
+        // for (String data : dataStrings) {
+        // myFile.write(data);
+        // myFile.write("\n");
+        // }
     }
 
     private void createDataString(Token[] window) {
@@ -199,7 +209,6 @@ public class Trainer {
 
         buffer.append(window[2].getValue() + ", ");
 
-        int index = 0;
         for (Token token : window) {
             if (token == null) {
                 buffer.append("FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, other, other, 0");
@@ -216,14 +225,10 @@ public class Trainer {
                 buffer.append(booleanToString(token.getAuthorLastName()) + ", ");
                 buffer.append(token.getPartOfSpeech() + ", ");
                 buffer.append(token.getLexicalFeature() + ", ");
-                buffer.append(token.getClassification());
             }
-
-            if (index != 4)
-                buffer.append(", ");
-
-            index++;
         }
+        buffer.append(window[2].getClassification());
+
         dataStrings.add(buffer.toString());
     }
 
