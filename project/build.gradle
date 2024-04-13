@@ -3,6 +3,8 @@ plugins {
     id 'jacoco'
     id 'application'
     id 'org.ajoberstar.git-publish' version '4.2.0'
+    id "com.github.spotbugs" version "5.0.6"
+
 }
 
 java {
@@ -32,6 +34,16 @@ test {
         }
 } 
 
+spotbugsMain {
+    ignoreFailures = true
+    effort = 'max'
+    reportLevel = 'medium'
+    reports {
+       xml.enabled = false
+       html.enabled = true
+    }
+}
+
 task copyHTML(type: Copy){
     copyHTML.dependsOn(build)
     copyHTML.dependsOn(javadoc)
@@ -50,6 +62,7 @@ task reports{
     reports.dependsOn(copyHTML)
     reports.dependsOn(copyDocs)
     reports.dependsOn(jacocoTestReport)
+    reports.dependsOn(spotbugsMain)
 }
 
 gitPublish{
