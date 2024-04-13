@@ -50,7 +50,6 @@ task reports{
     reports.dependsOn(copyHTML)
     reports.dependsOn(copyDocs)
     reports.dependsOn(jacocoTestReport)
-
 }
 
 gitPublish{
