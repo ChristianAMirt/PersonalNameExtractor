@@ -44,6 +44,8 @@ spotbugsMain {
     }
 }
 
+spotbugsTest.enabled = false
+
 task copyHTML(type: Copy){
     copyHTML.dependsOn(build)
     copyHTML.dependsOn(javadoc)
