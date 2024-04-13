@@ -6,4 +6,4 @@ TM 2 Syntax Sages
 - [JavaDoc](./javadoc/)
 - [Test Coverage](./jacoco/test/html/)
 
-* [Static Analysis](./spotbugs/)
+* [Static Analysis](./spotbugs/main.html)
