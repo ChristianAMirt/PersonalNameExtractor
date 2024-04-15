@@ -232,7 +232,7 @@ public class TrainingDataInstances {
      * @return FastVector
      */
     @Deprecated
-    private FastVector fastV(String[] data) {
+    public FastVector fastV(String[] data) {
         FastVector result = new FastVector(data.length);
         for (String s : data) {
             result.addElement(s);
