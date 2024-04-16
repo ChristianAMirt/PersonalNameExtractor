@@ -37,7 +37,7 @@ import java.util.Random;
  */
 public class Trainer {
 
-    private final String TRAINING_DATA_FILEPATH = "src/main/data/trainingDataSmol.txt";
+    private final String TRAINING_DATA_FILEPATH = "src/main/data/trainingData.txt";
 
     private Vector<String> dataStrings;
 
@@ -308,20 +308,21 @@ public class Trainer {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/data/ARFF_Training.txt"))) {
             writer.write("@ATTRIBUTE word STRING\n");
             for (Integer i = 0; i < 5; i++) {
-                writer.write("@ATTRIBUTE commonfirstname BOOLEAN\n");
-                writer.write("@ATTRIBUTE commonlastname BOOLEAN\n");
-                writer.write("@ATTRIBUTE dictionaryfeature BOOLEAN\n");
-                writer.write("@ATTRIBUTE killword BOOLEAN\n");
-                writer.write("@ATTRIBUTE honorific BOOLEAN\n");
-                writer.write("@ATTRIBUTE location BOOLEAN\n");
-                writer.write("@ATTRIBUTE prefix BOOLEAN\n");
-                writer.write("@ATTRIBUTE suffix BOOLEAN\n");
-                writer.write("@ATTRIBUTE authorfirstname BOOLEAN\n");
-                writer.write("@ATTRIBUTE authorlastname BOOLEAN\n");
-                writer.write("@ATTRIBUTE partofspeech BOOLEAN\n");
-                writer.write("@ATTRIBUTE lexicalfeature BOOLEAN\n");
+                Integer temp = i+1;
+                writer.write("@ATTRIBUTE commonfirstname" + temp + " BOOLEAN\n");
+                writer.write("@ATTRIBUTE commonlastname" + temp + " BOOLEAN\n");
+                writer.write("@ATTRIBUTE dictionaryfeature" + temp + " BOOLEAN\n");
+                writer.write("@ATTRIBUTE killword" + temp + " BOOLEAN\n");
+                writer.write("@ATTRIBUTE honorific" + temp + " BOOLEAN\n");
+                writer.write("@ATTRIBUTE location" + temp + " BOOLEAN\n");
+                writer.write("@ATTRIBUTE prefix"+ temp + " BOOLEAN\n");
+                writer.write("@ATTRIBUTE suffix" + temp + " BOOLEAN\n");
+                writer.write("@ATTRIBUTE authorfirstname" + temp + " BOOLEAN\n");
+                writer.write("@ATTRIBUTE authorlastname" + temp + " BOOLEAN\n");
+                writer.write("@ATTRIBUTE partofspeech" + temp + " BOOLEAN\n");
+                writer.write("@ATTRIBUTE lexicalfeature" + temp + " BOOLEAN\n");
             }
-            writer.write("@ATTRIBUTE classification BOOLEAN\n");
+            writer.write("@ATTRIBUTE classification INTEGER\n");
             writer.write("\n");
             writer.write("@data\n");
             writer.close();
