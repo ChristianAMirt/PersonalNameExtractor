@@ -128,11 +128,11 @@ public class Trainer {
                 }
 
                 if (startPER)
-                    nextToken.setClassification(1);
+                    nextToken.setClassification(1); // start of name
                 else if (inPER)
-                    nextToken.setClassification(2);
+                    nextToken.setClassification(2); // Continuing a name
                 else
-                    nextToken.setClassification(0);
+                    nextToken.setClassification(0); // Not a name
 
                 startPER = false;
 
@@ -198,11 +198,11 @@ public class Trainer {
         }
 
         // Debugging output for making sure the data strings are correct
-        //FileWriter myFile = new FileWriter("src/main/data/ARFF_Training.txt");
-        //for (String data : dataStrings) {
-         //myFile.write(data);
-         //myFile.write("\n");
-        //}
+        // FileWriter myFile = new FileWriter("src/main/data/ARFF_Training.txt");
+        // for (String data : dataStrings) {
+        // myFile.write(data);
+        // myFile.write("\n");
+        // }
     }
 
     private void createDataString(Token[] window) {
@@ -212,7 +212,7 @@ public class Trainer {
 
         for (Token token : window) {
             if (token == null) {
-                buffer.append("FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, other, other, 0");
+                buffer.append("FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, other, other, ");
             } else {
                 buffer.append(booleanToString(token.getCommonFirstName()) + ", ");
                 buffer.append(booleanToString(token.getCommonLastName()) + ", ");
@@ -290,7 +290,6 @@ public class Trainer {
 
     }
 
-
     /**
      * Initializes formated ARFF file
      */
@@ -327,8 +326,8 @@ public class Trainer {
      * Populates ARFF output file for use by learning machine
      * Not sure where to incorporate function call yet
      * 
-     * @param 
-     * @throws IOException 
+     * @param
+     * @throws IOException
      */
     private void populateOutputFile(Token token) throws IOException {
         BufferedWriter out = new BufferedWriter(new FileWriter("src/main/data/ARFF_Training.txt", true));
