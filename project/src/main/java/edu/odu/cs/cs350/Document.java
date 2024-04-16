@@ -40,15 +40,41 @@ public class Document implements Iterable<Token> {
      */
     private String inputText;
 
-    // Temporary
+    /**
+     * To be part of a Feature object.
+     */
     CommonNames commonNames = new CommonNames();
+    /**
+     * To be part of a Feature object.
+     */
     DictionaryFeature dictionaryFeature = new DictionaryFeature();
+    /**
+     * To be part of a Feature object.
+     */
     Honorifics honorifics = new Honorifics();
+    /**
+     * To be part of a Feature object.
+     */
     KillWordFeature killWordFeature = new KillWordFeature();
+    /**
+     * To be part of a Feature object.
+     */
     KnownAuthors knownAuthors = new KnownAuthors();
+    /**
+     * To be part of a Feature object.
+     */
     LexicalFeature lexicalFeature = new LexicalFeature();
+    /**
+     * To be part of a Feature object.
+     */
     LocationLookup locationLookup = new LocationLookup();
+    /**
+     * To be part of a Feature object.
+     */
     PartsOfSpeech partsOfSpeech = new PartsOfSpeech();
+    /**
+     * To be part of a Feature object.
+     */
     PrefixAndSuffixFeature prefixAndSuffixFeature = new PrefixAndSuffixFeature();
 
     /**
