@@ -197,6 +197,9 @@ public class Trainer {
             createDataString(window);
         }
 
+        // MARK: Call populateOutputFile
+        populateOutputFile(dataStrings);
+
         // Debugging output for making sure the data strings are correct
         // FileWriter myFile = new FileWriter("src/main/data/ARFF_Training.txt");
         // for (String data : dataStrings) {
@@ -244,7 +247,7 @@ public class Trainer {
      * 
      * @param instances
      */
-    public static void createInstances(TrainingDataInstances instances) {
+    public static void createInstances(NameLearningMachine instances) {
         // Need to finish after we determine datasource format
     }
 
@@ -302,20 +305,23 @@ public class Trainer {
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/data/ARFF_Training.txt"))) {
             writer.write("@ATTRIBUTE word STRING\n");
-            writer.write("@ATTRIBUTE commonfirstname BOOLEAN\n");
-            writer.write("@ATTRIBUTE commonlastname BOOLEAN\n");
-            writer.write("@ATTRIBUTE dictionaryfeature BOOLEAN\n");
-            writer.write("@ATTRIBUTE killword BOOLEAN\n");
-            writer.write("@ATTRIBUTE honorific BOOLEAN\n");
-            writer.write("@ATTRIBUTE location BOOLEAN\n");
-            writer.write("@ATTRIBUTE prefix BOOLEAN\n");
-            writer.write("@ATTRIBUTE suffix BOOLEAN\n");
-            writer.write("@ATTRIBUTE authorfirstname BOOLEAN\n");
-            writer.write("@ATTRIBUTE authorlastname BOOLEAN\n");
-            writer.write("@ATTRIBUTE partofspeech BOOLEAN\n");
-            writer.write("@ATTRIBUTE lexicalfeature BOOLEAN\n");
+            for(Integer i = 0; i < 5; i++){
+                writer.write("@ATTRIBUTE commonfirstname BOOLEAN\n");
+                writer.write("@ATTRIBUTE commonlastname BOOLEAN\n");
+                writer.write("@ATTRIBUTE dictionaryfeature BOOLEAN\n");
+                writer.write("@ATTRIBUTE killword BOOLEAN\n");
+                writer.write("@ATTRIBUTE honorific BOOLEAN\n");
+                writer.write("@ATTRIBUTE location BOOLEAN\n");
+                writer.write("@ATTRIBUTE prefix BOOLEAN\n");
+                writer.write("@ATTRIBUTE suffix BOOLEAN\n");
+                writer.write("@ATTRIBUTE authorfirstname BOOLEAN\n");
+                writer.write("@ATTRIBUTE authorlastname BOOLEAN\n");
+                writer.write("@ATTRIBUTE partofspeech BOOLEAN\n");
+                writer.write("@ATTRIBUTE lexicalfeature BOOLEAN\n");
+            }
             writer.write("@ATTRIBUTE classification BOOLEAN\n");
             writer.write("\n");
+            writer.write("@data\n");
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -329,19 +335,14 @@ public class Trainer {
      * @param
      * @throws IOException
      */
-    private void populateOutputFile(Token token) throws IOException {
+    private void populateOutputFile(Vector<String> dataStrings) throws IOException {
         BufferedWriter out = new BufferedWriter(new FileWriter("src/main/data/ARFF_Training.txt", true));
-        String temp;
-
-        // out.write(token.getValue());
-        // out.write(", ");
-        // temp = String.valueOf(token.getCommonFirstName());
-        // out.write(temp);
-        // out.write(", ");
-        // temp = String.valueOf(token.getCommonLastName());
-        // out.write(temp);
-
-        // out.write("\n");
+        // MARK: OUTPUT TO FILE HERE
+        for (String data : dataStrings) {
+            out.write(data);
+            out.write("\n");
+        }
+        
         out.close();
     }
 
