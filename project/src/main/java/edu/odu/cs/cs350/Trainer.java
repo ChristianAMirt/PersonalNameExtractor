@@ -106,7 +106,7 @@ public class Trainer {
 
             // split if string contains punctuation
             String separatedNextWord[] = nextWord
-                    .split("(?<=\")|(?=[.,!?;:()\"&-])|(?=[(])|(?<=[(])|(?=<\\/?(PER)>)|(?<=<PER>)|(?=<\\/?(NER)>)|(?<=<NER>)");
+                    .split("(?=[.,!?;:()\"&-])|(?<=[.,!?;:()\"&-])|(?=<\\/?(PER)>)|(?<=<PER>)|(?=<\\/?(NER)>)|(?<=<NER>)");
             for (String phrase : separatedNextWord) {
                 nextToken = new Token(phrase);
 
