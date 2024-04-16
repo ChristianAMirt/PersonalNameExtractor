@@ -33,65 +33,65 @@ public class Token {
 
     /**
      * An identifier for whether or not the token is part
-     * of the English dictionary
+     * of the English dictionary.
      */
     private boolean dictionaryFeature;
 
     /**
      * An identifier for whether or not the token is
-     * a kill word
+     * a kill word.
      */
     private boolean killWordFeature;
 
     /**
-     * An identifier for whether or not token is a common first name
+     * An identifier for whether or not token is a common first name.
      */
     private boolean commonFirstName;
 
     /**
-     * An identifier for whether or not token is a common Last name
+     * An identifier for whether or not token is a common Last name.
      */
     private boolean commonLastName;
 
     /**
      * An identifier for whether or not token contains honorfiics
-     * preceding personal name
+     * preceding personal name.
      */
     private boolean honorificsValue;
 
     /**
      * An identifier for wether or not token contains locations
-     * or geographical features
+     * or geographical features.
      */
     private boolean location;
 
     /**
-     * An identifier for whether or not the token is a prefix
+     * An identifier for whether or not the token is a prefix.
      */
     private boolean prefixFeature;
 
     /**
-     * An identifier for whether or not the token is a suffix
+     * An identifier for whether or not the token is a suffix.
      */
     private boolean suffixFeature;
 
     /**
-     * An identifier for known Author first names
+     * An identifier for known Author first names.
      */
     private boolean authorFirstName;
 
     /**
-     * An identifier for known Author last names
+     * An identifier for known Author last names.
      */
     private boolean authorLastName;
 
     /**
-     * An identifier for common parts of speech
+     * An identifier for common parts of speech.
      */
     private String partOfSpeech;
 
     /**
-     * An identifier for lexical features
+     * An identifier for lexical features.
      */
     private String lexicalFeature;
 
@@ -99,7 +99,7 @@ public class Token {
      * Create a new Token.
      * 
      * @param value word or punctuation mark represented by the token.
-     * @throws IOException for files that cannot load
+     * @throws IOException for files that cannot load.
      */
     public Token(String value) throws IOException {
         this.value = value;
@@ -108,7 +108,8 @@ public class Token {
     }
 
     /**
-     * Gets the value of a token
+     * Gets the value of a token.
+     * 
      * @return value in Token.
      */
     public String getValue() {
@@ -116,7 +117,8 @@ public class Token {
     }
 
     /**
-     * Set classification of Token
+     * Set classification of Token.
+     * 
      * @param classification
      */
     public void setClassification(int classification) {
@@ -124,7 +126,8 @@ public class Token {
     }
 
     /**
-     * Returns a token's classification
+     * Returns a token's classification.
+     * 
      * @return classification of Token.
      */
     public int getClassification() {
@@ -132,7 +135,7 @@ public class Token {
     }
 
     /**
-     * sets the dictionaryFeature value of Token
+     * sets the dictionaryFeature value of Token.
      * 
      * @throws FileNotFoundException
      * @throws IOException
@@ -143,7 +146,7 @@ public class Token {
     }
 
     /**
-     * Returns the dictionaryFeature value of Token
+     * Returns the dictionaryFeature value of Token.
      * 
      * @return boolean
      */
@@ -152,7 +155,7 @@ public class Token {
     }
 
     /**
-     * sets the killWordFeature value of Token
+     * sets the killWordFeature value of Token.
      * 
      * @throws FileNotFoundException
      * @throws IOException
@@ -163,16 +166,16 @@ public class Token {
     }
 
     /**
-     * Returns the killWordFeature value of Token
+     * Returns the killWordFeature value of Token.
      * 
-     * @return boolean
+     * @return boolean.
      */
     public boolean getKillWordFeature() {
         return killWordFeature;
     }
 
     /**
-     * Sets commonFirstName value of Token
+     * Sets commonFirstName value of Token.
      * 
      * @throws FileNotFoundException
      * @throws IOException
@@ -183,16 +186,16 @@ public class Token {
     }
 
     /**
-     * Returns commonFirstName value of Token
+     * Returns commonFirstName value of Token.
      * 
-     * @return boolean value
+     * @return boolean value.
      */
     public boolean getCommonFirstName() {
         return commonFirstName;
     }
 
     /**
-     * Sets commonLastName value of Token
+     * Sets commonLastName value of Token.
      * 
      * @throws FileNotFoundException
      * @throws IOException
@@ -203,16 +206,16 @@ public class Token {
     }
 
     /**
-     * Returns commonLastName value of Token
+     * Returns commonLastName value of Token.
      * 
-     * @return boolean value
+     * @return boolean value.
      */
     public boolean getCommonLastName() {
         return commonLastName;
     }
 
     /**
-     * Sets honorifics value of Token
+     * Sets honorifics value of Token.
      * 
      * @throws FileNotFoundException
      * @throws IOException
@@ -223,16 +226,16 @@ public class Token {
     }
 
     /**
-     * Returns commonLastName value of Token
+     * Returns commonLastName value of Token.
      * 
-     * @return boolean value
+     * @return boolean value.
      */
     public boolean getHonorificsValue() {
         return honorificsValue;
     }
 
     /**
-     * Sets honorifics value of Token
+     * Sets honorifics value of Token.
      * 
      * @throws IOException
      * @param feature
@@ -242,16 +245,16 @@ public class Token {
     }
 
     /**
-     * Returns commonLastName value of Token
+     * Returns commonLastName value of Token.
      * 
-     * @return boolean value
+     * @return boolean value.
      */
     public boolean getIsLocation() {
         return location;
     }
 
     /**
-     * sets the prefixFeature value of Token
+     * sets the prefixFeature value of Token.
      * 
      * @throws FileNotFoundException
      * @throws IOException
@@ -262,16 +265,16 @@ public class Token {
     }
 
     /**
-     * Returns the prefixFeature value of Token
+     * Returns the prefixFeature value of Token.
      * 
-     * @return boolean
+     * @return boolean.
      */
     public boolean getPrefixFeature() {
         return prefixFeature;
     }
 
     /**
-     * sets the suffixFeature value of Token
+     * sets the suffixFeature value of Token.
      * 
      * @throws FileNotFoundException
      * @throws IOException
@@ -282,16 +285,16 @@ public class Token {
     }
 
     /**
-     * Returns the suffixFeature value of Token
+     * Returns the suffixFeature value of Token.
      * 
-     * @return boolean
+     * @return boolean.
      */
     public boolean getSuffixFeature() {
         return suffixFeature;
     }
 
     /**
-     * Sets Author first name value of Token
+     * Sets Author first name value of Token.
      * 
      * @throws FileNotFoundException
      * @throws IOException
@@ -302,16 +305,16 @@ public class Token {
     }
 
     /**
-     * Returns Author first name value of Token
+     * Returns Author first name value of Token.
      * 
-     * @return boolean value
+     * @return boolean value.
      */
     public boolean getAuthorFirstName() {
         return authorFirstName;
     }
 
     /**
-     * Sets Author last name value of Token
+     * Sets Author last name value of Token.
      * 
      * @throws FileNotFoundException
      * @throws IOException
@@ -322,16 +325,17 @@ public class Token {
     }
 
     /**
-     * Returns Author last name value of Token
+     * Returns Author last name value of Token.
      * 
-     * @return boolean value
+     * @return boolean value.
      */
     public boolean getAuthorLastName() {
         return authorLastName;
     }
 
     /**
-     * Sets the part of speech value of token
+     * Sets the part of speech value of token.
+     * 
      * @param speech
      */
     public void setPartOfSpeech(String speech) {
@@ -339,15 +343,17 @@ public class Token {
     }
 
     /**
-     * Returns the part of speech value of token
-     * @return String
+     * Returns the part of speech value of token.
+     * 
+     * @return String.
      */
     public String getPartOfSpeech() {
         return partOfSpeech;
     }
 
     /**
-     * Sets the lexicalFeature value of Token
+     * Sets the lexicalFeature value of Token.
+     * 
      * @param lexical
      */
     public void setLexicalFeature(String lexical) {
@@ -355,8 +361,9 @@ public class Token {
     }
 
     /**
-     * Returns the lexicalFeature value of Token
-     * @return String value
+     * Returns the lexicalFeature value of Token.
+     * 
+     * @return String value.
      */
     public String getLexicalFeature() {
         return lexicalFeature;
