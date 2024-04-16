@@ -244,7 +244,7 @@ public class Trainer {
      * 
      * @param instances
      */
-    public static void createInstances(TrainingDataInstances instances) {
+    public static void createInstances(NameLearningMachine instances) {
         // Need to finish after we determine datasource format
     }
 
