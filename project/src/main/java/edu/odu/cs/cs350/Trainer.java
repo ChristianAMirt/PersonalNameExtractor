@@ -105,22 +105,24 @@ public class Trainer {
             Token nextToken;
 
             // split if string contains punctuation
-            String separatedNextWord[] = nextWord.split("(?<=\")|(?=[.,!?;:()\"&-])|(?=<\\/?(PER)>)|(?<=<PER>)");
+            String separatedNextWord[] = nextWord
+                    .split("(?<=\")|(?=[.,!?;:()\"&-])|(?=[(])|(?<=[(])|(?=<\\/?(PER)>)|(?<=<PER>)|(?=<\\/?(NER)>)|(?<=<NER>)");
             for (String phrase : separatedNextWord) {
                 nextToken = new Token(phrase);
 
                 nextToken.setCommonFirstName(commonNames.commonFirstName(phrase));
-                nextToken.setCommonLastName(commonNames.commonLastName(phrase));
-                nextToken.setDictionaryFeature(dictionaryFeature.determineDictionaryFeature(phrase));
+                nextToken.setCommonLastName(commonNames.commonLastName(phrase)); // slow down
+                nextToken.setDictionaryFeature(dictionaryFeature.determineDictionaryFeature(phrase)); // slightly slow
                 nextToken.setKillWordFeature(killWordFeature.determineKillWordFeature(phrase));
                 nextToken.setHonorificsValue(honorifics.containsHonorifics(phrase));
                 nextToken.setIsLocation(locationLookup.checkLocation(phrase));
                 nextToken.setPrefixFeature(prefixAndSuffixFeature.determinePrefixFeature(phrase));
                 nextToken.setSuffixFeature(prefixAndSuffixFeature.determineSuffixFeature(phrase));
                 nextToken.setAuthorFirstName(knownAuthors.firstName(phrase));
-                nextToken.setAuthorFirstName(knownAuthors.lastName(phrase));
+                nextToken.setAuthorLastName(knownAuthors.lastName(phrase)); // Slow down
                 nextToken.setPartOfSpeech(partsOfSpeech.checkForPartsOfSpeech(phrase));
                 nextToken.setLexicalFeature(lexicalFeature.determineLexicalFeature(phrase));
+                // 32.7, 33.3, 32.6 seconds per 100 lines 32.866... on average
 
                 if (phrase.equals("</PER>")) {
                     inPER = false;
@@ -305,7 +307,7 @@ public class Trainer {
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/data/ARFF_Training.txt"))) {
             writer.write("@ATTRIBUTE word STRING\n");
-            for(Integer i = 0; i < 5; i++){
+            for (Integer i = 0; i < 5; i++) {
                 writer.write("@ATTRIBUTE commonfirstname BOOLEAN\n");
                 writer.write("@ATTRIBUTE commonlastname BOOLEAN\n");
                 writer.write("@ATTRIBUTE dictionaryfeature BOOLEAN\n");
@@ -342,7 +344,7 @@ public class Trainer {
             out.write(data);
             out.write("\n");
         }
-        
+
         out.close();
     }
 
