@@ -12,7 +12,7 @@ import java.util.Set;
  * Determines if a word is part of the English dictionary.
  * @author Jaylen Wheeler
  */
-public class DictionaryFeature {
+public class DictionaryFeature{
 
     /**
      * Constructor for DictionaryFeature
@@ -38,6 +38,14 @@ public class DictionaryFeature {
      */
     public FileReader openFile(String myFile) throws FileNotFoundException{
         return new FileReader(new File(myFile));
+    }
+
+    /**
+     * Returns the englishDictionarySet
+     * @return
+     */
+    public Set<String> getEnglishDictionarySet(){
+        return englishDictionarySet;
     }
 
     /**
