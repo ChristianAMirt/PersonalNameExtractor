@@ -17,8 +17,9 @@ public class DictionaryFeature {
     /**
      * Constructor for DictionaryFeature
      */
-    public DictionaryFeature(){
+    public DictionaryFeature()throws FileNotFoundException, IOException{
         this.englishDictionarySet = new HashSet<>();
+        loadFile();
     }
 
     /**
@@ -71,7 +72,6 @@ public class DictionaryFeature {
      */
     public boolean determineDictionaryFeature(String myWord) throws FileNotFoundException, IOException {
 
-        loadFile();
         for(String dictionaryLine: englishDictionarySet)
         {
             if(dictionaryLine.equals(myWord))

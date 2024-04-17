@@ -15,10 +15,13 @@ public class TestDictionaryFeature {
     
     /**
      * Tests the constructor for DictionaryFeature, making sure that
-     * the instantiation of the class of as an object actually happens.
+     * everything is initialized properly.
+     * 
+     * @throws FileNotFoundException
+     * @throws IOException
      */
     @Test
-    public void testDictionaryFeatureConstructor(){
+    public void testDictionaryFeatureConstructor() throws FileNotFoundException, IOException{
         DictionaryFeature firstDictionaryFeature = new DictionaryFeature();
         assertNotNull(firstDictionaryFeature);
     }
