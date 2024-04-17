@@ -2,6 +2,9 @@ package edu.odu.cs.cs350;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+
+import java.io.File;
+import java.io.FileReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -11,8 +14,10 @@ import java.io.IOException;
  * Tests for the two methods of DictionaryFeature.
  * (The constructor and "determineDictionaryFeature")
  */
-public class TestDictionaryFeature {
+public class TestDictionaryFeature{
     
+    private DictionaryFeature myDictionaryFeature;
+
     /**
      * Tests the constructor for DictionaryFeature, making sure that
      * everything is initialized properly.
@@ -22,8 +27,22 @@ public class TestDictionaryFeature {
      */
     @Test
     public void testDictionaryFeatureConstructor() throws FileNotFoundException, IOException{
-        DictionaryFeature firstDictionaryFeature = new DictionaryFeature();
-        assertNotNull(firstDictionaryFeature);
+        myDictionaryFeature = new DictionaryFeature();
+        assertNotNull(myDictionaryFeature);
+        assertTrue(myDictionaryFeature.getEnglishDictionarySet().contains("tablespoonfuls"));
+    }
+
+    /**
+     * Tests the openFile method for DictionaryFeature to see
+     * if the fileReader is reading a file
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
+    @Test
+    public void testOpenFile() throws FileNotFoundException, IOException{
+        myDictionaryFeature = new DictionaryFeature();
+        FileReader myReader = myDictionaryFeature.openFile("src/main/data/Dictionary.english.txt");
+        assertNotNull(myReader);   
     }
 
     /**
@@ -36,14 +55,8 @@ public class TestDictionaryFeature {
     @Test
     public void testDetermineDictionaryFeature() throws FileNotFoundException, IOException
     {
-        DictionaryFeature secondDictionaryFeature = new DictionaryFeature();
-        Token firstToken = new Token("syntax");
-
-        assertEquals(true , secondDictionaryFeature.determineDictionaryFeature(firstToken.getValue()));
-        
-        DictionaryFeature thirdDictionaryFeature = new DictionaryFeature();
-        Token secondToken = new Token("bdhiskThisWordShouldNotBeInTheDictionaryJmjhp");
-
-        assertNotEquals(true, thirdDictionaryFeature.determineDictionaryFeature(secondToken.getValue()));
+        myDictionaryFeature = new DictionaryFeature();
+        assertEquals(true , myDictionaryFeature.determineDictionaryFeature("syntax"));
+        assertNotEquals(true, myDictionaryFeature.determineDictionaryFeature("bdhiskThisWordShouldNotBeInTheDictionaryJmjhp"));
     }
 }
