@@ -1,9 +1,12 @@
 package edu.odu.cs.cs350;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Determines if a word is part of the English dictionary.
@@ -12,9 +15,46 @@ import java.io.IOException;
 public class DictionaryFeature {
 
     /**
-     * instantiation of this class as an object.
+     * Constructor for DictionaryFeature
      */
-    public DictionaryFeature() {}
+    public DictionaryFeature(){
+        this.englishDictionarySet = new HashSet<>();
+    }
+
+    /**
+     * Contains around 120,000 words from the english dictionary
+     */
+    private Set<String> englishDictionarySet;
+
+    /**
+     * Opens a file of equal name to
+     * param myFile, returning a reader
+     * for that file.
+     * 
+     * @param myFile
+     * @return FileReader
+     * @throws FileNotFoundException
+     */
+    public FileReader openFile(String myFile) throws FileNotFoundException{
+        return new FileReader(new File(myFile));
+    }
+
+    /**
+     * Loads information from a file into a hashset
+     * 
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
+    public void loadFile() throws FileNotFoundException, IOException{
+        BufferedReader myReader = null;
+        myReader = new BufferedReader(openFile("src/main/data/Dictionary.english.txt"));
+        String fileLine = myReader.readLine();
+        while(fileLine != null){
+            englishDictionarySet.add(fileLine);
+            fileLine = myReader.readLine();
+        }
+        myReader.close();
+    }
 
     /**
      * Runs a string through a list of (up to) 120,000 words in the English Language
@@ -31,25 +71,14 @@ public class DictionaryFeature {
      */
     public boolean determineDictionaryFeature(String myWord) throws FileNotFoundException, IOException {
 
-        BufferedReader myReader = null;
-
-        myReader = new BufferedReader(new FileReader("src/main/data/Dictionary.english.txt"));
-
-        String dictionaryLine = myReader.readLine();
-
-        // Compares every line of the dictionary file with the string value
-        // and returns true if they are equal.
-        // Otherwise, it returns false.
-        while (dictionaryLine != null) {
-
-            if (dictionaryLine.equals(myWord)) {
-                myReader.close();
+        loadFile();
+        for(String dictionaryLine: englishDictionarySet)
+        {
+            if(dictionaryLine.equals(myWord))
+            {
                 return true;
             }
-
-            dictionaryLine = myReader.readLine();
         }
-        myReader.close();
         return false;
     }
 
