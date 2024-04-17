@@ -106,7 +106,7 @@ public class Trainer {
 
             // split if string contains punctuation
             String separatedNextWord[] = nextWord
-                    .split("(?=[.,!?;:()\"&-])|(?<=[.,!?;:()\"&-])|(?=<\\/?(PER)>)|(?<=<PER>)|(?=<\\/?(NER)>)|(?<=<NER>)");
+                    .split("(?=[.,!?;:()\"&-])|(?<=[.,!?;:()\"&-])|(?=<\\/?(PER)>)|(?<=<PER>)|(?=<\\/?(NER)>)|(?<=<NER>)|(?<=<\\/?(PER)>)|(?=<PER>)|(?<=<\\/?(NER)>)|(?=<=<NER>)");
             for (String phrase : separatedNextWord) {
                 nextToken = new Token(phrase);
 
@@ -308,14 +308,14 @@ public class Trainer {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/data/ARFF_Training.txt"))) {
             writer.write("@ATTRIBUTE word STRING\n");
             for (Integer i = 0; i < 5; i++) {
-                Integer temp = i+1;
+                Integer temp = i + 1;
                 writer.write("@ATTRIBUTE commonfirstname" + temp + " BOOLEAN\n");
                 writer.write("@ATTRIBUTE commonlastname" + temp + " BOOLEAN\n");
                 writer.write("@ATTRIBUTE dictionaryfeature" + temp + " BOOLEAN\n");
                 writer.write("@ATTRIBUTE killword" + temp + " BOOLEAN\n");
                 writer.write("@ATTRIBUTE honorific" + temp + " BOOLEAN\n");
                 writer.write("@ATTRIBUTE location" + temp + " BOOLEAN\n");
-                writer.write("@ATTRIBUTE prefix"+ temp + " BOOLEAN\n");
+                writer.write("@ATTRIBUTE prefix" + temp + " BOOLEAN\n");
                 writer.write("@ATTRIBUTE suffix" + temp + " BOOLEAN\n");
                 writer.write("@ATTRIBUTE authorfirstname" + temp + " BOOLEAN\n");
                 writer.write("@ATTRIBUTE authorlastname" + temp + " BOOLEAN\n");
