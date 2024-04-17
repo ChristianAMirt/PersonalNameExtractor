@@ -214,19 +214,18 @@ public class Trainer {
     private void createDataString(Token[] window) {
         StringBuffer buffer = new StringBuffer();
         
-        //Single quotes (') for @ATTRIBUTE WORD in arff file and catch any null WORD values
+        //Catch any null @ATTRIBUTE WORD values
         String tokenWord = window[2].getValue();
         if (tokenWord.length() == 0) {
-            tokenWord = "' ', ";
+            tokenWord = " ";
         }
-        else {
-            tokenWord = "'" + tokenWord + "', ";
-        }
+        //Single quotes (') for @ATTRIBUTE WORD value
+        tokenWord = "'" + tokenWord + "', ";
         buffer.append(tokenWord);
 
         for (Token token : window) {
             if (token == null) {
-                buffer.append(", F, F, F, F, F, F, F, F, F, F, other, other, ");
+                buffer.append("F, F, F, F, F, F, F, F, F, F, other, other, ");
             } else {
                 buffer.append(booleanToString(token.getCommonFirstName()) + ", ");
                 buffer.append(booleanToString(token.getCommonLastName()) + ", ");
@@ -337,6 +336,7 @@ public class Trainer {
             writer.write("@ATTRIBUTE classification INTEGER\n");
             writer.write("\n");
             writer.write("@data\n");
+            writer.write("\n");
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();
