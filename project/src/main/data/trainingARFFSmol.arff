@@ -12,7 +12,7 @@
 @ATTRIBUTE authorfirstname1 {T, F}
 @ATTRIBUTE authorlastname1 {T, F}
 @ATTRIBUTE partofspeech1 {period, comma, hyphen, conjunction, article, other}
-@ATTRIBUTE lexicalfeature1 {number, punct, CapLetter, capitalized, AllCaps}
+@ATTRIBUTE lexicalfeature1 {number, punct, CapLetter, capitalized, AllCaps, other}
 @ATTRIBUTE commonfirstname2 {T, F}
 @ATTRIBUTE commonlastname2 {T, F}
 @ATTRIBUTE dictionaryfeature2 {T, F}
@@ -24,7 +24,7 @@
 @ATTRIBUTE authorfirstname2 {T, F}
 @ATTRIBUTE authorlastname2 {T, F}
 @ATTRIBUTE partofspeech2 {period, comma, hyphen, conjunction, article, other}
-@ATTRIBUTE lexicalfeature2 {number, punct, CapLetter, capitalized, AllCaps}
+@ATTRIBUTE lexicalfeature2 {number, punct, CapLetter, capitalized, AllCaps, other}
 @ATTRIBUTE commonfirstname3 {T, F}
 @ATTRIBUTE commonlastname3 {T, F}
 @ATTRIBUTE dictionaryfeature3 {T, F}
@@ -36,7 +36,7 @@
 @ATTRIBUTE authorfirstname3 {T, F}
 @ATTRIBUTE authorlastname3 {T, F}
 @ATTRIBUTE partofspeech3 {period, comma, hyphen, conjunction, article, other}
-@ATTRIBUTE lexicalfeature3 {number, punct, CapLetter, capitalized, AllCaps}
+@ATTRIBUTE lexicalfeature3 {number, punct, CapLetter, capitalized, AllCaps, other}
 @ATTRIBUTE commonfirstname4 {T, F}
 @ATTRIBUTE commonlastname4 {T, F}
 @ATTRIBUTE dictionaryfeature4 {T, F}
@@ -48,7 +48,7 @@
 @ATTRIBUTE authorfirstname4 {T, F}
 @ATTRIBUTE authorlastname4 {T, F}
 @ATTRIBUTE partofspeech4 {period, comma, hyphen, conjunction, article, other}
-@ATTRIBUTE lexicalfeature4 {number, punct, CapLetter, capitalized, AllCaps}
+@ATTRIBUTE lexicalfeature4 {number, punct, CapLetter, capitalized, AllCaps, other}
 @ATTRIBUTE commonfirstname5 {T, F}
 @ATTRIBUTE commonlastname5 {T, F}
 @ATTRIBUTE dictionaryfeature5 {T, F}
@@ -60,7 +60,7 @@
 @ATTRIBUTE authorfirstname5 {T, F}
 @ATTRIBUTE authorlastname5 {T, F}
 @ATTRIBUTE partofspeech5 {period, comma, hyphen, conjunction, article, other}
-@ATTRIBUTE lexicalfeature5 {number, punct, CapLetter, capitalized, AllCaps}
+@ATTRIBUTE lexicalfeature5 {number, punct, CapLetter, capitalized, AllCaps, other}
 @ATTRIBUTE classification INTEGER
 
 @data

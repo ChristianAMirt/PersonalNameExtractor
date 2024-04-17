@@ -331,7 +331,7 @@ public class Trainer {
                 writer.write("@ATTRIBUTE authorfirstname" + temp + " {T, F}\n");
                 writer.write("@ATTRIBUTE authorlastname" + temp + " {T, F}\n");
                 writer.write("@ATTRIBUTE partofspeech" + temp + " {period, comma, hyphen, conjunction, article, other}\n");  //Need to enumerate values here
-                writer.write("@ATTRIBUTE lexicalfeature" + temp + " {number, punct, CapLetter, capitalized, AllCaps}\n"); //Need to enumerate values here
+                writer.write("@ATTRIBUTE lexicalfeature" + temp + " {number, punct, CapLetter, capitalized, AllCaps, other}\n"); //Need to enumerate values here
             }
             writer.write("@ATTRIBUTE classification INTEGER\n");
             writer.write("\n");
