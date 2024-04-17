@@ -37,7 +37,8 @@ import java.util.Random;
  */
 public class Trainer {
 
-    private final String TRAINING_DATA_FILEPATH = "src/main/data/trainingData.txt";
+    private final String TRAINING_DATA_FILEPATH = "src/main/data/trainingDataSmol.txt";
+    private final String OUTPUT_ARFF_FILEPATH = "src/main/data/trainingARFFSmol.arff";
 
     private Vector<String> dataStrings;
 
@@ -213,11 +214,18 @@ public class Trainer {
     private void createDataString(Token[] window) {
         StringBuffer buffer = new StringBuffer();
 
-        buffer.append(window[2].getValue() + ", ");
+        // Catch any null @ATTRIBUTE WORD values
+        String tokenWord = window[2].getValue();
+        if (tokenWord.length() == 0) {
+            tokenWord = " ";
+        }
+        // Single quotes (') for @ATTRIBUTE WORD value
+        tokenWord = "'" + tokenWord + "', ";
+        buffer.append(tokenWord);
 
         for (Token token : window) {
             if (token == null) {
-                buffer.append("FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, other, other, ");
+                buffer.append("F, F, F, F, F, F, F, F, F, F, other, other, ");
             } else {
                 buffer.append(booleanToString(token.getCommonFirstName()) + ", ");
                 buffer.append(booleanToString(token.getCommonLastName()) + ", ");
@@ -240,8 +248,8 @@ public class Trainer {
 
     private String booleanToString(boolean itIsTrue) {
         if (itIsTrue)
-            return "TRUE";
-        return "FALSE";
+            return "T";
+        return "F";
     }
 
     /**
@@ -300,31 +308,42 @@ public class Trainer {
      */
     private void initializeOutputFile() {
         try {
-            Files.deleteIfExists(Paths.get("src/main/data/ARFF_Training.txt"));
+            Files.deleteIfExists(Paths.get(OUTPUT_ARFF_FILEPATH));
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/data/ARFF_Training.txt"))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(OUTPUT_ARFF_FILEPATH))) {
+
+            writer.write("@RELATION ARFF_TRAINING\n");
+            writer.write("\n");
             writer.write("@ATTRIBUTE word STRING\n");
             for (Integer i = 0; i < 5; i++) {
                 Integer temp = i + 1;
-                writer.write("@ATTRIBUTE commonfirstname" + temp + " BOOLEAN\n");
-                writer.write("@ATTRIBUTE commonlastname" + temp + " BOOLEAN\n");
-                writer.write("@ATTRIBUTE dictionaryfeature" + temp + " BOOLEAN\n");
-                writer.write("@ATTRIBUTE killword" + temp + " BOOLEAN\n");
-                writer.write("@ATTRIBUTE honorific" + temp + " BOOLEAN\n");
-                writer.write("@ATTRIBUTE location" + temp + " BOOLEAN\n");
-                writer.write("@ATTRIBUTE prefix" + temp + " BOOLEAN\n");
-                writer.write("@ATTRIBUTE suffix" + temp + " BOOLEAN\n");
-                writer.write("@ATTRIBUTE authorfirstname" + temp + " BOOLEAN\n");
-                writer.write("@ATTRIBUTE authorlastname" + temp + " BOOLEAN\n");
-                writer.write("@ATTRIBUTE partofspeech" + temp + " BOOLEAN\n");
-                writer.write("@ATTRIBUTE lexicalfeature" + temp + " BOOLEAN\n");
+                writer.write("@ATTRIBUTE commonfirstname" + temp + " {T, F}\n");
+                writer.write("@ATTRIBUTE commonlastname" + temp + " {T, F}\n");
+                writer.write("@ATTRIBUTE dictionaryfeature" + temp + " {T, F}\n");
+                writer.write("@ATTRIBUTE killword" + temp + " {T, F}\n");
+                writer.write("@ATTRIBUTE honorific" + temp + " {T, F}\n");
+                writer.write("@ATTRIBUTE location" + temp + " {T, F}\n");
+                writer.write("@ATTRIBUTE prefix" + temp + " {T, F}\n");
+                writer.write("@ATTRIBUTE suffix" + temp + " {T, F}\n");
+                writer.write("@ATTRIBUTE authorfirstname" + temp + " {T, F}\n");
+                writer.write("@ATTRIBUTE authorlastname" + temp + " {T, F}\n");
+                writer.write(
+                        "@ATTRIBUTE partofspeech" + temp + " {period, comma, hyphen, conjunction, article, other}\n"); // Need
+                                                                                                                       // to
+                                                                                                                       // enumerate
+                                                                                                                       // values
+                                                                                                                       // here
+                writer.write("@ATTRIBUTE lexicalfeature" + temp
+                        + " {number, punct, CapLetter, capitalized, AllCaps, other}\n"); // Need to enumerate values
+                                                                                         // here
             }
             writer.write("@ATTRIBUTE classification INTEGER\n");
             writer.write("\n");
             writer.write("@data\n");
+            writer.write("\n");
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -339,7 +358,7 @@ public class Trainer {
      * @throws IOException
      */
     private void populateOutputFile(Vector<String> dataStrings) throws IOException {
-        BufferedWriter out = new BufferedWriter(new FileWriter("src/main/data/ARFF_Training.txt", true));
+        BufferedWriter out = new BufferedWriter(new FileWriter(OUTPUT_ARFF_FILEPATH, true));
         // MARK: OUTPUT TO FILE HERE
         for (String data : dataStrings) {
             out.write(data);
