@@ -113,7 +113,7 @@ public class Trainer {
 
                 nextToken.setCommonFirstName(commonNames.commonFirstName(phrase));
                 nextToken.setCommonLastName(commonNames.commonLastName(phrase)); // slow down
-                nextToken.setDictionaryFeature(dictionaryFeature.determineDictionaryFeature(phrase)); // slightly slow
+                nextToken.setDictionaryFeature(dictionaryFeature.determineDictionaryFeature(phrase));
                 nextToken.setKillWordFeature(killWordFeature.determineKillWordFeature(phrase));
                 nextToken.setHonorificsValue(honorifics.containsHonorifics(phrase));
                 nextToken.setIsLocation(locationLookup.checkLocation(phrase));
