@@ -46,7 +46,7 @@ public class KillWordFeature{
     /**
      * Returns the killWordSet
      * 
-     * @return Set<String>
+     * @return Set
      */
     public Set<String> getKillWordSet(){
         return killWordSet;

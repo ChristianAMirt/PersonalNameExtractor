@@ -46,7 +46,7 @@ public class DictionaryFeature{
     /**
      * Returns the englishDictionarySet
      * 
-     * @return Set<String>
+     * @return Set
      */
     public Set<String> getEnglishDictionarySet(){
         return englishDictionarySet;
