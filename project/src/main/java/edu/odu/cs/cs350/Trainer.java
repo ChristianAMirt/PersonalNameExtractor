@@ -112,7 +112,7 @@ public class Trainer {
                 nextToken = new Token(phrase);
 
                 nextToken.setCommonFirstName(commonNames.commonFirstName(phrase));
-                nextToken.setCommonLastName(commonNames.commonLastName(phrase)); // slow down
+                nextToken.setCommonLastName(commonNames.commonLastName(phrase));
                 nextToken.setDictionaryFeature(dictionaryFeature.determineDictionaryFeature(phrase));
                 nextToken.setKillWordFeature(killWordFeature.determineKillWordFeature(phrase));
                 nextToken.setHonorificsValue(honorifics.containsHonorifics(phrase));
@@ -120,10 +120,9 @@ public class Trainer {
                 nextToken.setPrefixFeature(prefixAndSuffixFeature.determinePrefixFeature(phrase));
                 nextToken.setSuffixFeature(prefixAndSuffixFeature.determineSuffixFeature(phrase));
                 nextToken.setAuthorFirstName(knownAuthors.firstName(phrase));
-                nextToken.setAuthorLastName(knownAuthors.lastName(phrase)); // Slow down
+                nextToken.setAuthorLastName(knownAuthors.lastName(phrase));
                 nextToken.setPartOfSpeech(partsOfSpeech.checkForPartsOfSpeech(phrase));
                 nextToken.setLexicalFeature(lexicalFeature.determineLexicalFeature(phrase));
-                // 32.7, 33.3, 32.6 seconds per 100 lines 32.866... on average
 
                 if (phrase.equals("</PER>")) {
                     inPER = false;
@@ -202,13 +201,6 @@ public class Trainer {
 
         // MARK: Call populateOutputFile
         populateOutputFile(dataStrings);
-
-        // Debugging output for making sure the data strings are correct
-        // FileWriter myFile = new FileWriter("src/main/data/ARFF_Training.txt");
-        // for (String data : dataStrings) {
-        // myFile.write(data);
-        // myFile.write("\n");
-        // }
     }
 
     private void createDataString(Token[] window) {
