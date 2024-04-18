@@ -10,14 +10,15 @@ import java.util.Set;
 
 /**
  * Determines if a word is part of the English dictionary.
+ * 
  * @author Jaylen Wheeler
  */
-public class DictionaryFeature{
+public class DictionaryFeature {
 
     /**
      * Constructor for DictionaryFeature
      */
-    public DictionaryFeature()throws FileNotFoundException, IOException{
+    public DictionaryFeature() throws FileNotFoundException, IOException {
         this.englishDictionarySet = new HashSet<>();
         loadFile();
     }
@@ -36,15 +37,16 @@ public class DictionaryFeature{
      * @return FileReader
      * @throws FileNotFoundException
      */
-    public FileReader openFile(String myFile) throws FileNotFoundException{
+    public FileReader openFile(String myFile) throws FileNotFoundException {
         return new FileReader(new File(myFile));
     }
 
     /**
      * Returns the englishDictionarySet
+     * 
      * @return
      */
-    public Set<String> getEnglishDictionarySet(){
+    public Set<String> getEnglishDictionarySet() {
         return englishDictionarySet;
     }
 
@@ -54,11 +56,11 @@ public class DictionaryFeature{
      * @throws FileNotFoundException
      * @throws IOException
      */
-    public void loadFile() throws FileNotFoundException, IOException{
+    public void loadFile() throws FileNotFoundException, IOException {
         BufferedReader myReader = null;
         myReader = new BufferedReader(openFile("src/main/data/Dictionary.english.txt"));
         String fileLine = myReader.readLine();
-        while(fileLine != null){
+        while (fileLine != null) {
             englishDictionarySet.add(fileLine);
             fileLine = myReader.readLine();
         }
@@ -73,21 +75,22 @@ public class DictionaryFeature{
      * 
      * @param myWord
      * 
-     * @throws FileNotFoundException 
+     * @throws FileNotFoundException
      * @throws IOException
      * 
      * @return boolean value.
      */
     public boolean determineDictionaryFeature(String myWord) throws FileNotFoundException, IOException {
+        return englishDictionarySet.contains(myWord.trim().toLowerCase());
 
-        for(String dictionaryLine: englishDictionarySet)
-        {
-            if(dictionaryLine.equals(myWord))
-            {
-                return true;
-            }
-        }
-        return false;
+        // for(String dictionaryLine: englishDictionarySet)
+        // {
+        // if(dictionaryLine.equals(myWord))
+        // {
+        // return true;
+        // }
+        // }
+        // return false;
     }
 
 }
