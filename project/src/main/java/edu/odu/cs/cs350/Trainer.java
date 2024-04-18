@@ -220,8 +220,8 @@ public class Trainer {
             tokenWord = " ";
         }
         // Single quotes (') for @ATTRIBUTE WORD value
-        tokenWord = "'" + tokenWord + "', ";
-        buffer.append(tokenWord);
+        // tokenWord = "'" + tokenWord + "', ";
+        // buffer.append(tokenWord);
 
         for (Token token : window) {
             if (token == null) {
@@ -317,7 +317,7 @@ public class Trainer {
 
             writer.write("@RELATION ARFF_TRAINING\n");
             writer.write("\n");
-            writer.write("@ATTRIBUTE word STRING\n");
+            // writer.write("@ATTRIBUTE word STRING\n");
             for (Integer i = 0; i < 5; i++) {
                 Integer temp = i + 1;
                 writer.write("@ATTRIBUTE commonfirstname" + temp + " {T, F}\n");

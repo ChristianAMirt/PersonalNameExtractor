@@ -1,4 +1,5 @@
 package edu.odu.cs.cs350;
+
 import weka.core.Instances;
 //import weka.core.pmml.jaxbbindings.Attribute;
 import weka.core.Attribute;
@@ -14,16 +15,17 @@ import java.util.ArrayList;
  */
 @SuppressWarnings({ "deprecation", "unchecked", "rawtypes" })
 public class NameLearningMachine {
-    
+
     /**
      * instantiation of this class as an object.
      */
-    public NameLearningMachine()throws IOException{};
+    public NameLearningMachine() throws IOException {
+    };
 
     /**
      * Stores the common first names.
      */
-    String[] commonFirstNames = {"TRUE", "FALSE"};
+    String[] commonFirstNames = { "T", "F" };
 
     /**
      * Attribute for common first names.
@@ -33,7 +35,7 @@ public class NameLearningMachine {
     /**
      * Stores the common last names.
      */
-    String[] commonLastNames = {"TRUE", "FALSE"};
+    String[] commonLastNames = { "T", "F" };
 
     /**
      * Attribute for common last names.
@@ -43,7 +45,7 @@ public class NameLearningMachine {
     /**
      * Stores the author first names.
      */
-    String[] authorFirstNames = {"TRUE", "FALSE"};
+    String[] authorFirstNames = { "T", "F" };
 
     /**
      * Attribute for author first names.
@@ -53,7 +55,7 @@ public class NameLearningMachine {
     /**
      * Stores the author last names.
      */
-    String[] authorLastNames = {"TRUE", "FALSE"};
+    String[] authorLastNames = { "T", "F" };
 
     /**
      * Attribute for the author last names.
@@ -63,7 +65,7 @@ public class NameLearningMachine {
     /**
      * Stores the honorifics.
      */
-    String[] honorifics = {"TRUE", "FALSE"};
+    String[] honorifics = { "T", "F" };
 
     /**
      * Attribute for the honorifics.
@@ -73,7 +75,7 @@ public class NameLearningMachine {
     /**
      * Stores the English dictionary words.
      */
-    String[] englishDictionaryWords = {"TRUE", "FALSE"};
+    String[] englishDictionaryWords = { "T", "F" };
 
     /**
      * Attribute for the English dictionary words.
@@ -83,7 +85,7 @@ public class NameLearningMachine {
     /**
      * Stores the kill words.
      */
-    String[] killWords = {"TRUE", "FALSE"};
+    String[] killWords = { "T", "F" };
 
     /**
      * Attribute for the kill words.
@@ -93,7 +95,7 @@ public class NameLearningMachine {
     /**
      * Stores the prefixes.
      */
-    String[] prefixWords = {"TRUE", "FALSE"};
+    String[] prefixWords = { "T", "F" };
 
     /**
      * Attribute for the prefixes.
@@ -103,7 +105,7 @@ public class NameLearningMachine {
     /**
      * Stores the suffixes.
      */
-    String[] suffixWords = {"TRUE", "FALSE"};
+    String[] suffixWords = { "T", "F" };
 
     /**
      * Attribute for the suffixes.
@@ -113,7 +115,7 @@ public class NameLearningMachine {
     /**
      * Stores the first group of locations.
      */
-    String[] locationWords1 = {"TRUE", "FALSE"};
+    String[] locationWords1 = { "T", "F" };
 
     /**
      * Attribute for the first group of locations.
@@ -123,7 +125,7 @@ public class NameLearningMachine {
     /**
      * Stores the second group of locations.
      */
-    String[] locationWords2 = {"TRUE", "FALSE"};
+    String[] locationWords2 = { "T", "F" };
 
     /**
      * Attribute for the second group of locations.
@@ -133,7 +135,7 @@ public class NameLearningMachine {
     /**
      * Stores the third group of locations.
      */
-    String[] locationWords3 = {"TRUE", "FALSE"};
+    String[] locationWords3 = { "T", "F" };
 
     /**
      * Attribute for the third group of locations.
@@ -162,12 +164,13 @@ public class NameLearningMachine {
      * Holds all of the attributes
      */
     ArrayList<Attribute> attributeInfo = new ArrayList<Attribute>();
-    
+
     /**
      * Method to add the attributes to the attributeInfo array
+     * 
      * @param attributeArray
      */
-    public void attributeAdding( ArrayList<Attribute> attributeArray){
+    public void attributeAdding(ArrayList<Attribute> attributeArray) {
         attributeArray.add(commonFirstNameValue);
         attributeArray.add(commonLastNameValue);
         attributeArray.add(authorFirstNameValue);
@@ -191,11 +194,12 @@ public class NameLearningMachine {
 
     /**
      * Gets the number of lines in the files
+     * 
      * @param filePath
      * @return
      * @throws IOException
      */
-    public int getFileSize(String filePath) throws IOException{
+    public int getFileSize(String filePath) throws IOException {
 
         BufferedReader myReader = null;
         myReader = new BufferedReader(new FileReader(filePath));
@@ -218,8 +222,6 @@ public class NameLearningMachine {
     // creates an instance holding the trainer information
     Instances trainerInformation = new Instances("data", attributeInfo, dataFileSize);
 
-    
-
     /**
      * Places the file data into a fast vector
      * 
@@ -237,6 +239,5 @@ public class NameLearningMachine {
         }
         return result;
     }
-    
 
 }
