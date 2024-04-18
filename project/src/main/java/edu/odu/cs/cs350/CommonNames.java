@@ -21,10 +21,13 @@ public class CommonNames {
 
     /**
      * Constructor for CommonNames
+     * @throws IOException 
      */
-    public CommonNames(){
+    public CommonNames() throws IOException{
         this.firstNames = new HashSet<>();
         this.lastNames = new HashSet<>();
+        loadFirstNames();
+        loadLastNames();
     }
 
     /**
@@ -53,10 +56,6 @@ public class CommonNames {
     public boolean commonFirstName(String value) 
         throws IOException
     {
-        String inputString = null;
-
-        loadFirstNames(inputString);
-
         if(firstNames.contains(value.trim().toLowerCase())){
             return true;
         }
@@ -76,10 +75,6 @@ public class CommonNames {
     public boolean commonLastName(String value) 
         throws IOException
     {
-        String inputString = null;
-
-        loadLastNames(inputString);
-
         if(lastNames.contains(value.trim().toLowerCase())){
             return true;
         }
@@ -93,7 +88,8 @@ public class CommonNames {
      * @param inputString
      * @throws IOException
      */
-    public void loadFirstNames(String inputString) throws IOException{
+    public void loadFirstNames() throws IOException{
+        String inputString = null;
         String fileName = "src/main/data/CommonFirstNames.txt";
         BufferedReader reader = new BufferedReader(openFile(fileName));
 
@@ -108,7 +104,8 @@ public class CommonNames {
      * @param inputString
      * @throws IOException
      */
-    public void loadLastNames(String inputString) throws IOException{
+    public void loadLastNames() throws IOException{
+        String inputString = null;
         String fileName = "src/main/data/CommonLastNames.txt";
         BufferedReader reader = new BufferedReader(openFile(fileName));
         

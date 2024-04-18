@@ -20,9 +20,11 @@ public class Honorifics {
 
     /**
      * Constructor for Honorifics
+     * @throws IOException 
      */
-    public Honorifics(){
+    public Honorifics() throws IOException{
         this.honorifics = new HashSet<>();
+        loadHonorifics();
     }
 
     /**
@@ -51,10 +53,6 @@ public class Honorifics {
     public boolean containsHonorifics(String value) 
         throws IOException
     {
-        String inputString = null; 
-
-        loadHonorifics(inputString);
-
         if(honorifics.contains(value.trim().toLowerCase())){
             return true;
         }
@@ -69,7 +67,8 @@ public class Honorifics {
      * @param inputString
      * @throws IOException
      */
-    public void loadHonorifics(String inputString) throws IOException{
+    public void loadHonorifics() throws IOException{
+        String inputString = null;
         String fileName = "src/main/data/Dictionary.honorifics.txt";
         BufferedReader reader = new BufferedReader(openFile(fileName));
 
