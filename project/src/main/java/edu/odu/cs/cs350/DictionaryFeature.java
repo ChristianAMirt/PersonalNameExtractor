@@ -16,6 +16,9 @@ public class DictionaryFeature{
 
     /**
      * Constructor for DictionaryFeature
+     * 
+     * @throws FileNotFoundException
+     * @throws IOException
      */
     public DictionaryFeature()throws FileNotFoundException, IOException{
         this.englishDictionarySet = new HashSet<>();
@@ -42,7 +45,8 @@ public class DictionaryFeature{
 
     /**
      * Returns the englishDictionarySet
-     * @return
+     * 
+     * @return Set<String>
      */
     public Set<String> getEnglishDictionarySet(){
         return englishDictionarySet;
@@ -55,6 +59,7 @@ public class DictionaryFeature{
      * @throws IOException
      */
     public void loadFile() throws FileNotFoundException, IOException{
+        
         BufferedReader myReader = null;
         myReader = new BufferedReader(openFile("src/main/data/Dictionary.english.txt"));
         String fileLine = myReader.readLine();
@@ -78,7 +83,8 @@ public class DictionaryFeature{
      * 
      * @return boolean value.
      */
-    public boolean determineDictionaryFeature(String myWord) throws FileNotFoundException, IOException {
+    public boolean determineDictionaryFeature(String myWord) 
+            throws FileNotFoundException, IOException {
 
         for(String dictionaryLine: englishDictionarySet)
         {

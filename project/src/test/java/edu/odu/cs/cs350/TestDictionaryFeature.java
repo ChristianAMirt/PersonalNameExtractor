@@ -13,7 +13,7 @@ import java.util.Set;
 /**
  * @author Jaylen Wheeler
  * 
- * Tests for the method of DictionaryFeature
+ * Tests for the methods of DictionaryFeature
  */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class TestDictionaryFeature{
@@ -24,7 +24,7 @@ public class TestDictionaryFeature{
     private DictionaryFeature myDictionaryFeature;
 
     /**
-     * Calls the constructor of dictionary feature only
+     * Calls the constructor of dictionaryFeature only
      * once. This allows for the same DictionaryFeature 
      * object to be used for every test here.
      * 
@@ -39,12 +39,9 @@ public class TestDictionaryFeature{
     /**
      * Tests the constructor for DictionaryFeature, making sure that
      * everything is initialized properly.
-     * 
-     * @throws FileNotFoundException
-     * @throws IOException
      */
     @Test
-    public void testDictionaryFeatureConstructor() throws FileNotFoundException, IOException{
+    public void testDictionaryFeatureConstructor(){
         assertNotNull(myDictionaryFeature);
         assertTrue(myDictionaryFeature.getEnglishDictionarySet().contains("tablespoonfuls"));
     }
@@ -82,7 +79,6 @@ public class TestDictionaryFeature{
         testSet.add("confectioneries");
         testSet.add("whiffletrees");
         assertTrue(myDictionaryFeature.getEnglishDictionarySet().containsAll(testSet));
-        // I am going to finish this
     }
 
     /**
