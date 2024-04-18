@@ -44,6 +44,12 @@ public class KnownAuthors {
         loadFile(FILE2, lastNames);
     }
 
+    /**
+     * Loads information from a file into a hashset.
+     * 
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
     public void loadFile(String filePath, Set<String> set) throws FileNotFoundException, IOException {
         BufferedReader myReader = null;
         myReader = new BufferedReader(openFile(filePath));
@@ -55,14 +61,45 @@ public class KnownAuthors {
         myReader.close();
     }
 
+    /**
+     * Opens a file of equal name to
+     * param myFile, returning a reader
+     * for that file.
+     * 
+     * @param myFile
+     * @return FileReader
+     * @throws FileNotFoundException
+     */
     public FileReader openFile(String myFile) throws FileNotFoundException {
         return new FileReader(new File(myFile));
     }
 
+    /**
+     * Compares parameters hash value to the hashset to see if string
+     * exisits in set.
+     * 
+     * @param myWord
+     * 
+     * @throws FileNotFoundException
+     * @throws IOException
+     * 
+     * @return boolean value.
+     */
     public boolean firstName(String myWord) throws FileNotFoundException, IOException {
         return firstNames.contains(myWord.trim().toLowerCase());
     }
 
+    /**
+     * Compares parameters hash value to the hashset to see if string
+     * exisits in set.
+     * 
+     * @param myWord
+     * 
+     * @throws FileNotFoundException
+     * @throws IOException
+     * 
+     * @return boolean value.
+     */
     public boolean lastName(String myWord) throws FileNotFoundException, IOException {
         long debug = myWord.hashCode();
         return lastNames.contains(myWord.trim().toLowerCase());
