@@ -1,13 +1,9 @@
 package edu.odu.cs.cs350;
 
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
-
 import static org.junit.jupiter.api.Assertions.*;
-
-import java.io.File;
 import java.io.FileReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -75,11 +71,17 @@ public class TestDictionaryFeature{
         assertEquals(HashSet.class, myDictionaryFeature.getEnglishDictionarySet().getClass());
     }
 
+    /**
+     * Tests the loadFile method to confirm that
+     * the english dictionary words were loaded into the file.
+     */
     @Test
     public void testLoadFile(){
-        String[] testDictionary = myDictionaryFeature.getEnglishDictionarySet()
-        .toArray(new String[myDictionaryFeature.getEnglishDictionarySet().size()]);
-        //assertTrue()
+        Set<String> testSet = new HashSet<>();
+        testSet.add("ensuring");
+        testSet.add("confectioneries");
+        testSet.add("whiffletrees");
+        assertTrue(myDictionaryFeature.getEnglishDictionarySet().containsAll(testSet));
         // I am going to finish this
     }
 
