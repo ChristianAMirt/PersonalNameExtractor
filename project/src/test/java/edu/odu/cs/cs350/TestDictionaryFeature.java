@@ -24,7 +24,7 @@ public class TestDictionaryFeature{
     private DictionaryFeature myDictionaryFeature;
 
     /**
-     * Calls the constructor of dictionaryFeature only
+     * Calls the constructor of DictionaryFeature only
      * once. This allows for the same DictionaryFeature 
      * object to be used for every test here.
      * 
