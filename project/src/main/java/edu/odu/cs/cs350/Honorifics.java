@@ -64,7 +64,6 @@ public class Honorifics {
     /**
      * Loads data from Dictionary.honorifics.txt to be compaired against
      * 
-     * @param inputString
      * @throws IOException
      */
     public void loadHonorifics() throws IOException{
