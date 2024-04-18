@@ -37,8 +37,8 @@ import java.util.Random;
  */
 public class Trainer {
 
-    private final String TRAINING_DATA_FILEPATH = "src/main/data/trainingDataSmol.txt";
-    private final String OUTPUT_ARFF_FILEPATH = "src/main/data/trainingARFFSmol.arff";
+    private final String TRAINING_DATA_FILEPATH = "src/main/data/trainingData.txt";
+    private final String OUTPUT_ARFF_FILEPATH = "src/main/data/trainingARFF.arff";
 
     private Vector<String> dataStrings;
 
