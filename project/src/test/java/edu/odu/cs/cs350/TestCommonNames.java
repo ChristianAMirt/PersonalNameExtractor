@@ -2,7 +2,7 @@ package edu.odu.cs.cs350;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-import java.io.FileNotFoundException;
+
 import java.io.IOException;
 
 
@@ -11,9 +11,10 @@ public class TestCommonNames {
     /**
      * Test to make sure CommonNames constructor
      * is properly creating new instance of CommonNames
+     * @throws IOException 
      */
     @Test
-    public void testCommonNamesConstructor(){
+    public void testCommonNamesConstructor() throws IOException{
         CommonNames commonName = new CommonNames();
         assertNotNull(commonName);
     }
@@ -21,10 +22,11 @@ public class TestCommonNames {
     /**
      * Tests that both reference files are both valid
      * and that function returns open file
+     * @throws IOException 
      */
     @Test
     public void testOpenFile()
-        throws FileNotFoundException
+        throws IOException
     {
         CommonNames testInput = new CommonNames();
 

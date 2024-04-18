@@ -2,16 +2,17 @@ package edu.odu.cs.cs350;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-import java.io.FileNotFoundException;
+
 import java.io.IOException;
 
 public class TestHonorifics {
     /**
      * Test to make sure Honorifics constructor
      * is properly creating new instance of Honorifics
+     * @throws IOException 
      */
     @Test
-    public void testHonorificsConstructor(){
+    public void testHonorificsConstructor() throws IOException{
         Honorifics honorificsFeature = new Honorifics();
         assertNotNull(honorificsFeature);
     }
@@ -19,10 +20,11 @@ public class TestHonorifics {
     /**
      * Tests that both reference files are both valid
      * and that function returns open file
+     * @throws IOException 
      */
     @Test
     public void testOpenFile()
-        throws FileNotFoundException
+        throws IOException
     {
         Honorifics testInput = new Honorifics();
 

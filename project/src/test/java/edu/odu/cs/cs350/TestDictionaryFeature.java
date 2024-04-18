@@ -1,13 +1,9 @@
 package edu.odu.cs.cs350;
 
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
-
 import static org.junit.jupiter.api.Assertions.*;
-
-import java.io.File;
 import java.io.FileReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -17,7 +13,7 @@ import java.util.Set;
 /**
  * @author Jaylen Wheeler
  * 
- * Tests for the method of DictionaryFeature
+ * Tests for the methods of DictionaryFeature
  */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class TestDictionaryFeature{
@@ -28,7 +24,7 @@ public class TestDictionaryFeature{
     private DictionaryFeature myDictionaryFeature;
 
     /**
-     * Calls the constructor of dictionary feature only
+     * Calls the constructor of DictionaryFeature only
      * once. This allows for the same DictionaryFeature 
      * object to be used for every test here.
      * 
@@ -43,12 +39,9 @@ public class TestDictionaryFeature{
     /**
      * Tests the constructor for DictionaryFeature, making sure that
      * everything is initialized properly.
-     * 
-     * @throws FileNotFoundException
-     * @throws IOException
      */
     @Test
-    public void testDictionaryFeatureConstructor() throws FileNotFoundException, IOException{
+    public void testDictionaryFeatureConstructor(){
         assertNotNull(myDictionaryFeature);
         assertTrue(myDictionaryFeature.getEnglishDictionarySet().contains("tablespoonfuls"));
     }
@@ -75,12 +68,17 @@ public class TestDictionaryFeature{
         assertEquals(HashSet.class, myDictionaryFeature.getEnglishDictionarySet().getClass());
     }
 
+    /**
+     * Tests the loadFile method to confirm that
+     * the english dictionary words were loaded into the file.
+     */
     @Test
     public void testLoadFile(){
-        String[] testDictionary = myDictionaryFeature.getEnglishDictionarySet()
-        .toArray(new String[myDictionaryFeature.getEnglishDictionarySet().size()]);
-        //assertTrue()
-        // I am going to finish this
+        Set<String> testSet = new HashSet<>();
+        testSet.add("ensuring");
+        testSet.add("confectioneries");
+        testSet.add("whiffletrees");
+        assertTrue(myDictionaryFeature.getEnglishDictionarySet().containsAll(testSet));
     }
 
     /**
