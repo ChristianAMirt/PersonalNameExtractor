@@ -51,7 +51,7 @@ public class TestNameLearningMachine {
         NameLearningMachine fileSizeTester = new NameLearningMachine();
         int numberOfLines = fileSizeTester.getFileSize("src/main/data/trainingDataSmol.txt");
 
-        assertEquals(44, numberOfLines);
+        assertEquals(101, numberOfLines);
     }
 
     /**
