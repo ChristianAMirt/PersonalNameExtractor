@@ -15,7 +15,7 @@ import java.util.Set;
 public class PrefixAndSuffixFeature{
 
     /**
-     * Constructor for PrefixAndSuffixFeature
+     * Constructor for PrefixAndSuffixFeature.
      */
     public PrefixAndSuffixFeature() throws FileNotFoundException, IOException{
         this.prefixSet = new HashSet<>();
@@ -25,12 +25,12 @@ public class PrefixAndSuffixFeature{
     }
 
     /**
-     * Contains the prefixes
+     * Contains the prefixes.
      */
     private Set<String> prefixSet;
 
     /**
-     * Contains the suffixes
+     * Contains the suffixes.
      */
     private Set<String> suffixSet;
 
@@ -48,7 +48,7 @@ public class PrefixAndSuffixFeature{
     }
 
     /**
-     * Returns the prefixSet
+     * Returns the prefixSet.
      * 
      * @return Set
      */
@@ -57,7 +57,7 @@ public class PrefixAndSuffixFeature{
     }
 
     /**
-     * Returns the suffixSet
+     * Returns the suffixSet.
      * 
      * @return Set
      */
@@ -66,7 +66,7 @@ public class PrefixAndSuffixFeature{
     }
 
     /**
-     * Loads information from the prefix file into a hashset
+     * Loads information from the prefix file into a hashset.
      * 
      * @throws FileNotFoundException
      * @throws IOException
@@ -84,7 +84,7 @@ public class PrefixAndSuffixFeature{
     }
 
     /**
-     * Loads information from the suffix file into a hashset
+     * Loads information from the suffix file into a hashset.
      * 
      * @throws FileNotFoundException
      * @throws IOException

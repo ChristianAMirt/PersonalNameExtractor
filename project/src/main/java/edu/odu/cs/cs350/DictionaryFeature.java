@@ -16,7 +16,7 @@ import java.util.Set;
 public class DictionaryFeature {
 
     /**
-     * Constructor for DictionaryFeature
+     * Constructor for DictionaryFeature.
      * 
      * @throws FileNotFoundException
      * @throws IOException
@@ -27,7 +27,7 @@ public class DictionaryFeature {
     }
 
     /**
-     * Contains around 120,000 words from the english dictionary
+     * Contains around 120,000 words from the english dictionary.
      */
     private Set<String> englishDictionarySet;
 
@@ -45,7 +45,7 @@ public class DictionaryFeature {
     }
 
     /**
-     * Returns the englishDictionarySet
+     * Returns the englishDictionarySet.
      * 
      * @return Set
      */
@@ -54,7 +54,7 @@ public class DictionaryFeature {
     }
 
     /**
-     * Loads information from a file into a hashset
+     * Loads information from a file into a hashset.
      * 
      * @throws FileNotFoundException
      * @throws IOException

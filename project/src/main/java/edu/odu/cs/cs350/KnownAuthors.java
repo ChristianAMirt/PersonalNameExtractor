@@ -18,7 +18,14 @@ import java.util.Set;
  */
 public class KnownAuthors {
 
+    /**
+     * String for first names file path
+     */
     private static final String FILE1 = "src/main/data/Dictionary.firstNames.txt";
+
+    /**
+     * String for last names file apth
+     */
     private static final String FILE2 = "src/main/data/Dictionary.lastNames.txt";
 
     /**
@@ -47,6 +54,8 @@ public class KnownAuthors {
     /**
      * Loads information from a file into a hashset.
      * 
+     * @param filePath
+     * @param set
      * @throws FileNotFoundException
      * @throws IOException
      */

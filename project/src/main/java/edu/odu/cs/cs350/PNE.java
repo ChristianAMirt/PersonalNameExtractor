@@ -3,12 +3,12 @@ package edu.odu.cs.cs350;
 import java.io.IOException;
 
 /**
- * Temporary/Dummy class for the PNE
+ * Temporary/Dummy class for the PNE.
  */
 public class PNE {
 
     /**
-     * Main body for the PNE
+     * Main body for the PNE.
      * @param arguments
      */
     public static void main(String[] arguments) {

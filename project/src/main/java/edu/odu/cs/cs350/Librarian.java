@@ -33,7 +33,7 @@ public class Librarian {
     private Vector<Document> inputDocuments;
 
     /**
-     * Takes in a string from the user to read
+     * Takes in a string from the user to read.
      * @param inputPage is the string given by the user
      * 
      * @throws IOException if input is larger than 4000 characters
@@ -61,7 +61,7 @@ public class Librarian {
     }
 
     /**
-     * Checks to see if documents have been added
+     * Checks to see if documents have been added.
      * @return true if one or more Documents have been added to collection
      */
     public boolean hasDocuments() {
@@ -79,7 +79,7 @@ public class Librarian {
     }
 
     /**
-     * Returns the document at the specified index
+     * Returns the document at the specified index.
      * @param index of the vector of Documents that is being retrived
      * @return the document object at that index
      */
@@ -98,7 +98,7 @@ public class Librarian {
     }
 
     /**
-     * Returns the substring text between the NER tags
+     * Returns the substring text between the NER tags.
      * @param inputText
      * @return String
      */

@@ -9,18 +9,22 @@ import java.util.Set;
 import java.io.FileNotFoundException;
 
 /**
- *  Determines if token contains a common name
+ *  Determines if token contains a common name.
  */
 public class CommonNames {
 
-    // Contains first names loaded from CommonFirstNames.txt
+    /**
+     * Contains first names loaded from CommonFirstNames.txt.
+     */
     private Set<String> firstNames;
 
-    // Contains last names loaded from CommonLastNames.txt
+    /**
+     * Contains last names loaded from CommonLastNames.txt.
+     */
     private Set<String> lastNames;
 
     /**
-     * Constructor for CommonNames
+     * Constructor for CommonNames.
      * @throws IOException 
      */
     public CommonNames() throws IOException{
@@ -32,7 +36,7 @@ public class CommonNames {
 
     /**
      * Opens input file dependent on string that 
-     * contains file name
+     * contains file name.
      * 
      * @param fileName
      * @throws FileNotFoundException
@@ -46,7 +50,7 @@ public class CommonNames {
 
     /**
      * Recieves token string value and compares
-     * contained words with common US first names
+     * contained words with common US first names.
      * 
      * @param value
      * @throws IOException
@@ -65,7 +69,7 @@ public class CommonNames {
 
     /**
      * Recieves token string value and compares
-     * contained words with common US last names
+     * contained words with common US last names.
      * 
      * @param value
      * @throws IOException 
@@ -83,7 +87,7 @@ public class CommonNames {
     }
 
     /**
-     * Loads the common first names from a file
+     * Loads the common first names from a file.
      * 
      * @throws IOException
      */
@@ -98,7 +102,7 @@ public class CommonNames {
     }
 
     /**
-     * Loads the common last names from a file
+     * Loads the common last names from a file.
      * 
      * @throws IOException
      */

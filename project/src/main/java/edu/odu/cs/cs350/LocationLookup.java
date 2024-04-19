@@ -25,22 +25,22 @@ public class LocationLookup {
     private Set<String> locations;
 
     /**
-     * File for locations
+     * File for locations.
      */
     private final String file1 = "src/main/data/Dictionary.location1.txt";
 
     /**
-     * File for locations
+     * File for locations.
      */
     private final String file2 = "src/main/data/Dictionary.location2.txt";
 
     /**
-     * File for locations
+     * File for locations.
      */
     private final String file3 = "src/main/data/Dictionary.location3.txt";
 
     /**
-     * Stores the files for locations
+     * Stores the files for locations.
      */
     private final String[] fileList = { file1, file2, file3 };
 

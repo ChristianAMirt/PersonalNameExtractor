@@ -9,17 +9,17 @@ import java.io.IOException;
 import java.io.FileNotFoundException;
 
 /**
- * Determines if token string value contains honorifics
+ * Determines if token string value contains honorifics.
  */
 public class Honorifics {
 
     /**
-     * Contains string values loaded from Dictionary.honorifics.txt
+     * Contains string values loaded from Dictionary.honorifics.txt.
      */
     private Set<String> honorifics;
 
     /**
-     * Constructor for Honorifics
+     * Constructor for Honorifics.
      * @throws IOException 
      */
     public Honorifics() throws IOException{
@@ -29,7 +29,7 @@ public class Honorifics {
 
     /**
      * Opens input file dependent on string that 
-     * contains file name
+     * contains file name.
      * 
      * @param fileName
      * @throws FileNotFoundException
@@ -44,7 +44,7 @@ public class Honorifics {
     /**
      * Recieves token string value and compares
      * contained words with honorifics which precede 
-     * personal names
+     * personal names.
      * 
      * @param value
      * @throws IOException
@@ -62,7 +62,7 @@ public class Honorifics {
     }
 
     /**
-     * Loads data from Dictionary.honorifics.txt to be compaired against
+     * Loads data from Dictionary.honorifics.txt to be compaired against.
      * 
      * @throws IOException
      */

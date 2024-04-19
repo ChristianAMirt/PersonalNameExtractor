@@ -51,7 +51,7 @@ public class LexicalFeature {
      */
     public boolean checkNumber(String myWord){
 
-        // Checks every character in the string for a number
+        // Checks every character in the string for a number.
         for(int i = 0; i < myWord.length(); i++)
         {
             char characterIndex = myWord.charAt(i);

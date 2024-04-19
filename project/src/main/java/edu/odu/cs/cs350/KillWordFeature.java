@@ -15,7 +15,7 @@ import java.util.Set;
 public class KillWordFeature{
 
     /**
-     * Constructor for killWordFeature
+     * Constructor for killWordFeature.
      * 
      * @throws FileNotFoundException
      * @throws IOException
@@ -26,7 +26,7 @@ public class KillWordFeature{
     }
 
     /**
-     * Contains a list of kill words
+     * Contains a list of kill words.
      */
     private Set<String> killWordSet;
 
@@ -44,7 +44,7 @@ public class KillWordFeature{
     }
 
     /**
-     * Returns the killWordSet
+     * Returns the killWordSet.
      * 
      * @return Set
      */
@@ -53,7 +53,7 @@ public class KillWordFeature{
     }
 
     /**
-     * Loads information from a file into a hashset
+     * Loads information from a file into a hashset.
      * 
      * @throws FileNotFoundException
      * @throws IOException

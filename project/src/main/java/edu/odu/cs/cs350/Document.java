@@ -90,7 +90,7 @@ public class Document implements Iterable<Token> {
     }
 
     /**
-     * Gets the input text
+     * Gets the input text.
      * 
      * @return String of document.
      */
@@ -149,7 +149,7 @@ public class Document implements Iterable<Token> {
     }
 
     /**
-     * Returns the size of the token collection
+     * Returns the size of the token collection.
      * 
      * @return size of token collection.
      */
