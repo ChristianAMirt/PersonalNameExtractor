@@ -74,6 +74,7 @@ public class Honorifics {
         while ((inputString = reader.readLine()) != null){
             honorifics.add(inputString.trim().toLowerCase());
         }
+        reader.close();
     }
 
 }

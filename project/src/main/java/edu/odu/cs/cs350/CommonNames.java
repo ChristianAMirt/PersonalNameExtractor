@@ -99,6 +99,7 @@ public class CommonNames {
         while ((inputString = reader.readLine()) != null){
             firstNames.add(inputString.trim().toLowerCase());
         }
+        reader.close();
     }
 
     /**
@@ -114,6 +115,7 @@ public class CommonNames {
         while ((inputString = reader.readLine()) != null){
             lastNames.add(inputString.trim().toLowerCase());
         }
+        reader.close();
     }
 
 }
