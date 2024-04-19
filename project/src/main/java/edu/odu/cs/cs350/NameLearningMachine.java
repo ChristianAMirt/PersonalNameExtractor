@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 /**
  * The Trainer class is responsible for:
- * - Use the training model from Trainer
+ * - Use the training model from Trainer.
  */
 @SuppressWarnings({ "deprecation", "unchecked", "rawtypes" })
 public class NameLearningMachine {
@@ -147,7 +147,9 @@ public class NameLearningMachine {
      */
     String[] lexicalWords = { "number", "punct", "CapLetter", "capitalized", "AllCaps", "other" };
 
-    // Attribute for the lexicals
+    /**
+     * Attribute for the lexixcals.
+     */
     Attribute lexical = new Attribute("lexical", fastV(lexicalWords));
 
     /**
@@ -161,12 +163,12 @@ public class NameLearningMachine {
     Attribute partOfSpeech = new Attribute("lexical", fastV(partOfSpeechWords));
 
     /**
-     * Holds all of the attributes
+     * Holds all of the attributes.
      */
     ArrayList<Attribute> attributeInfo = new ArrayList<Attribute>();
 
     /**
-     * Method to add the attributes to the attributeInfo array
+     * Method to add the attributes to the attributeInfo array.
      * 
      * @param attributeArray
      */
@@ -188,16 +190,16 @@ public class NameLearningMachine {
     }
 
     /**
-     * Stores the number of attributes
+     * Stores the number of attributes.
      */
     final int numberOfAttributes = attributeInfo.size();
 
     /**
-     * Gets the number of lines in the files
+     * Gets the number of lines in the files.
      * 
      * @param filePath
-     * @return
      * @throws IOException
+     * @return lineCounter
      */
     public int getFileSize(String filePath) throws IOException {
 
@@ -215,15 +217,17 @@ public class NameLearningMachine {
     }
 
     /**
-     * Stores the number of lines in the file
+     * Stores the number of lines in the file.
      */
     int dataFileSize = getFileSize("src/main/data/trainingDataSmol.txt");
 
-    // creates an instance holding the trainer information
+    /**
+     * creates an instance holding the trainer information.
+     */
     Instances trainerInformation = new Instances("data", attributeInfo, dataFileSize);
 
     /**
-     * Places the file data into a fast vector
+     * Places the file data into a fast vector.
      * 
      * Source: Steven J Zeil - Name Extraction -- Design Notes - 6.1 Setting Up the
      * Data

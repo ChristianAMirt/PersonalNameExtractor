@@ -33,17 +33,34 @@ import java.util.Random;
  * The Trainer class is responsible for:
  * - Running the WEKA training session
  * - Creating a classifier model for NameLearningMachine
- * - https://github.com/charlesSeek/weka-example/
+ * - https://github.com/charlesSeek/weka-example/.
  */
 public class Trainer {
 
+    /**
+     * String for trainingData filepath.
+     */
     private final String TRAINING_DATA_FILEPATH = "src/main/data/trainingData.txt";
+
+    /**
+     * String for trainingARFF filepath.
+     */
     private final String OUTPUT_ARFF_FILEPATH = "src/main/data/trainingARFF.arff";
 
+    /**
+     * Stores data.
+     */
     private Vector<String> dataStrings;
 
-    static double gamma = 0.01; // initial guess
-    static double C = 1.0; // initial guess
+    /**
+     * initial guess.
+     */
+    static double gamma = 0.01;
+
+    /**
+     * initial guess.
+     */
+    static double C = 1.0;
 
     // // Create classifier
     // public void createClassifier(training) {
@@ -52,19 +69,27 @@ public class Trainer {
     // svm.setKernel(new RBFKernel(training, 25007, gamma));
     // svm.setC(C);
 
-    // Number of training attributes
+
+    /**
+     * Number of training attributes.
+     */
     int numberOfAttributes;
 
-    // Set WEKA options
+    /**
+     * Set WEKA options.
+     */
     String[] options = { "-N", "0", "-V", "-1" };
 
+    /**
+     * constructor for trainer.
+     */
     public Trainer() {
         dataStrings = new Vector<String>();
         initializeOutputFile();
     }
 
     /**
-     * Tokenizes all of the training data and sets it's features
+     * Tokenizes all of the training data and sets it's features.
      * 
      * @throws FileNotFoundException
      * @throws IOException
@@ -203,6 +228,10 @@ public class Trainer {
         populateOutputFile(dataStrings);
     }
 
+    /**
+     * Creates a data string, returning a token window.
+     * @param window
+     */
     private void createDataString(Token[] window) {
         StringBuffer buffer = new StringBuffer();
 
@@ -245,7 +274,7 @@ public class Trainer {
     }
 
     /**
-     * Get Instances dataset
+     * Get Instances dataset.
      * 
      * @param instances
      */
@@ -254,7 +283,7 @@ public class Trainer {
     }
 
     /**
-     * Create classifier
+     * Create classifier.
      * 
      * @param training
      * @throws Exception
@@ -273,7 +302,7 @@ public class Trainer {
     }
 
     /**
-     * Evaluate clasification prediction
+     * Evaluate clasification prediction.
      * 
      * @param training
      * @throws Exception
@@ -296,7 +325,7 @@ public class Trainer {
     }
 
     /**
-     * Initializes formated ARFF file
+     * Initializes formated ARFF file.
      */
     private void initializeOutputFile() {
         try {
@@ -339,9 +368,9 @@ public class Trainer {
 
     /**
      * Populates ARFF output file for use by learning machine
-     * Not sure where to incorporate function call yet
+     * Not sure where to incorporate function call yet.
      * 
-     * @param
+     * @param dataStrings
      * @throws IOException
      */
     private void populateOutputFile(Vector<String> dataStrings) throws IOException {

@@ -11,7 +11,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Determines if a name is a known author or not
+ * Determines if a name is a known author or not.
  * 
  * @author Rahul Malik and Brendan Hearrell
  * 
@@ -19,12 +19,12 @@ import java.util.Set;
 public class KnownAuthors {
 
     /**
-     * String for first names file path
+     * String for first names filepath.
      */
     private static final String FILE1 = "src/main/data/Dictionary.firstNames.txt";
 
     /**
-     * String for last names file apth
+     * String for last names filepath.
      */
     private static final String FILE2 = "src/main/data/Dictionary.lastNames.txt";
 

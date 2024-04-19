@@ -7,22 +7,22 @@ import java.io.IOException;
 import java.util.HashSet;
 
 /**
- * Determines the parts of speech of a token
+ * Determines the parts of speech of a token.
  */
 public class PartsOfSpeech {
 
     /**
-     * Constant to hold filepath for list of conjuctions
+     * Constant to hold filepath for list of conjuctions.
      */
     private final String CONJUNCTIONS_FILE_PATH = "src/main/data/Conjunctions.txt";
 
     /**
-     * Hashset to store list of common conjuctions
+     * Hashset to store list of common conjuctions.
      */
     private HashSet<String> commonConjunctions;
 
     /**
-     * Create new PartsOfSpeech object
+     * Create new PartsOfSpeech object.
      * 
      * @throws FileNotFoundException if file cannot be found
      * @throws IOException           if error occurs while reading from file
@@ -33,7 +33,7 @@ public class PartsOfSpeech {
     }
 
     /**
-     * Checks for all parts of speech
+     * Checks for all parts of speech.
      * 
      * @param valueToCheck single Token value to check
      * @return what part of speech value is or other if none apply
@@ -53,7 +53,7 @@ public class PartsOfSpeech {
     }
 
     /**
-     * Takes words from .txt file and stores in HashSet
+     * Takes words from .txt file and stores in HashSet.
      * 
      * @param filePath path of file containing common parts of speech
      * @throws FileNotFoundException if file cannot be found
@@ -68,7 +68,7 @@ public class PartsOfSpeech {
     }
 
     /**
-     * Check to see if value is in list of conjunctions
+     * Check to see if value is in list of conjunctions.
      * 
      * @param valueToCheck single Token value to check
      * @return true if value matches any words in list of conjunctions
@@ -84,7 +84,7 @@ public class PartsOfSpeech {
 
     /**
      * Checks to see if value is one of the three English articles (a, an, the)
-     * function may mark the initial "A" as an article
+     * function may mark the initial "A" as an article.
      * 
      * @param valueToCheck single Token value to check
      * @return true if value is an article
@@ -98,7 +98,7 @@ public class PartsOfSpeech {
     }
 
     /**
-     * Check to see if value is a period
+     * Check to see if value is a period.
      * 
      * @param valueToCheck single Token value to check
      * @return true if value is a period
@@ -110,7 +110,7 @@ public class PartsOfSpeech {
     }
 
     /**
-     * Check to see if value is a comma
+     * Check to see if value is a comma.
      * 
      * @param valueToCheck single Token value to check
      * @return true if value is a comma
@@ -122,7 +122,7 @@ public class PartsOfSpeech {
     }
 
     /**
-     * Check to see if value is a hyphen
+     * Check to see if value is a hyphen.
      * 
      * @param valueToCheck single Token value to check
      * @return true if value is a hyphen
