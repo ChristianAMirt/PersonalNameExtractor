@@ -323,16 +323,11 @@ public class Trainer {
                 writer.write("@ATTRIBUTE authorfirstname" + temp + " {T, F}\n");
                 writer.write("@ATTRIBUTE authorlastname" + temp + " {T, F}\n");
                 writer.write(
-                        "@ATTRIBUTE partofspeech" + temp + " {period, comma, hyphen, conjunction, article, other}\n"); // Need
-                                                                                                                       // to
-                                                                                                                       // enumerate
-                                                                                                                       // values
-                                                                                                                       // here
+                        "@ATTRIBUTE partofspeech" + temp + " {period, comma, hyphen, conjunction, article, other}\n");
                 writer.write("@ATTRIBUTE lexicalfeature" + temp
-                        + " {number, punct, CapLetter, capitalized, AllCaps, other}\n"); // Need to enumerate values
-                                                                                         // here
+                        + " {number, punct, CapLetter, capitalized, AllCaps, other}\n");
             }
-            writer.write("@ATTRIBUTE classification INTEGER\n");
+            writer.write("@ATTRIBUTE classification {0, 1, 2}\n");
             writer.write("\n");
             writer.write("@data\n");
             writer.write("\n");

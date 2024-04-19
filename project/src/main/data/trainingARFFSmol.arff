@@ -60,7 +60,7 @@
 @ATTRIBUTE authorlastname5 {T, F}
 @ATTRIBUTE partofspeech5 {period, comma, hyphen, conjunction, article, other}
 @ATTRIBUTE lexicalfeature5 {number, punct, CapLetter, capitalized, AllCaps, other}
-@ATTRIBUTE classification INTEGER
+@ATTRIBUTE classification {0, 1, 2}
 
 @data
 
