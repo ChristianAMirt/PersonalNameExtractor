@@ -20,6 +20,7 @@ public class NameLearningMachine {
      * instantiation of this class as an object.
      */
     public NameLearningMachine() throws IOException {
+        attributeAdding(attributeInfo);
     };
 
     /**
