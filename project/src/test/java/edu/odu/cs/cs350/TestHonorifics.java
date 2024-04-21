@@ -1,11 +1,30 @@
 package edu.odu.cs.cs350;
 
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-
+import org.junit.jupiter.api.Test;
 import java.io.IOException;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.BeforeAll;
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+
 
 public class TestHonorifics {
+
+    /**
+     * Honorifics object to be used within each test. 
+     */
+    private Honorifics honorificsFeature;
+
+    /**
+     * Initialize Honorifics constructor to be utilized by all tests.
+     * @throws IOException
+     */
+    @BeforeAll
+    public void initializeHonorifics() throws IOException{
+        honorificsFeature = new Honorifics();
+    }
+
+
     /**
      * Test to make sure Honorifics constructor
      * is properly creating new instance of Honorifics
@@ -13,8 +32,7 @@ public class TestHonorifics {
      */
     @Test
     public void testHonorificsConstructor() throws IOException{
-        Honorifics honorificsFeature = new Honorifics();
-        assertNotNull(honorificsFeature);
+        assertNotNull(honorificsFeature,"Honorifics object should not be null");
     }
 
     /**
@@ -26,10 +44,8 @@ public class TestHonorifics {
     public void testOpenFile()
         throws IOException
     {
-        Honorifics testInput = new Honorifics();
-
         String inputFileOne = "src/test/data/Dictionary.honorifics.txt";
-        assertNotNull(testInput.openFile(inputFileOne));
+        assertNotNull(honorificsFeature.openFile(inputFileOne));
     }
 
     /**
@@ -41,12 +57,10 @@ public class TestHonorifics {
     public void testContainsHonorifics() 
         throws IOException
     {
-        Honorifics honorificsOne = new Honorifics();
         Token token = new Token("Mr");
-        assertEquals(true, honorificsOne.containsHonorifics(token.getValue()));
+        assertEquals(true, honorificsFeature.containsHonorifics(token.getValue()));
         
-        Honorifics honorificsTwo = new Honorifics();
         Token tokenTwo = new Token("SyntaxSages");
-        assertNotEquals(true, honorificsTwo.containsHonorifics(tokenTwo.getValue()));
+        assertNotEquals(true, honorificsFeature.containsHonorifics(tokenTwo.getValue()));
     }
 }
