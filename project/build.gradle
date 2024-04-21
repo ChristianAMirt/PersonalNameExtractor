@@ -50,6 +50,7 @@ spotbugsMain {
 
 spotbugsTest.enabled = false
 
+
 task copyHTML(type: Copy){
     copyHTML.dependsOn(build)
     copyHTML.dependsOn(javadoc)
@@ -110,6 +111,11 @@ tasks.withType(Test) {
 }
 
 check.dependsOn systest
+
+systest.mustRunAfter test
+
+spotbugsSystest.enabled = false
+
 
 
 // If you want to run the program currently, type: 
