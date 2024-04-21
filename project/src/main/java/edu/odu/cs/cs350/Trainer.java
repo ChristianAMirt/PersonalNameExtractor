@@ -69,7 +69,6 @@ public class Trainer {
     // svm.setKernel(new RBFKernel(training, 25007, gamma));
     // svm.setC(C);
 
-
     /**
      * Number of training attributes.
      */
@@ -83,9 +82,20 @@ public class Trainer {
     /**
      * constructor for trainer.
      */
-    public Trainer() {
+    public Trainer() throws FileNotFoundException, IOException {
         dataStrings = new Vector<String>();
         initializeOutputFile();
+        importTrainingData();
+    }
+
+    /**
+     * Provides access to dataStrings vector
+     * 
+     * @param index
+     * @return String of dataString at index
+     */
+    public String getDataStringAt(int index) {
+        return dataStrings.elementAt(index);
     }
 
     /**
@@ -230,6 +240,7 @@ public class Trainer {
 
     /**
      * Creates a data string, returning a token window.
+     * 
      * @param window
      */
     private void createDataString(Token[] window) {

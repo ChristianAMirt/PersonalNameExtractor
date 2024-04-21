@@ -16,10 +16,12 @@ import static org.hamcrest.Matchers.*;
 
 public class TestTrainer {
     @Test
-    public void testImportTrainingData() throws FileNotFoundException, IOException {
+    public void testConstructor() throws FileNotFoundException, IOException {
+        String firstDataString = "F, F, F, F, F, F, F, F, F, F, other, other, F, F, F, F, F, F, F, F, F, F, other, other, F, F, F, F, F, F, F, F, F, F, other, punct, F, F, F, F, F, F, F, F, F, F, hyphen, punct, F, F, F, F, F, F, F, F, F, F, hyphen, punct, 0";
         Trainer trainer = new Trainer();
-        trainer.importTrainingData();
 
-        System.out.println("Done");
+        assertTrue(firstDataString.equals(trainer.getDataStringAt(0)));
+        FileReader arffFile = new FileReader("src/main/data/trainingARFF.arff");
+        assertTrue(arffFile.read() != -1);
     }
 }
