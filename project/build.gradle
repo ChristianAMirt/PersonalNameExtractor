@@ -90,6 +90,11 @@ task deployReports{
 
 gitPublishCopy.dependsOn reports
 
+task trainModel(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'edu.odu.cs.cs350.TrainModel'
+}
+
 
 // If you want to run the program currently, type: 
 
