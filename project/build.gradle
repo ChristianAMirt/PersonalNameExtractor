@@ -4,6 +4,7 @@ plugins {
     id 'application'
     id 'org.ajoberstar.git-publish' version '4.2.0'
     id "com.github.spotbugs" version "5.0.6"
+       id 'org.unbroken-dome.test-sets' version '4.0.0'
 
 }
 
@@ -20,6 +21,9 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.7.0'
     testImplementation 'org.hamcrest:hamcrest-library:2.2'
     implementation 'nz.ac.waikato.cms.weka:weka-stable:3.8.6'
+
+    // systemTestImplementation 'org.junit.jupiter:junit-jupiter:5.7.0'
+    // systemTestImplementation 'org.hamcrest:hamcrest-library:2.2'
 }
 
 application {
@@ -45,6 +49,7 @@ spotbugsMain {
 }
 
 spotbugsTest.enabled = false
+
 
 task copyHTML(type: Copy){
     copyHTML.dependsOn(build)
@@ -94,6 +99,23 @@ task trainModel(type: JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
     mainClass = 'edu.odu.cs.cs350.TrainModel'
 }
+
+testSets { systest }
+
+tasks.withType(Test) {
+    ignoreFailures = true
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+        }
+}
+
+check.dependsOn systest
+
+systest.mustRunAfter test
+
+spotbugsSystest.enabled = false
+
 
 
 // If you want to run the program currently, type: 

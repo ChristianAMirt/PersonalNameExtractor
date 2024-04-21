@@ -7,3 +7,4 @@ TM 2 Syntax Sages
 - [Test Coverage](./jacoco/test/html/)
 
 * [Static Analysis](./spotbugs/main.html)
+* [System Tests](./tests/systest/)
