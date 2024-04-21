@@ -3,17 +3,33 @@ package edu.odu.cs.cs350;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.BeforeAll;
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class TestLexicalFeature {
     
+    /**
+     * LexicalFeature object that will be used for testing.
+     */
+    private LexicalFeature myLexicalFeature;
+
+    /**
+     * Calls the constructor of LexicalFeature only
+     * once. This allows for the same LexicalFeature
+     * object to be used for every test here.
+     */
+    @BeforeAll
+    public void callConstructor(){
+        myLexicalFeature = new LexicalFeature();
+    }
+
     /**
      * Tests the constructor for LexicalFeature, making sure that
      * the instantiation of the class of as an object actually happens.
      */
     @Test
     public void testLexicalFeatureConstructor(){
-        LexicalFeature firsLexicalFeature = new LexicalFeature();
-        assertNotNull(firsLexicalFeature);
+        assertNotNull(myLexicalFeature);
     }
 
     /**
@@ -22,10 +38,9 @@ public class TestLexicalFeature {
      */
     @Test
     public void testDetermineLexicalFeature(){
-        LexicalFeature secondLexicalFeature = new LexicalFeature();
-        assertEquals("number", secondLexicalFeature.determineLexicalFeature("27"));
-        assertEquals("punct", secondLexicalFeature.determineLexicalFeature("~"));
-        assertEquals("other", secondLexicalFeature.determineLexicalFeature("katana"));
+        assertEquals("number", myLexicalFeature.determineLexicalFeature("27"));
+        assertEquals("punct", myLexicalFeature.determineLexicalFeature("~"));
+        assertEquals("other", myLexicalFeature.determineLexicalFeature("katana"));
     }
 
     /**
@@ -34,9 +49,8 @@ public class TestLexicalFeature {
      */
     @Test
     public void testCheckNumber(){
-        LexicalFeature thrirdLexicalFeature = new LexicalFeature();
-        assertEquals(true, thrirdLexicalFeature.checkNumber("420"));
-        assertEquals(false, thrirdLexicalFeature.checkNumber("four"));
+        assertEquals(true, myLexicalFeature.checkNumber("420"));
+        assertEquals(false, myLexicalFeature.checkNumber("four"));
     }
 
     /**
@@ -45,9 +59,8 @@ public class TestLexicalFeature {
      */
     @Test
     public void testCheckPunctuation(){
-        LexicalFeature fourthLexicalFeature = new LexicalFeature();
-        assertEquals(true, fourthLexicalFeature.checkPunctuation("!"));
-        assertEquals(false, fourthLexicalFeature.checkPunctuation("exclamation"));
+        assertEquals(true, myLexicalFeature.checkPunctuation("!"));
+        assertEquals(false, myLexicalFeature.checkPunctuation("exclamation"));
     }
     /**
      * Tests the checkSingleCapital method for the accuracy
@@ -55,9 +68,8 @@ public class TestLexicalFeature {
      */
     @Test
     public void testCheckSingleCapital(){
-        LexicalFeature fifthLexicalFeature = new LexicalFeature();
-        assertEquals(true, fifthLexicalFeature.checkSingleCapital("L"));
-        assertEquals(false, fifthLexicalFeature.checkSingleCapital("Lawlite"));
+        assertEquals(true, myLexicalFeature.checkSingleCapital("L"));
+        assertEquals(false, myLexicalFeature.checkSingleCapital("Lawlite"));
     }
 
     /**
@@ -66,9 +78,8 @@ public class TestLexicalFeature {
      */
     @Test
     public void testCheckCapitalWord(){
-        LexicalFeature sixthLexicalFeature = new LexicalFeature();
-        assertEquals(true, sixthLexicalFeature.checkCapitalWord("Velvet"));
-        assertEquals(false, sixthLexicalFeature.checkCapitalWord("velvet"));
+        assertEquals(true, myLexicalFeature.checkCapitalWord("Velvet"));
+        assertEquals(false, myLexicalFeature.checkCapitalWord("velvet"));
     }
 
     /**
@@ -77,8 +88,7 @@ public class TestLexicalFeature {
      */
     @Test
     public void testCheckAllCapital(){
-        LexicalFeature seventhLexicalFeature = new LexicalFeature();
-        assertEquals(true, seventhLexicalFeature.checkAllCapital("YELLOW"));
-        assertEquals(false, seventhLexicalFeature.checkAllCapital("YeLLoW"));
+        assertEquals(true, myLexicalFeature.checkAllCapital("YELLOW"));
+        assertEquals(false, myLexicalFeature.checkAllCapital("YeLLoW"));
     }
 }
