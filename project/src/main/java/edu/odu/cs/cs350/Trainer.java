@@ -9,6 +9,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+
 //For ARFF data
 import java.io.IOException;
 import java.nio.file.Files;
@@ -17,13 +20,17 @@ import weka.core.converters.ConverterUtils.DataSource;
 import weka.core.pmml.Array;
 import weka.core.Instance;
 import weka.core.Instances;
+import weka.core.converters.ArffLoader.ArffReader;
 
 //For classifier
 import weka.core.FastVector;
 import weka.core.SerializationHelper;
+import weka.classifiers.meta.FilteredClassifier;
 import weka.classifiers.functions.SMO;
 import weka.classifiers.functions.supportVector.RBFKernel;
+import weka.classifiers.functions.supportVector.PolyKernel;
 import weka.filters.supervised.attribute.AddClassification;
+import weka.filters.unsupervised.attribute.StringToWordVector;
 
 //For evaluation
 import weka.classifiers.Evaluation;
@@ -40,12 +47,12 @@ public class Trainer {
     /**
      * String for trainingData filepath.
      */
-    private final String TRAINING_DATA_FILEPATH = "src/main/data/trainingData.txt";
+    private final String TRAINING_DATA_FILEPATH = "src/main/data/trainingData2.txt";
 
     /**
      * String for trainingARFF filepath.
      */
-    private final String OUTPUT_ARFF_FILEPATH = "src/main/data/trainingARFF.arff";
+    private final String OUTPUT_ARFF_FILEPATH = "src/main/data/trainingARFF2.arff";
 
     /**
      * Stores data.
@@ -61,13 +68,6 @@ public class Trainer {
      * initial guess.
      */
     static double C = 1.0;
-
-    // // Create classifier
-    // public void createClassifier(training) {
-    // SMO svm = new SMO(); // new classifier instance
-    // svm.setOptions(options); // set the options
-    // svm.setKernel(new RBFKernel(training, 25007, gamma));
-    // svm.setC(C);
 
     /**
      * Number of training attributes.
@@ -285,57 +285,6 @@ public class Trainer {
     }
 
     /**
-     * Get Instances dataset.
-     * 
-     * @param instances
-     */
-    public static void createInstances(NameLearningMachine instances) {
-        // Need to finish after we determine datasource format
-    }
-
-    /**
-     * Create classifier.
-     * 
-     * @param training
-     * @throws Exception
-     */
-    public void createClassification(Instances training) throws Exception {
-
-        SMO supportVectorModel = new SMO(); // new classifier instance
-        supportVectorModel.setOptions(options); // set the options
-        supportVectorModel.setKernel(new RBFKernel(training, 25007, gamma));
-        supportVectorModel.setC(C);
-    }
-
-    public void SaveModel(SMO supportVectorModel) throws Exception {
-
-        weka.core.SerializationHelper.write("smo.model", supportVectorModel);
-    }
-
-    /**
-     * Evaluate clasification prediction.
-     * 
-     * @param training
-     * @throws Exception
-     */
-    public void EvaluateClassification(Instances training) throws Exception {
-
-        SMO supportVectorModel = new SMO(); // new classifier instance
-        supportVectorModel.setOptions(options); // set the options
-        supportVectorModel.setKernel(new RBFKernel(training, 25007, gamma));
-        supportVectorModel.setC(C);
-
-        Evaluation trainingEvaluation = new Evaluation(training);
-        final int numberOfCrossClasses = 10;
-
-        trainingEvaluation.crossValidateModel(supportVectorModel, training, numberOfCrossClasses, new Random(1));
-
-        double score = trainingEvaluation.pctCorrect();
-        System.out.println("Score: " + score + "%");
-
-    }
-
-    /**
      * Initializes formated ARFF file.
      */
     private void initializeOutputFile() {
@@ -395,4 +344,173 @@ public class Trainer {
         out.close();
     }
 
+    /**
+     * Get Instances dataset.
+     * 
+     * @param instances
+     */
+    public static void createInstances(NameLearningMachine instances) {
+        // Need to finish after we determine datasource format
+    }
+
+    /**
+     * Create classifier.
+     * 
+     * @param training
+     * @throws Exception
+     */
+    public void createClassification(Instances training) throws Exception {
+
+        SMO supportVectorModel = new SMO(); // new classifier instance
+        supportVectorModel.setOptions(options); // set the options
+        supportVectorModel.setKernel(new RBFKernel(training, 25007, gamma));
+        supportVectorModel.setC(C);
+    }
+
+    public void SaveModel(SMO supportVectorModel) throws Exception {
+
+        weka.core.SerializationHelper.write("smo.model", supportVectorModel);
+    }
+
+    /**
+     * Evaluate clasification prediction.
+     * 
+     * @param training
+     * @throws Exception
+     */
+    public void EvaluateClassification(Instances training) throws Exception {
+
+        SMO supportVectorModel = new SMO(); // new classifier instance
+        supportVectorModel.setOptions(options); // set the options
+        supportVectorModel.setKernel(new RBFKernel(training, 25007, gamma));
+        supportVectorModel.setC(C);
+
+        Evaluation trainingEvaluation = new Evaluation(training);
+        final int numberOfCrossClasses = 10;
+
+        trainingEvaluation.crossValidateModel(supportVectorModel, training, numberOfCrossClasses, new Random(1));
+
+        double score = trainingEvaluation.pctCorrect();
+        System.out.println("Score: " + score + "%");
+
+    }
+
+
+    
+    // *******************************************************************************************
+    // THE FOLLOWING CODE SHOULD BE NEEDED TO CREATE A .MODEL FILE FROM A .ARFF FILE.
+    // THERE ARE SOME REDUNDANT VARIABLES & FUNCTIONS THAT STILL NEED TO BE ROLLED INTO OUR
+    // EXISTING CODE. STILL WORKING ON THAT PART.
+    // AS-IS, THE BELOW CODE SHOULD BE TESTABLE IN CREATING A .MODEL FILE FROM A .ARFF FILE.  
+
+    /**
+     * Stores all training data Instances from ARFF file.  
+     */
+    Instances trainingData;
+
+    /**
+     * Store Preprocessing Filter for trainingData Instances.
+     */
+    StringToWordVector dataPrepper;
+
+    /**
+     * Store Classifier for trainingData Instances.
+     */
+    FilteredClassifier dataClassifier;
+
+    /**
+     * Load ARFF training dataset.
+     * @param filepathARFF
+     */
+    public void loadARFFfile(String filenameARFF) {
+        try {
+            FileReader file = new FileReader(filenameARFF);
+            BufferedReader reader = new BufferedReader(file);
+            ArffReader arff = new ArffReader(reader);
+            trainingData = arff.getData();
+            System.out.println("Loaded file: " + filenameARFF);
+            reader.close();
+        }
+        catch (IOException err) {
+            System.out.println("Error. Could not load file: " + filenameARFF);
+        }
+    }
+
+    /**
+     * Create Classifier use to evaluate trainingData.
+     */
+    public void createClassifier() {
+        int numFolds = 4; //number of folds to use during cross-validation testing.
+
+        try {
+            trainingData.setClassIndex(0);
+            dataPrepper = new StringToWordVector();
+            dataPrepper.setAttributeIndices("last");
+
+            dataClassifier = new FilteredClassifier();
+            dataClassifier.setFilter(dataPrepper);
+            dataClassifier.setClassifier(new SMO());
+            
+            /* Need to check if this is still required:
+               - Run evaluation on untrained classifier before training */
+            Evaluation eval = new Evaluation(trainingData);
+            eval.crossValidateModel(dataClassifier, trainingData, numFolds, new Random(1));
+
+            System.out.println(eval.toSummaryString());
+            System.out.println(eval.toClassDetailsString());
+            System.out.println("Evaluation on training data complete.");
+        }
+        catch (Exception err) {
+            System.out.println("Error. Count not create Classifier.");
+        }
+    }
+
+    /**
+     * Run training session on Classifier.
+     */
+    public void trainClassifier() {
+        try {
+            trainingData.setClassIndex(0);
+            dataPrepper = new StringToWordVector();
+            dataPrepper.setAttributeIndices("last");
+
+            dataClassifier = new FilteredClassifier();
+            dataClassifier.setFilter(dataPrepper);
+            dataClassifier.setClassifier(new SMO());
+            dataClassifier.buildClassifier(trainingData);
+
+            System.out.println("Training on Classifier complete.");
+        }
+        catch (Exception err) {
+            System.out.println("Error. Count not complete training on Classifier.");
+        }
+    }
+
+    /**
+     * Save the trained model to some/file/path/fileName.model
+     * @param fileName
+     */
+    public void saveModel(String fileName) {
+        try {
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(fileName));
+            out.writeObject(dataClassifier);
+            out.close();
+            System.out.println("Model saved: " + fileName);
+        }
+        catch (IOException err) {
+            System.out.println("Error. Could not create file: " + fileName);
+        }
+    }
+
+    /**
+     * Load arff file and create a trained model file.
+     * @param arffFile
+     * @param modelFile
+     */
+    public void createModelFromDataset(String arffFile, String modelFile) {
+        loadARFFfile(arffFile);
+        createClassifier();
+        trainClassifier();
+        saveModel(arffFile);
+    }
 }
