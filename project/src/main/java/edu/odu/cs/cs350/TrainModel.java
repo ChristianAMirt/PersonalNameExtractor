@@ -8,6 +8,11 @@ import java.io.IOException;
  */
 public class TrainModel {
 
+    /**
+     * Trains the model.
+     * 
+     * @param arguments
+     */
     public static void main(String[] arguments) {
         Trainer trainer = null;
 
