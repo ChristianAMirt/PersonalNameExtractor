@@ -245,7 +245,12 @@ public class NameLearningMachine {
         return result;
     }
 
-    public NameLearningMachine nlm() {
+    /**
+     * In progress
+     * @return
+     * @throws IOException
+     */
+    public NameLearningMachine nameLearningMachine() throws IOException{
 
         // Get path for model file.
 
@@ -290,6 +295,9 @@ public class NameLearningMachine {
 
                 // ElseIf perTagInProgress == False
                     // Do nothing. Continue to next word.
+        
+        // temporary return so we wont get an error
+        return new NameLearningMachine();
     
     }
 
