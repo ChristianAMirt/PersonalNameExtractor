@@ -176,23 +176,35 @@ public class Librarian {
             ListIterator<Token> current = document.iterator();
             while (current.hasNext()) {
                 Token tokenValue = current.next();
-                if (needsTagBefore(tokenValue)) {
+                if (firstNameCheck(tokenValue)) {
                     current.previous();
                     current.add(new Token("<PER>"));
                     current.next();
-                } else if (needsTagAfter(tokenValue))
+                }
+                else if (honorificsCheck(tokenValue)){
+                    current.previous();
+                    current.add(new Token("<PER>"));
+                    current.next();
+                    current.next();
+                } 
+                else if (needsTagAfter(tokenValue)){
                     current.add(new Token("</PER>"));
+                }
             }
         }
 
     }
 
-    private boolean needsTagBefore(Token nextToken) {
-        return nextToken.getCommonFirstName();
+    private boolean firstNameCheck(Token nextToken){
+        return (nextToken.getCommonFirstName());
+    }
+
+    private boolean honorificsCheck(Token nextToken){
+        return (nextToken.getHonorificsValue());
     }
 
     private boolean needsTagAfter(Token nextToken) {
-        return nextToken.getCommonLastName();
+        return (nextToken.getCommonLastName());
     }
 
 }

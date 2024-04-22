@@ -125,4 +125,55 @@ import java.nio.file.Path;public class TestPNE {
 
         assertEquals(expected, outputStream.toString());
     }
+
+    @Test
+    public void testCommonNames() throws IOException{
+        Path inputPath = Path.of("src/systemTest/data/test004/test.dat");
+        String input = Files.readString(inputPath);
+        Path expectedPath = Path.of("src/systemTest/data/test004/test.expected");
+        String expected = Files.readString(expectedPath);
+
+        String[] textBlock = new String[] {input};
+        PNE.main(textBlock);
+
+        BufferedWriter output = new BufferedWriter(new FileWriter("src/systemTest/data/test004/test.out"));
+        output.append(outputStream.toString());
+        output.close();
+
+        assertEquals(expected, outputStream.toString());
+    }
+
+    @Test 
+    public void testHonorifics() throws IOException{
+        Path inputPath = Path.of("src/systemTest/data/test006/test.dat");
+        String input = Files.readString(inputPath);
+        Path expectedPath = Path.of("src/systemTest/data/test006/test.expected");
+        String expected = Files.readString(expectedPath);
+
+        String[] textBlock = new String[] {input};
+        PNE.main(textBlock);
+
+        BufferedWriter output = new BufferedWriter(new FileWriter("src/systemTest/data/test006/test.out"));
+        output.append(outputStream.toString());
+        output.close();
+
+        assertEquals(expected, outputStream.toString());
+    }
+
+    @Test
+    public void testKnownAuthors() throws IOException{
+        Path inputPath = Path.of("src/systemTest/data/test007/test.dat");
+        String input = Files.readString(inputPath);
+        Path expectedPath = Path.of("src/systemTest/data/test007/test.expected");
+        String expected = Files.readString(expectedPath);
+
+        String[] textBlock = new String[] {input};
+        PNE.main(textBlock);
+
+        BufferedWriter output = new BufferedWriter(new FileWriter("src/systemTest/data/test007/test.out"));
+        output.append(outputStream.toString());
+        output.close();
+
+        assertEquals(expected, outputStream.toString());
+    }
 }
