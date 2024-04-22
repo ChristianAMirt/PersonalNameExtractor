@@ -245,4 +245,75 @@ public class NameLearningMachine {
         return result;
     }
 
+    public NameLearningMachine nlm() {
+
+        // Get path for model file.
+
+        // Get path for plain text file.     Maybe get Document() instance?
+
+        // Convert text file to arff file. 
+
+        // Run machine learning model on arff file. 
+
+        // Return array of text and text classification.
+
+
+        // For each word in array,
+            // Get word[]
+            // Get word.Classification
+            // Get word.Index
+            
+            // Case word.Classification = 1   (first name)
+            
+                // If perTagInProgress == True
+                    // Do nothing. Continue to next word.
+
+                // ElseIf perTagInProgress == False
+                    // word = <PER> + word
+                    // perTagInProgress = True
+   
+            
+            // Case word.Classification = 2   (middle or last name)
+                // If perTagInProgress == True
+                    // word = word + </PER>
+                    // perTagInProgress = False
+
+                // ElseIf perTagInProgress == False
+                    // word = <PER> + word
+                    // perTagInProgress = True
+            
+
+            // Case wordClassification = 0   (not a name)
+                // If perTagInProgress == True
+                    // word[word.Index - 1] = word[word.Index - 1] + </PER>
+                    // perTagInProgress = False
+
+                // ElseIf perTagInProgress == False
+                    // Do nothing. Continue to next word.
+    
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
