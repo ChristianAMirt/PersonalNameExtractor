@@ -519,6 +519,6 @@ public class Trainer {
         loadARFFfile(arffFile);
         createClassifier();
         trainClassifier();
-        saveModel(arffFile);
+        saveModel(modelFile);
     }
 }
