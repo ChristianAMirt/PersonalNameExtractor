@@ -110,6 +110,7 @@ tasks.withType(Test) {
         }
 }
 
+systest.mustRunAfter test
 
 spotbugsSystest.enabled = false
 
