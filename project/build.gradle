@@ -110,7 +110,9 @@ tasks.withType(Test) {
         }
 }
 
-systest.mustRunAfter test
+check.dependsOn systest
+
+//systest.mustRunAfter test
 
 spotbugsSystest.enabled = false
 
