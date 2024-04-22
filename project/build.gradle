@@ -100,7 +100,7 @@ task trainModel(type: JavaExec) {
     mainClass = 'edu.odu.cs.cs350.TrainModel'
 }
 
-testSets { systest }
+testSets { systemTest }
 
 tasks.withType(Test) {
     ignoreFailures = true
@@ -110,10 +110,13 @@ tasks.withType(Test) {
         }
 }
 
-systest.mustRunAfter test
+systemTest.mustRunAfter test
 
-spotbugsSystest.enabled = false
+spotbugsSystemTest.enabled = false
 
+task systest{
+    systest.dependsOn(systemTest)
+}
 
 
 // If you want to run the program currently, type: 
