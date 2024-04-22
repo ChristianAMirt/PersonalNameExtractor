@@ -38,6 +38,25 @@ test {
         }
 } 
 
+testSets { systemTest }
+
+tasks.withType(Test) {
+    ignoreFailures = true
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+        }
+}
+
+systemTest.mustRunAfter test
+
+spotbugsSystemTest.enabled = false
+
+task systest{
+    systest.dependsOn(systemTest)
+}
+
+
 spotbugsMain {
     ignoreFailures = true
     effort = 'max'
@@ -66,6 +85,7 @@ task copyDocs(type: Copy){
 }
 
 task reports{
+    reports.dependsOn(systest)
     reports.dependsOn(copyHTML)
     reports.dependsOn(copyDocs)
     reports.dependsOn(jacocoTestReport)
@@ -98,24 +118,6 @@ gitPublishCopy.dependsOn reports
 task trainModel(type: JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
     mainClass = 'edu.odu.cs.cs350.TrainModel'
-}
-
-testSets { systemTest }
-
-tasks.withType(Test) {
-    ignoreFailures = true
-    useJUnitPlatform()
-    testLogging {
-        events "passed", "skipped", "failed"
-        }
-}
-
-systemTest.mustRunAfter test
-
-spotbugsSystemTest.enabled = false
-
-task systest{
-    systest.dependsOn(systemTest)
 }
 
 

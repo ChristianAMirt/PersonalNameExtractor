@@ -47,7 +47,7 @@ public class Trainer {
     /**
      * String for trainingData filepath.
      */
-    private final String TRAINING_DATA_FILEPATH = "src/main/data/trainingData2.txt";
+    private final String TRAINING_DATA_FILEPATH = "src/main/data/trainingData.txt";
 
     /**
      * String for trainingARFF filepath.
@@ -395,16 +395,17 @@ public class Trainer {
 
     }
 
-
-    
-    // *******************************************************************************************
-    // THE FOLLOWING CODE SHOULD BE EVERYTHING NEEDED TO CREATE A .MODEL FILE FROM A .ARFF FILE.
-    // THERE ARE SOME REDUNDANT VARIABLES & FUNCTIONS THAT STILL NEED TO BE ROLLED INTO OUR
+    // ==============================================================================
+    // THE FOLLOWING CODE SHOULD BE EVERYTHING NEEDED TO CREATE A .MODEL FILE FROM A
+    // .ARFF FILE.
+    // THERE ARE SOME REDUNDANT VARIABLES & FUNCTIONS THAT STILL NEED TO BE ROLLED
+    // INTO OUR
     // EXISTING CODE. STILL WORKING ON THAT PART.
-    // AS-IS, THE BELOW CODE SHOULD BE TESTABLE IN CREATING A .MODEL FILE FROM A .ARFF FILE.  
+    // AS-IS, THE BELOW CODE SHOULD BE TESTABLE IN CREATING A .MODEL FILE FROM A
+    // .ARFF FILE.
 
     /**
-     * Stores all training data Instances from ARFF file.  
+     * Stores all training data Instances from ARFF file.
      */
     Instances trainingData;
 
@@ -420,7 +421,8 @@ public class Trainer {
 
     /**
      * Load ARFF training dataset.
-     * @param filepathARFF
+     * 
+     * @param filenameARFF
      */
     public void loadARFFfile(String filenameARFF) {
         try {
@@ -430,8 +432,7 @@ public class Trainer {
             trainingData = arff.getData();
             System.out.println("Loaded file: " + filenameARFF);
             reader.close();
-        }
-        catch (IOException err) {
+        } catch (IOException err) {
             System.out.println("Error. Could not load file: " + filenameARFF);
         }
     }
@@ -440,7 +441,7 @@ public class Trainer {
      * Create Classifier use to evaluate trainingData.
      */
     public void createClassifier() {
-        int numFolds = 4; //number of folds to use during cross-validation testing.
+        int numFolds = 4; // number of folds to use during cross-validation testing.
 
         try {
             trainingData.setClassIndex(0);
@@ -450,17 +451,18 @@ public class Trainer {
             dataClassifier = new FilteredClassifier();
             dataClassifier.setFilter(dataPrepper);
             dataClassifier.setClassifier(new SMO());
-            
-            /* Need to check if this is still required:
-               - Run evaluation on untrained classifier before training */
+
+            /*
+             * Need to check if this is still required:
+             * - Run evaluation on untrained classifier before training
+             */
             Evaluation eval = new Evaluation(trainingData);
             eval.crossValidateModel(dataClassifier, trainingData, numFolds, new Random(1));
 
             System.out.println(eval.toSummaryString());
             System.out.println(eval.toClassDetailsString());
             System.out.println("Evaluation on training data complete.");
-        }
-        catch (Exception err) {
+        } catch (Exception err) {
             System.out.println("Error. Count not create Classifier.");
         }
     }
@@ -480,14 +482,14 @@ public class Trainer {
             dataClassifier.buildClassifier(trainingData);
 
             System.out.println("Training on Classifier complete.");
-        }
-        catch (Exception err) {
+        } catch (Exception err) {
             System.out.println("Error. Count not complete training on Classifier.");
         }
     }
 
     /**
      * Save the trained model to some/file/path/fileName.model
+     * 
      * @param fileName
      */
     public void saveModel(String fileName) {
@@ -496,14 +498,14 @@ public class Trainer {
             out.writeObject(dataClassifier);
             out.close();
             System.out.println("Model saved: " + fileName);
-        }
-        catch (IOException err) {
+        } catch (IOException err) {
             System.out.println("Error. Could not create file: " + fileName);
         }
     }
 
     /**
      * Load arff file and create a trained model file.
+     * 
      * @param arffFile
      * @param modelFile
      */
