@@ -39,10 +39,21 @@ public class TestPNE {
 
     @Test
     public void testTokenProcessing() {
-        String[] args = {
-                "<NER> Emma Smith, Alexander Johnson? Olivia Brown, William Davis, Sophia Martinez!\nJames Anderson, Ava Garcia, Benjamin\nWilson, Mia Taylor. Ethan P. Lopez, Samantha-Jane O'Connor. </NER>" };
         String input = fileToString("project/src/systest/data/test000/test.dat");
+        String[] args = { input };
         String expected = fileToString("project/src/systest/data/test000/test.expected");
+
+        PNE.main(args);
+        String output = outputStream.toString();
+
+        assertEquals(expected, output);
+    }
+
+    @Test
+    public void testPageProcessing() {
+        String input = fileToString("project/src/systest/data/test001/test.dat");
+        String[] args = { input };
+        String expected = fileToString("project/src/systest/data/test001/test.expected");
 
         PNE.main(args);
         String output = outputStream.toString();
