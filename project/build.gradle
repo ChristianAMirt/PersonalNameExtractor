@@ -120,6 +120,24 @@ task trainModel(type: JavaExec) {
     mainClass = 'edu.odu.cs.cs350.TrainModel'
 }
 
+task demo1(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'edu.odu.cs.cs350.PNE'
+    args '<NER> Tom took a trip to the Grand Canyon last week </NER>'
+}
+
+task demo2(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'edu.odu.cs.cs350.PNE'
+    args '<NER> Jason Lee </NER>'
+}
+
+task demo3(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'edu.odu.cs.cs350.PNE'
+    args '<NER> This line should not include any PER tags. Here is a list of things that should not be flagged. New York, Houston, United Stated Of America, Sir, Dr, Ms, Mr. </NER>'
+}
+
 
 // If you want to run the program currently, type: 
 

@@ -86,9 +86,9 @@ import java.nio.file.Path;public class TestPNE {
     
     @Test
     public void testLocationLookup() throws IOException {
-        String pathDat = "src/systemTest/data/test005/test.dat";
-        String pathOut = "src/systemTest/data/test005/test.out";
-        String pathExpected = "src/systemTest/data/test005/test.expected";
+        final String pathDat = "src/systemTest/data/test005/test.dat";
+        final String pathOut = "src/systemTest/data/test005/test.out";
+        final String pathExpected = "src/systemTest/data/test005/test.expected";
 
         Path inputPath = Path.of(pathDat);
         String input = Files.readString(inputPath);
