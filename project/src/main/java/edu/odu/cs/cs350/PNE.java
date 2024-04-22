@@ -14,7 +14,6 @@ public class PNE {
      */
     public static void main(String[] arguments) {
         Librarian librarian = null;
-        String something = "Nothing";
 
         if (arguments.length == 0) {
             System.err.println("PNE.jar [input text]");
