@@ -66,18 +66,41 @@ import java.nio.file.Path;public class TestPNE {
     }
 
     @Test
-    public void testLexicalFeatures() throws IOException{
+    public void testLexicalFeatures() throws IOException {
         Path inputPath = Path.of("src/systemTest/data/test002/test.dat");
         String input = Files.readString(inputPath);
 
         Path expectedPath = Path.of("src/systemTest/data/test002/test.expected");
         String expected = Files.readString(expectedPath);
 
-        String[] textBlock = new String[] {input};
+        String[] textBlock = new String[] { input };
 
         PNE.main(textBlock);
 
         BufferedWriter output = new BufferedWriter(new FileWriter("src/systemTest/data/test002/test.out"));
+        output.append(outputStream.toString());
+        output.close();
+
+        assertEquals(expected, outputStream.toString());
+    }
+    
+    @Test
+    public void testLocationLookup() throws IOException {
+        String pathDat = "src/systemTest/data/test005/test.dat";
+        String pathOut = "src/systemTest/data/test005/test.out";
+        String pathExpected = "src/systemTest/data/test005/test.expected";
+
+        Path inputPath = Path.of(pathDat);
+        String input = Files.readString(inputPath);
+
+        Path expectedPath = Path.of(pathExpected);
+        String expected = Files.readString(expectedPath);
+        
+        String[] textBlock = new String[] { input };
+
+        PNE.main(textBlock);
+
+        BufferedWriter output = new BufferedWriter(new FileWriter(pathOut));
         output.append(outputStream.toString());
         output.close();
 
