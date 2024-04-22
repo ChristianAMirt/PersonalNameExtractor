@@ -13,7 +13,11 @@ import java.io.PrintStream;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
-public class TestPNE {
+import java.io.FileWriter;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;public class TestPNE {
 
     ByteArrayOutputStream outputStream; // will contain captured output from System.out
     PrintStream saved; // used to restore System.out
@@ -59,5 +63,24 @@ public class TestPNE {
         String output = outputStream.toString();
 
         assertTrue(output.contains(output));
+    }
+
+    @Test
+    public void testLexicalFeatures() throws IOException{
+        Path inputPath = Path.of("src/systemTest/data/test002/test.dat");
+        String input = Files.readString(inputPath);
+
+        Path expectedPath = Path.of("src/systemTest/data/test002/test.expected");
+        String expected = Files.readString(expectedPath);
+
+        String[] textBlock = new String[] {input};
+
+        PNE.main(textBlock);
+
+        BufferedWriter output = new BufferedWriter(new FileWriter("src/systemTest/data/test002/test.out"));
+        output.append(outputStream.toString());
+        output.close();
+
+        assertEquals(expected, outputStream.toString());
     }
 }
