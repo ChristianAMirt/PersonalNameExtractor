@@ -34,6 +34,7 @@ public class Librarian {
 
     /**
      * Takes in a string from the user to read.
+     * 
      * @param inputPage is the string given by the user
      * 
      * @throws IOException if input is larger than 4000 characters
@@ -62,6 +63,7 @@ public class Librarian {
 
     /**
      * Checks to see if documents have been added.
+     * 
      * @return true if one or more Documents have been added to collection
      */
     public boolean hasDocuments() {
@@ -72,6 +74,7 @@ public class Librarian {
 
     /**
      * Returns the number of elements that have been added to inputDocuments.
+     * 
      * @return int
      */
     public int getDocumentsSize() {
@@ -80,6 +83,7 @@ public class Librarian {
 
     /**
      * Returns the document at the specified index.
+     * 
      * @param index of the vector of Documents that is being retrived
      * @return the document object at that index
      */
@@ -89,16 +93,18 @@ public class Librarian {
 
     /**
      * Splits the raw inputText right after each /NER.
+     * 
      * @param textString
      * @return String[]
      */
     public String[] splitInputPage(String textString) {
-        String arrayNERStrings[] = inputPage.split("(?=<NER>)");
+        String arrayNERStrings[] = inputPage.split("(?=<NER>)|(?<=</NER>)");
         return arrayNERStrings;
     }
 
     /**
      * Returns the substring text between the NER tags.
+     * 
      * @param inputText
      * @return String
      */
@@ -128,6 +134,7 @@ public class Librarian {
 
     /**
      * Returns index of "tag" within "inputString".
+     * 
      * @param inputString
      * @param tag
      * @return int
@@ -158,6 +165,7 @@ public class Librarian {
 
     /**
      * Print the output of a text string to the console.
+     * 
      * @param outputText
      */
     public void printDocumentText(String outputText) {
@@ -169,6 +177,7 @@ public class Librarian {
      * first name field is set to true, a PER tag will get added before.
      * If the last name field is set to true for the token, a PER tag will be
      * inserted after the Token.
+     * 
      * @throws IOException
      */
     public void markNames() throws IOException {
@@ -180,14 +189,12 @@ public class Librarian {
                     current.previous();
                     current.add(new Token("<PER>"));
                     current.next();
-                }
-                else if (honorificsCheck(tokenValue)){
+                } else if (honorificsCheck(tokenValue)) {
                     current.previous();
                     current.add(new Token("<PER>"));
                     current.next();
                     current.next();
-                } 
-                else if (needsTagAfter(tokenValue)){
+                } else if (needsTagAfter(tokenValue)) {
                     current.add(new Token("</PER>"));
                 }
             }
@@ -195,11 +202,11 @@ public class Librarian {
 
     }
 
-    private boolean firstNameCheck(Token nextToken){
+    private boolean firstNameCheck(Token nextToken) {
         return (nextToken.getCommonFirstName());
     }
 
-    private boolean honorificsCheck(Token nextToken){
+    private boolean honorificsCheck(Token nextToken) {
         return (nextToken.getHonorificsValue());
     }
 
