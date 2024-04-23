@@ -32,6 +32,8 @@ public class Librarian {
      */
     private Vector<Document> inputDocuments;
 
+    private NameLearningMachine nameLearningMachine;
+
     /**
      * Takes in a string from the user to read.
      * 
@@ -59,6 +61,8 @@ public class Librarian {
                 }
             }
         }
+
+        nameLearningMachine = new nameLearningMachine();
     }
 
     /**
@@ -173,41 +177,70 @@ public class Librarian {
     }
 
     /**
-     * Temporary stub for what the learning machine will be doing. If the
-     * first name field is set to true, a PER tag will get added before.
-     * If the last name field is set to true for the token, a PER tag will be
-     * inserted after the Token.
+     * Marks all the names in text that is between NER tags and leaves other text
+     * alone.
      * 
      * @throws IOException
+     * @return output of text with personal names marked.
      */
-    public void markNames() throws IOException {
+    public String markNames() throws IOException {
+        StringBuilder markedUp = new StringBuilder();
+
         for (Document document : inputDocuments) {
             ListIterator<Token> current = document.iterator();
 
-            Vector<Token> tokens = new Vector<>();
+            if (document.size() > 0) {
+                Vector<Token> tokens = new Vector<>();
 
-            // If it starts with <NER>, classify. Else skip
-            while (current.hasNext()) {
-                tokens.add(current.next());
+                while (current.hasNext()) {
+                    tokens.add(current.next());
+                }
+                nameLearningMachine.classify(tokens);
+
+                markedUp.append(insertPERtags(document));
+
+            } else {
+                markedUp.append(document.getInputText());
             }
-
-            // while (current.hasNext()) {
-            // Token tokenValue = current.next();
-            // if (firstNameCheck(tokenValue)) {
-            // current.previous();
-            // current.add(new Token("<PER>"));
-            // current.next();
-            // } else if (honorificsCheck(tokenValue)) {
-            // current.previous();
-            // current.add(new Token("<PER>"));
-            // current.next();
-            // current.next();
-            // } else if (needsTagAfter(tokenValue)) {
-            // current.add(new Token("</PER>"));
-            // }
         }
+        return markedUp.toString();
+
     }
 
+    private String insertPERtags(Document document) {
+        StringBuffer markedUp = new StringBuffer();
+        boolean perTagInProgress = false;
+
+        for (Token token : document) {
+
+            int classification = token.getClassification();
+
+            if (classification == 1) { // start of name
+
+                if (perTagInProgress == true) {
+                    markedUp.append("</PER> <PER>" + token.getValue() + " ");
+                    perTagInProgress = true;
+                } else {
+                    markedUp.append("<PER> " + token.getValue() + " ");
+                    perTagInProgress = true;
+                }
+            } else if (classification == 2) { // continuing name
+                if (perTagInProgress == true) {
+                    markedUp.append(token.getValue() + " ");
+                } else {
+                    markedUp.append("<ERR> " + token.getValue() + " ");
+                    perTagInProgress = true;
+                }
+            } else if (classification == 0) { // not a name
+                if (perTagInProgress == true) {
+                    markedUp.append("</PER>" + token.getValue() + " ");
+                    perTagInProgress = false;
+                } else {
+                    markedUp.append(token.getValue() + " ");
+                }
+            }
+        }
+        return markedUp.toString();
     }
 
     private boolean firstNameCheck(Token nextToken) {

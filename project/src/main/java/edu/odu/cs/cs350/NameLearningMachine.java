@@ -387,7 +387,7 @@ public class NameLearningMachine {
 
             // classify using dataString
 
-            // token[2].setClassification(classification);
+            // allTokens.elementAt(index).setClassification(classification);
         }
     }
 
