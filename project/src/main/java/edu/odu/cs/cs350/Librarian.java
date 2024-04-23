@@ -183,22 +183,30 @@ public class Librarian {
     public void markNames() throws IOException {
         for (Document document : inputDocuments) {
             ListIterator<Token> current = document.iterator();
+
+            Vector<Token> tokens = new Vector<>();
+
+            // If it starts with <NER>, classify. Else skip
             while (current.hasNext()) {
-                Token tokenValue = current.next();
-                if (firstNameCheck(tokenValue)) {
-                    current.previous();
-                    current.add(new Token("<PER>"));
-                    current.next();
-                } else if (honorificsCheck(tokenValue)) {
-                    current.previous();
-                    current.add(new Token("<PER>"));
-                    current.next();
-                    current.next();
-                } else if (needsTagAfter(tokenValue)) {
-                    current.add(new Token("</PER>"));
-                }
+                tokens.add(current.next());
             }
+
+            // while (current.hasNext()) {
+            // Token tokenValue = current.next();
+            // if (firstNameCheck(tokenValue)) {
+            // current.previous();
+            // current.add(new Token("<PER>"));
+            // current.next();
+            // } else if (honorificsCheck(tokenValue)) {
+            // current.previous();
+            // current.add(new Token("<PER>"));
+            // current.next();
+            // current.next();
+            // } else if (needsTagAfter(tokenValue)) {
+            // current.add(new Token("</PER>"));
+            // }
         }
+    }
 
     }
 

@@ -8,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import java.util.Scanner;
 import java.util.Vector;
@@ -24,9 +25,10 @@ import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 
 /**
- * The NameLearningMachine is responsible for running the machine learning model on an input txt file.
+ * The NameLearningMachine is responsible for running the machine learning model
+ * on an input txt file.
  */
-//@SuppressWarnings({ "deprecation", "unchecked", "rawtypes" })
+// @SuppressWarnings({ "deprecation", "unchecked", "rawtypes" })
 public class NameLearningMachine {
 
     String modelFile = "src/main/data/pnetag_v2_poly.model";
@@ -42,7 +44,7 @@ public class NameLearningMachine {
     String tempArffFile = "src/main/data/tempArffSmol.arff";
 
     /**
-     * Text file with proper <PER> and </PER> tags. 
+     * Text file with proper <PER> and </PER> tags.
      */
     String outputTextFile = "src/main/data/taggedDataSmol.txt";
 
@@ -51,7 +53,6 @@ public class NameLearningMachine {
      */
     Vector<String> dataStrings;
 
-
     /**
      * NameLearningMachine Constructor
      */
@@ -59,7 +60,7 @@ public class NameLearningMachine {
 
         inputTextFile = inputFile;
         dataStrings = new Vector<String>();
-        
+
         initializeOutputFile();
         String inputText = importTestData();
         convertTextToArff(inputText);
@@ -76,45 +77,40 @@ public class NameLearningMachine {
         return dataStrings.elementAt(index);
     }
 
-
-    // Run machine learning model on arff file. 
+    // Run machine learning model on arff file.
 
     // Return array of text and text classification.
 
     // For each word in array,
-        // Get word[]
-        // Get word.Classification
-        // Get word.Index
-    
+    // Get word[]
+    // Get word.Classification
+    // Get word.Index
 
+    // Case word.Classification = 1 (first name)
 
-    // Case word.Classification = 1   (first name)
-    
-        // If perTagInProgress == True
-            // Do nothing. Continue to next word.
+    // If perTagInProgress == True
+    // Do nothing. Continue to next word.
 
-        // ElseIf perTagInProgress == False
-            // word = <PER> + word
-            // perTagInProgress = True
-    
-    // Case word.Classification = 2   (middle or last name)
-            // If perTagInProgress == True
-                // word = word + </PER>
-                // perTagInProgress = False
+    // ElseIf perTagInProgress == False
+    // word = <PER> + word
+    // perTagInProgress = True
 
-        // ElseIf perTagInProgress == False
-            // word = <PER> + word
-            // perTagInProgress = True
-    
-    // Case wordClassification = 0   (not a name)
-        // If perTagInProgress == True
-            // word[word.Index - 1] = word[word.Index - 1] + </PER>
-            // perTagInProgress = False
+    // Case word.Classification = 2 (middle or last name)
+    // If perTagInProgress == True
+    // word = word + </PER>
+    // perTagInProgress = False
 
-        // ElseIf perTagInProgress == False
-            // Do nothing. Continue to next word.
-        
-    
+    // ElseIf perTagInProgress == False
+    // word = <PER> + word
+    // perTagInProgress = True
+
+    // Case wordClassification = 0 (not a name)
+    // If perTagInProgress == True
+    // word[word.Index - 1] = word[word.Index - 1] + </PER>
+    // perTagInProgress = False
+
+    // ElseIf perTagInProgress == False
+    // Do nothing. Continue to next word.
 
     /**
      * Import raw text data for processing.
@@ -123,7 +119,7 @@ public class NameLearningMachine {
      * @throws IOException
      */
     public String importTestData() throws FileNotFoundException, IOException {
-        
+
         String wholeFile = null;
 
         try {
@@ -141,6 +137,7 @@ public class NameLearningMachine {
 
     /**
      * Tokenizes all of the text data and sets it's features.
+     * 
      * @param wholeFile
      * @throws IOException
      */
@@ -183,9 +180,7 @@ public class NameLearningMachine {
                 nextToken.setAuthorLastName(knownAuthors.lastName(phrase));
                 nextToken.setPartOfSpeech(partsOfSpeech.checkForPartsOfSpeech(phrase));
                 nextToken.setLexicalFeature(lexicalFeature.determineLexicalFeature(phrase));
-                if (phrase.equals("diagnoses")) {
-                    System.out.println("do stuff");
-                }
+
                 allTokens.add(nextToken);
             }
         }
@@ -250,7 +245,7 @@ public class NameLearningMachine {
      * 
      * @param window
      */
-    private void createDataString(Token[] window) {
+    private String createDataString(Token[] window) {
         StringBuffer buffer = new StringBuffer();
 
         // Catch any null @ATTRIBUTE WORD values
@@ -283,10 +278,13 @@ public class NameLearningMachine {
         buffer.append("?");
 
         dataStrings.add(buffer.toString());
+
+        return buffer.toString();
     }
 
     /**
      * Convert boolean value to String value for ARFF file.
+     * 
      * @param itIsTrue
      * @return
      */
@@ -354,22 +352,43 @@ public class NameLearningMachine {
         }
     }
 
+    public void classify(Vector<Token> allTokens) {
+        Token[] window = new Token[5];
+        for (int index = 0; index < allTokens.size(); index++) {
+            window[2] = allTokens.elementAt(index);
+            if (index == 0) {
+                window[0] = null;
+                window[1] = null;
+                window[3] = allTokens.elementAt(index + 1);
+                window[4] = allTokens.elementAt(index + 2);
+            } else if (index == 1) {
+                window[0] = null;
+                window[1] = allTokens.elementAt(index - 1);
+                window[3] = allTokens.elementAt(index + 1);
+                window[4] = allTokens.elementAt(index + 2);
+            } else if (index == allTokens.size() - 2) {
+                window[0] = allTokens.elementAt(index - 2);
+                window[1] = allTokens.elementAt(index - 1);
+                window[3] = allTokens.elementAt(index + 1);
+                window[4] = null;
+            } else if (index == allTokens.size() - 1) {
+                window[0] = allTokens.elementAt(index - 2);
+                window[1] = allTokens.elementAt(index - 1);
+                window[3] = null;
+                window[4] = null;
+            } else {
+                window[0] = allTokens.elementAt(index - 2);
+                window[1] = allTokens.elementAt(index - 1);
+                window[3] = allTokens.elementAt(index + 1);
+                window[4] = allTokens.elementAt(index + 2);
+            }
 
+            String dataString = createDataString(window);
 
+            // classify using dataString
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            // token[2].setClassification(classification);
+        }
+    }
 
 }
