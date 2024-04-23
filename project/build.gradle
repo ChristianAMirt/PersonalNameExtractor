@@ -138,11 +138,19 @@ task demo3(type: JavaExec) {
     args '<NER> This line should not include any PER tags. Here is a list of things that should not be flagged. New York, Houston, United Stated Of America, Sir, Dr, Ms, Mr. </NER>'
 }
 
+task demo4(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'edu.odu.cs.cs350.PNE'
+
+    //This demos English dictionary words, kill words, and prefixes.
+    args '<NER> The acclaimed Von Lepe graciously made his appearance at the Grayhack Corporation today.</NER>'
+}
+
 
 // If you want to run the program currently, type: 
 
 // If in root
-// ./gradlew run --args='"<NER> Joe Smith should have a nametag. Joey Wheeler should also have a nametag. Sytax Sages should not have a nametag.</NER>"'
+// ./gradlew run --args='"<NER> Joe Smith should have a nametag. Joey Wheeler should also have a nametag. SytaxSages should not have a nametag.</NER>"'
 
 //If in project
-// ../gradlew run --args='"<NER> Joe Smith should have a nametag. Joey Wheeler should also have a nametag. Sytax Sages should not have a nametag.</NER>"'
+// ../gradlew run --args='"<NER> Joe Smith should have a nametag. Joey Wheeler should also have a nametag. SytaxSages should not have a nametag.</NER>"'
