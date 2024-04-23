@@ -22,9 +22,9 @@ public class TestLibrarian {
         Librarian librarian2 = new Librarian("Is this the Krusty Krab? No this is Patrick.");
 
         assertThat(librarian2.hasDocuments(), is(true));
-        
+
         Librarian librarian3 = new Librarian("<NER>ABCD EFGH </NER><NER> IJKL MNOP </NER><NER> QRST UVWX YZ</NER>");
-        String[] outputExpected = {"<NER>ABCD EFGH </NER>", "<NER> IJKL MNOP </NER>", "<NER> QRST UVWX YZ</NER>"};
+        String[] outputExpected = { "<NER>ABCD EFGH </NER>", "<NER> IJKL MNOP </NER>", "<NER> QRST UVWX YZ</NER>" };
         int vectorSizeExpected = 3;
 
         int vectorSizeActual = librarian3.getDocumentsSize();
@@ -32,7 +32,7 @@ public class TestLibrarian {
         assertEquals(vectorSizeExpected, vectorSizeActual);
 
         String documentText;
-        for (int i = 0; i<vectorSizeActual; i++) {
+        for (int i = 0; i < vectorSizeActual; i++) {
             documentText = librarian3.getDocumentAt(i).getInputText();
             assertEquals(outputExpected[i], documentText);
         }
@@ -50,13 +50,14 @@ public class TestLibrarian {
 
     @Test
     public void testSplitInputPage() throws IOException {
-        
+
         Librarian librarian3 = new Librarian("<NER>ABCD EFGH </NER><NER> IJKL MNOP </NER><NER> QRST UVWX YZ</NER>");
-       
-        String[] outputExpected = {"<NER>ABCD EFGH </NER>", "<NER> IJKL MNOP </NER>", "<NER> QRST UVWX YZ</NER>"};
+
+        String[] outputExpected = { "<NER>ABCD EFGH </NER>", "<NER> IJKL MNOP </NER>", "<NER> QRST UVWX YZ</NER>" };
         int arraySizeExpected = 3;
 
-        String[] outputActual = librarian3.splitInputPage("<NER>ABCD EFGH </NER><NER> IJKL MNOP </NER><NER> QRST UVWX YZ</NER>");
+        String[] outputActual = librarian3
+                .splitInputPage("<NER>ABCD EFGH </NER><NER> IJKL MNOP </NER><NER> QRST UVWX YZ</NER>");
         int arraySizeActual = outputActual.length;
 
         assertEquals(arraySizeExpected, arraySizeActual);
@@ -98,21 +99,21 @@ public class TestLibrarian {
         Librarian withNames = new Librarian("<NER> A very easy name is Steve Smith. </NER>");
         Librarian noNames = new Librarian("<NER> This is text without names. </NER>");
 
-        withNames.markNames();
-        noNames.markNames();
+        String output1 = withNames.markNames();
+        String output2 = noNames.markNames();
 
-        assertThat(withNames.toString(),
+        assertThat(output1.toString(),
                 containsString("<NER> A very easy name is <PER> Steve Smith </PER> . </NER> "));
-        assertThat(noNames.toString(), containsString("<NER> This is text without names . </NER> "));
+        assertThat(output2.toString(), containsString("<NER> This is text without names . </NER> "));
     }
 
     @Test
-    public void testPrintDocumentText() throws IOException { 
-        
+    public void testPrintDocumentText() throws IOException {
+
         String outputText = "<NER>ABCD EFGH </NER>";
-                
+
         Librarian librarian = new Librarian(outputText);
         librarian.printDocumentText(outputText);
     }
-    
+
 }

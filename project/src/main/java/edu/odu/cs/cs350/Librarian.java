@@ -32,8 +32,11 @@ public class Librarian {
      */
     private Vector<Document> inputDocuments;
 
+    private NameLearningMachine nameLearningMachine;
+
     /**
      * Takes in a string from the user to read.
+     * 
      * @param inputPage is the string given by the user
      * 
      * @throws IOException if input is larger than 4000 characters
@@ -58,10 +61,13 @@ public class Librarian {
                 }
             }
         }
+
+        nameLearningMachine = new nameLearningMachine();
     }
 
     /**
      * Checks to see if documents have been added.
+     * 
      * @return true if one or more Documents have been added to collection
      */
     public boolean hasDocuments() {
@@ -72,6 +78,7 @@ public class Librarian {
 
     /**
      * Returns the number of elements that have been added to inputDocuments.
+     * 
      * @return int
      */
     public int getDocumentsSize() {
@@ -80,6 +87,7 @@ public class Librarian {
 
     /**
      * Returns the document at the specified index.
+     * 
      * @param index of the vector of Documents that is being retrived
      * @return the document object at that index
      */
@@ -89,16 +97,18 @@ public class Librarian {
 
     /**
      * Splits the raw inputText right after each /NER.
+     * 
      * @param textString
      * @return String[]
      */
     public String[] splitInputPage(String textString) {
-        String arrayNERStrings[] = inputPage.split("(?=<NER>)");
+        String arrayNERStrings[] = inputPage.split("(?=<NER>)|(?<=</NER>)");
         return arrayNERStrings;
     }
 
     /**
      * Returns the substring text between the NER tags.
+     * 
      * @param inputText
      * @return String
      */
@@ -128,6 +138,7 @@ public class Librarian {
 
     /**
      * Returns index of "tag" within "inputString".
+     * 
      * @param inputString
      * @param tag
      * @return int
@@ -158,6 +169,7 @@ public class Librarian {
 
     /**
      * Print the output of a text string to the console.
+     * 
      * @param outputText
      */
     public void printDocumentText(String outputText) {
@@ -165,41 +177,77 @@ public class Librarian {
     }
 
     /**
-     * Temporary stub for what the learning machine will be doing. If the
-     * first name field is set to true, a PER tag will get added before.
-     * If the last name field is set to true for the token, a PER tag will be
-     * inserted after the Token.
+     * Marks all the names in text that is between NER tags and leaves other text
+     * alone.
+     * 
      * @throws IOException
+     * @return output of text with personal names marked.
      */
-    public void markNames() throws IOException {
+    public String markNames() throws IOException {
+        StringBuilder markedUp = new StringBuilder();
+
         for (Document document : inputDocuments) {
             ListIterator<Token> current = document.iterator();
-            while (current.hasNext()) {
-                Token tokenValue = current.next();
-                if (firstNameCheck(tokenValue)) {
-                    current.previous();
-                    current.add(new Token("<PER>"));
-                    current.next();
+
+            if (document.size() > 0) {
+                Vector<Token> tokens = new Vector<>();
+
+                while (current.hasNext()) {
+                    tokens.add(current.next());
                 }
-                else if (honorificsCheck(tokenValue)){
-                    current.previous();
-                    current.add(new Token("<PER>"));
-                    current.next();
-                    current.next();
-                } 
-                else if (needsTagAfter(tokenValue)){
-                    current.add(new Token("</PER>"));
+                nameLearningMachine.classify(tokens);
+
+                markedUp.append(insertPERtags(document));
+
+            } else {
+                markedUp.append(document.getInputText());
+            }
+        }
+        return markedUp.toString();
+
+    }
+
+    private String insertPERtags(Document document) {
+        StringBuffer markedUp = new StringBuffer();
+        boolean perTagInProgress = false;
+
+        for (Token token : document) {
+
+            int classification = token.getClassification();
+
+            if (classification == 1) { // start of name
+
+                if (perTagInProgress == true) {
+                    markedUp.append("</PER> <PER>" + token.getValue() + " ");
+                    perTagInProgress = true;
+                } else {
+                    markedUp.append("<PER> " + token.getValue() + " ");
+                    perTagInProgress = true;
+                }
+            } else if (classification == 2) { // continuing name
+                if (perTagInProgress == true) {
+                    markedUp.append(token.getValue() + " ");
+                } else {
+                    markedUp.append("<ERR> " + token.getValue() + " ");
+                    perTagInProgress = true;
+                }
+            } else if (classification == 0) { // not a name
+                if (perTagInProgress == true) {
+                    markedUp.append("</PER>" + token.getValue() + " ");
+                    perTagInProgress = false;
+                } else {
+                    markedUp.append(token.getValue() + " ");
                 }
             }
         }
-
+        return markedUp.toString();
     }
 
-    private boolean firstNameCheck(Token nextToken){
+    private boolean firstNameCheck(Token nextToken) {
         return (nextToken.getCommonFirstName());
     }
 
-    private boolean honorificsCheck(Token nextToken){
+    private boolean honorificsCheck(Token nextToken) {
         return (nextToken.getHonorificsValue());
     }
 
