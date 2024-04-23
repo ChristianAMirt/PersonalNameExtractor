@@ -22,13 +22,13 @@ public class PNE {
             String inputText = String.join(" ", arguments);
             try {
                 librarian = new Librarian(inputText);
-                output = librarian.markNames();
+                librarian.markNames();
             } catch (IOException e) {
                 System.err.println("Character limit exceeded (4000). Try again with a shorter text");
             }
         }
         if (librarian != null) {
-            System.out.println(output);
+            System.out.println(librarian.toString());
         } else
             System.err.println("Librarian failed to initialize.");
     }

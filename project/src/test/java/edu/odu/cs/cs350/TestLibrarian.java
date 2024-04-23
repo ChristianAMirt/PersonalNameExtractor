@@ -99,12 +99,12 @@ public class TestLibrarian {
         Librarian withNames = new Librarian("<NER> A very easy name is Steve Smith. </NER>");
         Librarian noNames = new Librarian("<NER> This is text without names. </NER>");
 
-        String output1 = withNames.markNames();
-        String output2 = noNames.markNames();
+        withNames.markNames();
+        noNames.markNames();
 
-        assertThat(output1.toString(),
+        assertThat(withNames.toString(),
                 containsString("<NER> A very easy name is <PER> Steve Smith </PER> . </NER> "));
-        assertThat(output2.toString(), containsString("<NER> This is text without names . </NER> "));
+        assertThat(noNames.toString(), containsString("<NER> This is text without names . </NER> "));
     }
 
     @Test
